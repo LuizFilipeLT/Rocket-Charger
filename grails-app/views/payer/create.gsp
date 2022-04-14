@@ -13,8 +13,7 @@
       <input type="text" name="endereco" placeholder="Endereço" /><br />
       <input type="text" name="cidade" placeholder="Cidade" /><br />
       <input type="text" name="estado" placeholder="UF" /><br />
-      <button type="submit" name="btnSalvar">Salvar</button>
-      <br />
+      <button type="submit" name="btnSalvar">Salvar</button><br />
       <button type="button" name="btnCancelar">Cancelar</button>
     </form>
   </body>
