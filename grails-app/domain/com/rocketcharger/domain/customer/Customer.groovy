@@ -13,8 +13,9 @@ class Customer {
 
     static constraints = { 
         name ()
-        email (blank: false, email: true, unique: true)
-        postalCode (size: 8)
+        email (email: true, nullable: false)
+        postalCode (size: 8..9)
+        
     }
 
 }
