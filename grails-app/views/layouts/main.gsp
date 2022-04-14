@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <asset:link rel="icon" href="rocketico.ico" type="image/x-ico"/>
 
-    <asset:stylesheet src="application.css"/>
+    <asset:javascript src="application.js"/>
 
     <g:layoutHead/>
 </head>
@@ -17,8 +17,6 @@
 <body>
 
 <g:layoutBody/>
-
-<asset:javascript src="application.js"/>
 
 </body>
 </html>

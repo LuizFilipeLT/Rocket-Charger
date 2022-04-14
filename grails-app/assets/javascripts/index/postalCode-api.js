@@ -1,10 +1,13 @@
 function checkAddress() {
   let postalCode = document.querySelector("#postalCode").value;
-  let url = `https://viacep.com.br/ws/${postalCode}/json/`;
+  let correctPostalCodeLength = 8;
+  if (postalCode.length == correctPostalCodeLength) {
+    let url = `https://viacep.com.br/ws/${postalCode}/json/`;
 
-  fetch(url).then(function (response) {
-    response.json().then(showAddress);
-  });
+    fetch(url).then(function (response) {
+      response.json().then(showAddress);
+    });
+  }
 }
 
 function showAddress(data) {
@@ -29,8 +32,8 @@ function showAddress(data) {
   }
 
   setErrorFor(postalCode, "Não foi possível localizar o endereço"),
-    (address.value = ""),
-    (province.value = ""),
-    (state.value = ""),
-    (city.value = "");
+    (address.value = "");
+  province.value = "";
+  state.value = "";
+  city.value = "";
 }
