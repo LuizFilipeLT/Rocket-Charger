@@ -5,13 +5,13 @@
 </head>
 <body>
     <form action="${ g.createLink(controller: 'payer', action: 'save') }"> 
-        <input type="text" name="name" placeholder="name"><br>
+        <input type="text" name="name" placeholder="nome"><br>
         <input type="text" name="email" placeholder="email"><br>
-        <input type="date" name="nascimento" placeholder="nascimento"><br>
-        <input type="text" name="cep" placeholder="cep"><br>
-        <input type="text" name="endereco" placeholder="endereco"><br>
-        <input type="text" name="cidade" placeholder="cidade"><br>
-        <input type="text" name="estado" placeholder="UF"><br>
+        <input type="date" name="birthday" placeholder="nascimento"><br>
+        <input type="text" name="postalCode" placeholder="cep"><br>
+        <input type="text" name="address" placeholder="endereco"><br>
+        <input type="text" name="city" placeholder="cidade"><br>
+        <input type="text" name="state" placeholder="UF"><br>
         <input type="submit" name="btnSalvar" value="salvar"/><br>
         <input type="button" name="btnCancelar" value="Cancelar"/>
     </form>

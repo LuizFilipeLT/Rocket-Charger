@@ -4,16 +4,17 @@
     <tr>
         <th>name</th>
         <th>email</th>
-        <th>nascimento</th>
-        <th>cep</th>
-        <th>endereco</th>
-        <th>cidade</th>
-        <th>estado</th>
+        <th>birthday</th>
+        <th>postalCode</th>
+        <th>address</th>
+        <th>city</th>
+        <th>state</th>
     </tr>
     <g:each var="payer" in="${payerList}">
         <tr>
-            <td>${payer.customerName}</td>
+            <td>${payer.name}</td>
             <td>${payer.email}</td>
+            <td>${payer.birthday}</td>
             <td>${payer.postalCode}</td>
             <td>${payer.address}</td>
             <td>${payer.city}</td>
