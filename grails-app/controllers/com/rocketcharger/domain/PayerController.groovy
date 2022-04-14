@@ -11,20 +11,5 @@ class PayerController {
 
     def index() {  
        return [payerList: Payer.getAll()]
-  
-    }
-
-    def adicionar() {
-        // return [lista: Payer.getAll()]
-    }
-
-    def save () {
-        try {
-            payerService.save(params)
-            render([success: true] as JSON)
-        } catch(Exception e) {
-            render([success: false, message: "Ocorreu um erro"] as JSON)
-            println(e)
-        } 
     }
 }
