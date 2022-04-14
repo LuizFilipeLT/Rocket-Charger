@@ -1,19 +1,15 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
+  <head>
+    <meta name="layout" content="main" />
     <title>Gerenciamento de pagamentos</title>
-</head>
-<body>
-    
+  </head>
+  <body>
     <div>
-        <g:link controller="payer" action="create" update="divForm">Adicionar pagador</g:link>
-    </div>
-
-    <div id="divLista">
-        <g:render template="list" model="[payerList: payerList]"></g:render>
+      <g:link controller="payer" action="create" update="divForm"
+        >Adicionar pagador</g:link>
     </div>
 
     <div id="divForm"></div>
-
-</body>
+  </body>
 </html>
