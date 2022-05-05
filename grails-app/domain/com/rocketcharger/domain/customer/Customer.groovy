@@ -11,6 +11,10 @@ class Customer {
     String city
     String state
 
-    static constraints = { }
+    static constraints = { 
+        name ()
+        email (blank: false, email: true, unique: true)
+        postalCode (size: 8)
+    }
 
 }
