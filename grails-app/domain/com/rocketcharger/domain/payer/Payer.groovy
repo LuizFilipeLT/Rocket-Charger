@@ -14,6 +14,15 @@ class Payer {
     String state
     Customer customer
 
-    static constraints = { }
+    static constraints = {
+        name size: 3..100, nulllable: false
+        email size: 5..100, nulllable: false
+        cpfCnpj size: 11..14, nulllable: false, unique:
+        postalCode size: 8..9, nulllable: false
+        address size: 2..100, nulllable: false
+        district size: 2..100, nulllable: false
+        city size: 2..50, nulllable: false
+        state size: 1..50, nulllable: false
+     }
 
 }

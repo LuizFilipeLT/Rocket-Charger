@@ -11,6 +11,6 @@ class Payer {
     Customer customer
     Payer payer
 
-    static constraints = { }
+    static constraints = {}
 
 }
