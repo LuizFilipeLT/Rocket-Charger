@@ -16,7 +16,13 @@ class CustomerController {
 
 
     def create() {
+        return [customerValidate: getCurrentValidate()]
     }
+        private getCurrentValidate(customer, Map params) {
+        if(!${customer.cpfCnpj} == null) 
+        alert('nao tem')
+        return;
+        }
 
     def save() {
         try {
