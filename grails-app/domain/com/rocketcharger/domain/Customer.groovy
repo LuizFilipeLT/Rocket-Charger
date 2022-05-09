@@ -24,7 +24,7 @@ class Customer {
         cpfCnpj nulllable: false, unique: true, blank: false
         postalCode size: 8..9, nulllable: false, blank: false 
         address size: 2..100, nulllable: false, blank: false
-        district size: 2..100, nulllable: false, blank: false
+        district size: 2..100, nulllable: false, blank: falsech
         city size: 2..50, nulllable: false, blank: false
         state size: 1..50, nulllable: false, blank: false
         
