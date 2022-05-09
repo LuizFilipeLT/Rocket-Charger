@@ -14,20 +14,8 @@ class CustomerController {
         return [customerList: Customer.list(max: 10, offset: getCurrentPage()), totalCount: Customer.count()]
     }
 
-    def validateCpfCnpj = new validateCpfCnpj(customer, params)
-    if (!validateCpfCnpj.validate()) {
-        validateCpfCnpj.errors.allErrors.each {
-            println it
-        }
-    }
     def create() {
-        // return [customerValidate: getCurrentValidate()]
     }
-        // private getCurrentValidate(customer, Map params) {
-        // if(!${customer.cpfCnpj} == null) 
-        // alert('nao tem')
-        // return;
-        // }
 
     def save() {
         try {
