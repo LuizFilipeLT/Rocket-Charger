@@ -34,4 +34,10 @@ class CustomerService {
             customer.state = params.state
             customer.save(flush: true, failOnError: true)
     } 
+
+    private void validate(Map params){
+        if(params.cpfCnpj == !null){
+            throw new Exception('CPF/CNPJ já existente')
+        }
+    }
 }

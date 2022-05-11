@@ -26,6 +26,15 @@ class CustomerController {
         } 
     }
 
+    def validate() {
+        try {
+            customerService.validate(params)
+            render([success: true] as JSON)
+        } catch(Exception e) {
+            render([success: false, message: "CPF existente"] as JSON)
+        } 
+    }
+    
     def update() {
        try {
             customerService.update(params)
