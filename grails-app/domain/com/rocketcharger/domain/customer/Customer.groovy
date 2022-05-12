@@ -14,7 +14,7 @@ class Customer {
     static constraints = { 
         name size: 3..100, nulllable: false
         email size: 5..100, nulllable: false
-        cpfCnpj size: 11..14, nulllable: false, unique:
+        cpfCnpj size: 11..14, nulllable: false, unique: true
         postalCode size: 8..9, nulllable: false
         address size: 2..100, nulllable: false
         district size: 2..100, nulllable: false
