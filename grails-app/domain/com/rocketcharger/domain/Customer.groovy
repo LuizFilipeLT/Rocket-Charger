@@ -1,6 +1,8 @@
 package com.rocketcharger.domain.customer
 
-class Customer {
+import com.rocketcharger.base.BaseEntity
+
+class Customer extends BaseEntity {
 
     String name
 

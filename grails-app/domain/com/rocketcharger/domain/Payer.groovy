@@ -1,8 +1,10 @@
 package com.rocketcharger.domain.payer
 
 import com.rocketcharger.domain.customer.Customer
+import com.rocketcharger.base.BaseEntity
 
-class Payer {
+
+class Payer extends BaseEntity {
 
     String name
 
