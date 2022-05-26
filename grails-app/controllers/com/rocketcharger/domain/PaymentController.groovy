@@ -29,11 +29,18 @@ class PaymentController extends BaseController {
 
     def save() {
         try {
-            paymentService.save(params)
+            Payment payment = paymentService.validate(params)
+
+            if (payment.hasErrors()) {
+                render([success: false, message: message(code: payment.errors.allErrors.defaultMessage.join("\n"))] as JSON)
+                return
+            }
+            payment = paymentService.save(params)
+
             render([success: true] as JSON)
-        } catch(Exception e) {
-            render([success: false, message: "Ocorreu um erro"] as JSON)
-        } 
+            } catch (Exception e) {
+            render([success: false, message: message(code: "Ocorreu um erro: " + e.message)] as JSON)
+        }
     }
 
     def confirm() {

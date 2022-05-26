@@ -6,7 +6,7 @@ import com.rocketcharger.domain.customer.Customer
 import com.rocketcharger.enums.PaymentMethod
 import com.rocketcharger.enums.PaymentStatus
 import com.rocketcharger.utils.FormatDateUtils
-
+import com.rocketcharger.utils.DomainUtils
 import grails.plugin.asyncmail.AsynchronousMailService
 import grails.gorm.transactions.Transactional 
 import grails.gsp.PageRenderer
@@ -78,5 +78,57 @@ class PaymentService {
             }
         }
         return paymentList
+    }
+        
+    public Payment validate(Map params) {
+        Payment payment = new Payment()
+        payment.value = new BigDecimal(params.value)
+        payment.dueDate = FormatDateUtils.toDate(params.dueDate, "yyyy-MM-dd")
+        payment.billingType = PaymentMethod.valueOf(params.billingType)
+        payment.payer = Payer.get(params.long("payerId"))
+        payment.customer = Customer.get(params.long("customerId"))
+        payment.status = PaymentStatus.PENDING
+        if (!payment.value) {
+            DomainUtils.addError(payment, "Erro no registro do valor da cobrança informado.")
+        }
+        if (!payment.dueDate) {
+            DomainUtils.addError(payment, "Erro no registro da data de vencimento informada.")
+        }
+        if (!payment.billingType) {
+            DomainUtils.addError(payment, "Erro no registro do método de pagamento informado.")
+        }
+        if (!payment.payer) {
+            DomainUtils.addError(payment, "Erro no registro do pagador informado.")
+        }
+        if (!payment.customer) {
+            DomainUtils.addError(payment, "Erro, contate o administrador.")
+        }
+        if (!payment.status) {
+            DomainUtils.addError(payment, "Erro no registro do status da cobrança informado.")
+        }
+        return payment
+    }
+
+    public Payment validateRecognizePayment(Map params) {
+        Payment payment = new Payment()
+        if (!params.value) {
+            DomainUtils.addError(payment, "Erro no registro do valor informado.")
+        }
+        if (!params.dueDate) {
+            DomainUtils.addError(payment, "Erro no registro da data de vencimento informada.")
+        }
+        if (!params.billingType) {
+            DomainUtils.addError(payment, "Erro no registro do método de pagamento informado.")
+        }
+        if (!params.payer) {
+            DomainUtils.addError(payment, "Erro no registro do pagador informado.")
+        }
+        if (!params.customer) {
+            DomainUtils.addError(payment, "Erro, contate o administrador.")
+        }
+        if (!params.status) {
+            DomainUtils.addError(payment, "Erro no registro do status da cobrança informado.")
+        }
+        return payment
     }
 }
