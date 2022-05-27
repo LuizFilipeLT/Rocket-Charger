@@ -9,13 +9,14 @@
     <asset:javascript src="applications/applicationPayment.js" />
   </head>
   <body>
-    <form
+    <form class="form"
       data-redirect-url="${ g.createLink(controller: 'payment', action: 'index', params: [id: customerId]) }"
       action="${ g.createLink(controller: 'payment', action: 'save') }">
+
       <div class="form-control">
         <label>Valor do pagamento:</label>
         <input
-          type="text"
+          type="number"
           name="value"
           id="value"
           placeholder="Valor do pagamento"/>
@@ -23,6 +24,7 @@
           <i class="fas fa-check-circle"></i>
           <small class="js-msg"></small>
       </div>
+
       <div class="form-control">
         <label>Data de Vencimento:</label>
         <input
@@ -34,6 +36,7 @@
           <i class="fas fa-check-circle"></i>
           <small class="js-msg"></small>
       </div>
+
       <div class="form-control">
         <label> Método de pagamento:</label>
         <g:select
@@ -47,6 +50,7 @@
           <i class="fas fa-check-circle"></i>
           <small class="js-msg"></small>
       </div>
+
       <div class="form-control">
         <label> Selecione o pagador:</label>
         <select id="payerId" name="payerId" required>
@@ -59,14 +63,16 @@
         <i class="fas fa-check-circle"></i>
         <small class="js-msg"></small>
       </div>
+
       <input
         type="hidden"
         value="${customerId}"
         name="customerId"
         id="customerId"/>
-      <div>
-        <button type="submit">Salvar</button>
-      </div>
+
+        <button type="submit" id="button">
+        <strong>Criar cobrança</strong>
+        </button>
     </form>
   </body>
 </html>

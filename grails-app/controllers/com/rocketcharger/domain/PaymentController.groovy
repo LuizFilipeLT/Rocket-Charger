@@ -32,7 +32,7 @@ class PaymentController extends BaseController {
             Payment payment = paymentService.validate(params)
 
             if (payment.hasErrors()) {
-                render([success: false, message: message(code: payment.errors.allErrors.defaultMessage.join("\n"))] as JSON)
+                render([success: false, message: message(code: payment.errors.allErrors.defaultMessage)] as JSON)
                 return
             }
             payment = paymentService.save(params)

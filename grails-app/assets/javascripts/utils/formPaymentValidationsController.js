@@ -4,14 +4,28 @@ window.onload = function () {
   var dueDateReference = document.getElementById("dueDate");
   var billingTypeReference = document.getElementById("method");
   var payerReference = document.getElementById("payerId");
+  var todayDate = new Date();
+  var zeroValue = 0;
 
   formReference.addEventListener("submit", (event) => {
     event.preventDefault();
     checkInput();
   });
 
-  valueReference.addEventListener("input", (event) => {
+  valueReference.addEventListener("focusout", (event) => {
     checkValue();
+  });
+
+  dueDateReference.addEventListener("focusout", (event) => {
+    checkDueDate();
+  });
+
+  billingTypeReference.addEventListener("focusout", (event) => {
+    checkBillingType();
+  });
+
+  payerReference.addEventListener("focusout", (event) => {
+    checkPayer();
   });
 
   function checkValue() {
@@ -20,7 +34,63 @@ window.onload = function () {
       setErrorFor(valueReference, "Favor informar o valor.");
       return;
     }
+    if (inputValue < zeroValue) {
+      setErrorFor(valueReference, "Valor não aceito, favor verificar.");
+      return;
+    }
     setSucessFor(valueReference);
+  }
+
+  function checkDueDate() {
+    let dueDateValue = dueDateReference.value;
+    if (!dueDateValue) {
+      setErrorFor(dueDateReference, "Favor informar a data de vencimento.");
+      return;
+    }
+    if (dueDateValue < todayDate) {
+      setErrorFor(dueDateReference, "Informar acima da data de hoje.");
+      return;
+    }
+    setSucessFor(dueDateReference);
+  }
+
+  function checkBillingType() {
+    let billingTypeValue = billingTypeReference.value;
+    if (!billingTypeValue) {
+      setErrorFor(billingTypeReference, "Escolha o método de pagamento.");
+      return;
+    }
+    setSucessFor(billingTypeReference);
+  }
+
+  function checkPayer() {
+    let payerValue = payerReference.value;
+    if (!payerValue) {
+      setErrorFor(payerReference, "Escolha o pagador desta cobrança.");
+      return;
+    }
+    setSucessFor(payerReference);
+  }
+
+  function checkInput() {
+    checkValue();
+    checkDueDate();
+    checkBillingType();
+    checkPayer();
+
+    let formControls = formReference.querySelectorAll(".form-control");
+    let formIsValid = [...formControls].every((formControl) => {
+      return formControl.className === "form-control success";
+    });
+
+    if (!formIsValid) {
+      return;
+    }
+    let infosCustomer = {};
+    let data = new FormData(formReference);
+    data.forEach(function (value, key) {
+      infosCustomer[key] = value;
+    });
   }
 
   function setSucessFor(input) {
