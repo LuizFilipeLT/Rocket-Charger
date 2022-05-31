@@ -1,9 +1,8 @@
 <html>
 <head>
-    <meta name="layout" content="${gspLayout ?: 'main'}"/>
+    <asset:javascript src="applications/applicationForm.js"/>
     <title>Register</title>
 </head>
-
 <body>
     <div class="row">
     <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
@@ -49,10 +48,5 @@
       </div>
     </div>
   </div>
-    <script type="text/javascript">
-        document.addEventListener("DOMContentLoaded", function(event) {
-            document.forms['loginForm'].elements['username'].focus();
-        });
-    </script>
 </body>
 </html>
