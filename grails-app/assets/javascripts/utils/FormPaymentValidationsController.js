@@ -1,4 +1,12 @@
-window.onload = function () {
+function FormPaymentValidationsController() {
+  this.init = function () {
+    formListener();
+    valueListener();
+    dueDateListener();
+    billingTypeListener();
+    payerListener();
+  };
+
   var formReference = document.querySelector("form");
   var valueReference = document.getElementById("value");
   var dueDateReference = document.getElementById("dueDate");
@@ -7,26 +15,35 @@ window.onload = function () {
   var todayDate = new Date();
   var zeroValue = 0;
 
-  formReference.addEventListener("submit", (event) => {
-    event.preventDefault();
-    checkInput();
-  });
+  function formListener() {
+    formReference.addEventListener("submit", (event) => {
+      checkSuccessInputs();
+    });
+  }
 
-  valueReference.addEventListener("focusout", (event) => {
-    checkValue();
-  });
+  function valueListener() {
+    valueReference.addEventListener("focusout", (event) => {
+      checkValue();
+    });
+  }
 
-  dueDateReference.addEventListener("focusout", (event) => {
-    checkDueDate();
-  });
+  function dueDateListener() {
+    dueDateReference.addEventListener("focusout", (event) => {
+      checkDueDate();
+    });
+  }
 
-  billingTypeReference.addEventListener("focusout", (event) => {
-    checkBillingType();
-  });
+  function billingTypeListener() {
+    billingTypeReference.addEventListener("focusout", (event) => {
+      checkBillingType();
+    });
+  }
 
-  payerReference.addEventListener("focusout", (event) => {
-    checkPayer();
-  });
+  function payerListener() {
+    payerReference.addEventListener("focusout", (event) => {
+      checkPayer();
+    });
+  }
 
   function checkValue() {
     let inputValue = valueReference.value;
@@ -72,24 +89,18 @@ window.onload = function () {
     setSucessFor(payerReference);
   }
 
-  function checkInput() {
-    checkValue();
-    checkDueDate();
+  function checkSuccessInputs() {
     checkBillingType();
+    checkDueDate();
+    checkFormIsValid();
     checkPayer();
+    checkValue();
+  }
 
+  function checkFormIsValid() {
     let formControls = formReference.querySelectorAll(".form-control");
     let formIsValid = [...formControls].every((formControl) => {
       return formControl.className === "form-control success";
-    });
-
-    if (!formIsValid) {
-      return;
-    }
-    let infosCustomer = {};
-    let data = new FormData(formReference);
-    data.forEach(function (value, key) {
-      infosCustomer[key] = value;
     });
   }
 
@@ -106,4 +117,11 @@ window.onload = function () {
     smallDisplayError.innerText = message;
     $(formControl).addClass("form-control error").removeClass("success");
   }
-};
+}
+
+var formPaymentValidationsController;
+
+$(document).ready(function () {
+  formPaymentValidationsController = new FormPaymentValidationsController();
+  formPaymentValidationsController.init();
+});
