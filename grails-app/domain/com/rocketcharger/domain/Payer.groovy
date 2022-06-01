@@ -21,7 +21,4 @@ class Payer {
     String state
     
     Customer customer
-
-    static constraints = { }
-
 }

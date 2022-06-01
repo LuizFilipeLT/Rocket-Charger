@@ -1,8 +1,7 @@
-
 <html lang="pt-br">
-<body>
-<g:if test="${payerList?.size() > 0}">
-    <table>
+  <body>
+    <g:if test="${payerList}">
+      <table>
         <tr>
           <th>Nome</th>
           <th>CPF/CNPJ</th>
@@ -13,7 +12,7 @@
           <th>Cidade</th>
           <th>Estado</th>
         </tr>
-          <g:each var="payer" in="${payerList}">
+        <g:each var="payer" in="${payerList}">
           <tr>
             <td>${payer.name}</td>
             <td>${payer.cpfCnpj}</td>

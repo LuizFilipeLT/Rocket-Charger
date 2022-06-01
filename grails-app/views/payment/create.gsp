@@ -9,11 +9,10 @@
     <asset:javascript src="applications/applicationPayment.js" />
   </head>
   <body>
-    <form class="form"
-      data-redirect-url="${ g.createLink(controller: 'payment', action: 'index', params: [id: customerId]) }"
-      action="${ g.createLink(controller: 'payment', action: 'save') }">
-
-      <div class="form-control">
+    <form
+      data-redirect-url="${ g.createLink(controller: "payment", action: "list", params: [id: customerId]) }"
+      action="${ g.createLink(controller: "payment", action: "save") }">
+      <div>
         <label>Valor do pagamento:</label>
         <input
           type="number"

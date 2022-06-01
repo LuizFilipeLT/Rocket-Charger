@@ -3,19 +3,19 @@ package com.rocketcharger.domain
 import com.rocketcharger.domain.payment.Payment
 import com.rocketcharger.domain.payer.Payer
 import com.rocketcharger.domain.customer.Customer
-import grails.validation.ValidationException
-import static org.springframework.http.HttpStatus.*
-import grails.converters.JSON
 import com.rocketcharger.base.BaseController
 import com.rocketcharger.enums.PaymentMethod
 import com.rocketcharger.enums.PaymentStatus
+import static org.springframework.http.HttpStatus.*
+import grails.validation.ValidationException
+import grails.converters.JSON
 
 
 class PaymentController extends BaseController {
     def paymentService
     def payerService
 
-   def index() {  
+   def list() {  
         Long customerId = params.long("id")
         List<Payment> paymentList = paymentService.returnPaymentsByCustomer(customerId, returnSizeLimitPage(), getCurrentPage())
         return [customerId: customerId, paymentList: paymentList, totalCount: paymentList.size()]
@@ -38,19 +38,19 @@ class PaymentController extends BaseController {
             payment = paymentService.save(params)
 
             render([success: true] as JSON)
-            } catch (Exception e) {
-            render([success: false, message: message(code: "Ocorreu um erro: " + e.message)] as JSON)
-        }
+        } catch(Exception e) {
+            render([success: false, message: message(code: "occurrence.error")] as JSON)
+        } 
     }
 
     def confirm() {
         Long paymentId = params.long("id")
         try {
             paymentService.recognizePayment(paymentId)
-            redirect controller: "payment", action: "index", id: paymentId
+            redirect controller: "payment", action: "list", id: paymentId
             }
          catch (Exception e) {
-            render([success: false, message: "Erro, tente novamente"] as JSON)
+            render([success: false, message: message(code: "occurrence.error")] as JSON)
         }
     }
 

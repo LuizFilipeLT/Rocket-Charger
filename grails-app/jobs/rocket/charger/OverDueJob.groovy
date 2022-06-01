@@ -12,17 +12,12 @@ class OverDueJob {
     def paymentService
 
     static triggers = {
-      cron name: "dueDate", cronExpression: "0/50 * * ? * * *"
+      cron name: "dueDate", cronExpression: "0 0 6 * * ?"
     }
 
     static concurrent = false
 
     def execute() {
-        Date yesterdayDate = FormatDateUtils.getYesterdayDate()
-        List<Payment> paymentList = paymentService.returnPaymentStatusDate(PaymentStatus.PENDING, yesterdayDate)
-          for(Payment payment : paymentList) {
-              payment.status = PaymentStatus.OVERDUE
-              payment.save(failOnError:true)
-        }
+      paymentService.verifyOverDueDates()
     }
 }

@@ -17,7 +17,7 @@
         <input type="text" name="city" id="city" placeholder="Cidade"value="${customer?.city}" readonly><br>
         <input type="text" name="state" id="state" placeholder="Estado"value="${customer?.state}" readonly><br>
         <button class="js-edit">Editar</button>
-        <button type="submit" class="js-send-button hiddenBtn">Salvar</button>
+        <button type="submit" class="js-send-button hide">Salvar</button>
         <button type="reset">Cancelar</button>
     </form> 
     <div>

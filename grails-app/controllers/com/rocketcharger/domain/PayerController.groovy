@@ -13,8 +13,7 @@ class PayerController extends BaseController{
     def index() {
         Long customerId = params.long("id")
         List<Payer> payerList = payerService.returnPayersByCustomer(customerId, returnSizeLimitPage(), getCurrentPage())
-        return [customerId: customerId, payerList: payerList, totalCount: Payer.count()] 
-        render(template:"list", model:[customerId: customerId, payerList: payerList])
+        render(template:"list", model:[customerId: customerId, payerList: payerList, totalCount: Payer.count()])
     }
 
     def create() {
@@ -23,23 +22,28 @@ class PayerController extends BaseController{
 
     def save() {
         try {
-            payerService.save(params)
+            Payer payer = payerService.save(params)
+            if (payer.hasErrors()) {
+                render([success: false, message: message(code: payer.errors.allErrors[0].defaultMessage ?: payer.errors.allErrors[0].codes[0])] as JSON)
+                return;
+            }
             render([success: true] as JSON)
         } catch (Exception e) {
-            render([success: false, message: 'Ocorrreu um erro: ' + e.message]  as JSON)
+            render([success: false, message: message(code: "occurrence.error")] as JSON)
         }
     }
 
     def update() {
         try {
-            payerService.update(params)
+            Long id = params.long("id")
+            payerService.update(id, params)
             render([success: true] as JSON)
         } catch (Exception e) {
-            render([success: false, message: 'Ocorrreu um erro: ' + e.message ]  as JSON)
+            render([success: false, message: message(code: "occurrence.error")] as JSON)
         }
     }
 
     def show() {
-        return [payer: payerService.getPayer(params.long("id"))]
+        return [payer: Payer.get(params.long("id"))]
     }
 }

@@ -10,7 +10,7 @@ class CustomerService {
          Customer customer = new Customer(params)
          customer.save(failOnError: true)
          return customer
-     }
+    }
 
     public List<Customer> index() {
         return Customer.getAll()

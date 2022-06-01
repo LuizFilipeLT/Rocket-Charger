@@ -4,6 +4,7 @@ import com.rocketcharger.base.BaseController
 import com.rocketcharger.domain.customer.Customer
 import grails.validation.ValidationException
 import static org.springframework.http.HttpStatus.*
+import grails.validation.ValidationException
 import grails.converters.JSON
 
 class CustomerController extends BaseController{
@@ -17,19 +18,20 @@ class CustomerController extends BaseController{
 
     def save() {
         try {
-            customerService.save(params)
+            Customer customer = customerService.save(params)
             render([success: true] as JSON)
         } catch(Exception e) {
-            render([success: false, message: "Ocorreu um erro"] as JSON)
+            render([success: false, message: message(code: "occurrence.error")] as JSON)
         }
     }
 
     def update() {
        try {
-            customerService.update(params)
+            Long id = params.long("id")
+            customerService.update(id, params)
             render([success: true] as JSON)
         } catch(Exception e) {
-            render([success: false, message: "Erro ao tentar atualizar"] as JSON)
+            render([success: false, message: message(code: "occurrence.error")] as JSON)
         } 
     }
 
