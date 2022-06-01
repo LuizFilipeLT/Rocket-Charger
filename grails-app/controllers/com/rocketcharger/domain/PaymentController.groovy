@@ -10,7 +10,6 @@ import static org.springframework.http.HttpStatus.*
 import grails.validation.ValidationException
 import grails.converters.JSON
 
-
 class PaymentController extends BaseController {
     def paymentService
     def payerService

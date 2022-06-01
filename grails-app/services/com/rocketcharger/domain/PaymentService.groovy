@@ -6,15 +6,15 @@ import com.rocketcharger.domain.customer.Customer
 import com.rocketcharger.enums.PaymentMethod
 import com.rocketcharger.enums.PaymentStatus
 import com.rocketcharger.utils.FormatDateUtils
-import com.rocketcharger.utils.DomainUtils
-import grails.plugin.asyncmail.AsynchronousMailService
-import grails.gorm.transactions.Transactional 
+import com.rocketcharger.domain.EmailService
+
+import grails.gorm.transactions.Transactional
 import grails.gsp.PageRenderer
 
 @Transactional
 class PaymentService {
     PageRenderer groovyPageRenderer
-    def asynchronousMailService
+    def emailService
     
     public Payment save(Map params) {
         Payment payment = new Payment()
@@ -25,16 +25,7 @@ class PaymentService {
         payment.customer = Customer.get(params.long("customerId"))
         payment.status = PaymentStatus.PENDING
         payment.save(failOnError: true)
-        asynchronousMailService.sendMail {
-            to payment.payer.email
-            subject "Nova cobrança"
-            html groovyPageRenderer.render(template:"/email/emailSendPayerPayment", model: [payment: payment])
-        }
-        asynchronousMailService.sendMail {
-            to payment.customer.email
-            subject "Nova cobrança"
-            html groovyPageRenderer.render(template:"/email/emailSendCustomerPayment", model: [payment: payment])
-        }
+        notifyNewPayment(payment)
         return payment
     }
 
@@ -42,17 +33,8 @@ class PaymentService {
         Payment payment = Payment.get(paymentId)
         payment.status = PaymentStatus.PAID
         payment.paymentDate = new Date()
-        payment.save(failOnError: true)
-        asynchronousMailService.sendMail {
-            to payment.payer.email
-            subject "Confirmação cobrança"
-            html groovyPageRenderer.render(template:"/email/emailConfirmPayerPayment", model: [payment: payment])
-        }
-        asynchronousMailService.sendMail {
-            to payment.customer.email
-            subject "Confirmação cobrança"
-            html groovyPageRenderer.render(template:"/email/emailConfirmCustomerPayment", model: [payment: payment])
-        }
+        payment.save(flush: true, failOnError: true)
+        notifyConfirmPayment(payment)
         return payment
     }
 
@@ -132,12 +114,24 @@ class PaymentService {
         return payment
     }
 
+    public void notifyNewPayment(Payment payment) {
+        String subject = "Notificação de nova cobrança"
+        emailService.sendEmail(payment.customer.email, subject, groovyPageRenderer.render(template: "/email/emailSendCustomerPayment", model: [payment: payment]))
+        emailService.sendEmail(payment.payer.email, subject, groovyPageRenderer.render(template: "/email/emailSendPayerPayment", model: [payment: payment]))
+    }
+
+    public void notifyPaymentConfirm(Payment payment) {
+        String subject = "Notificação cobrança confirmada"
+        emailService.sendEmail(payment.customer.email, subject, groovyPageRenderer.render(template: "/email/emailConfirmCustomerPayment", model: [payment: payment]))
+        emailService.sendEmail(payment.payer.email, subject, groovyPageRenderer.render(template: "/email/emailConfirmPayerPayment", model: [payment: payment]))
+    
     public Payment verifyOverDueDates() {
         Date yesterdayDate = FormatDateUtils.getYesterdayDate()
         List<Payment> paymentList = list(PaymentStatus.PENDING, yesterdayDate)
           for(Payment payment : paymentList) {
               payment.status = PaymentStatus.OVERDUE
               payment.save(failOnError:true)
+            }
         }
     }
 }

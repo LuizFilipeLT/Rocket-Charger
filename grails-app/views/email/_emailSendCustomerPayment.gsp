@@ -1,3 +1,4 @@
+<%@ page contentType="text/html" %>
 <%@ page import="com.rocketcharger.utils.FormatDateUtils" %>
 <html>
 <head>
