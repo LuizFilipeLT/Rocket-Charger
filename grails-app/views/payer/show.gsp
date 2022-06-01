@@ -5,8 +5,8 @@
      <asset:stylesheet src="customer/show.css" />
 </head>
 <body>
-    <form autocomplete="off" class="form" data-redirect="${g.createLink(controller: "payer", action: "index", params: [id: payer.customer.id])}" 
-          data-url="${g.createLink(controller: "payer", action: "update")}" >
+    <form data-redirect="${ g.createLink(controller: "payer", action: "index", params: [id: payer.customer.id]) }" 
+          data-url="${ g.createLink(controller: "payer", action: "update") }" >
         <input type="hidden" class="js-payer-id" name="id" value="${payer?.id}">
         
         <div class="form-control">

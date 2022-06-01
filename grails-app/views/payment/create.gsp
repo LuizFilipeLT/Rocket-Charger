@@ -10,8 +10,8 @@
   </head>
   <body>
     <form
-      data-redirect-url="${ g.createLink(controller: "payment", action: "list", params: [id: customerId]) }"
-      action="${ g.createLink(controller: "payment", action: "save") }">
+      data-redirect="${ g.createLink(controller: "payment", action: "list", params: [id: customerId]) }"
+      data-url="${ g.createLink(controller: "payment", action: "save") }">
       <div>
         <label>Valor do pagamento:</label>
         <input

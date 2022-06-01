@@ -4,8 +4,8 @@
   </head>
   <body>
     <form
-      data-redirect-url="${ g.createLink(controller: "payment", action: "list") }"
-      action="${ g.createLink(controller: "payment", action: "update") }">
+      data-redirect="${ g.createLink(controller: "payment", action: "list") }"
+      data-url="${ g.createLink(controller: "payment", action: "update") }">
       <input
         type="hidden"
         class="js-payment-id"
