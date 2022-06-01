@@ -13,7 +13,7 @@
       <form
         autocomplete="off"
         class="form"
-        data-redirect="${ g.createLink(controller: "customer", action: "customerPage") }"
+        data-redirect="${ g.createLink(controller: "customer", action: "list") }"
         data-url="${ g.createLink(controller: "customer", action: "save") }"
       >
         <div class="form-control">
