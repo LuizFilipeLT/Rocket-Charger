@@ -1,20 +1,142 @@
 <html>
-    <head>
-        <title>Create customer</title>
-        <asset:javascript src="applications/applicationForm.js"/>
-    </head>
-    <body>
-        <form data-redirect-url="${ g.createLink(controller: "customer", action: "list") }" 
-              action="${ g.createLink(controller: "customer", action: "save") }"> 
-            <div><input type="text" name="name" id="name" placeholder="Ex: João Da Silva" required></div>
-            <div><input type="text" name="cpfCnpj" id="cpfCnpj" placeholder="Informe o CPF/CNPJ" required></div>
-            <div><input type="email" name="email" id="email" placeholder="Ex: email@meuprovedor.com" required></div>
-            <div><input type="text" name="postalCode" id="postalCode" placeholder="CEP" required></div>
-            <div><input type="text" name="address" id="address" placeholder="Endereço" required></div>
-            <div><input type="text" name="district" id="district" placeholder="Bairro" required></div>
-            <div><input type="text" name="city" id="city" placeholder="Cidade" required></div>
-            <div><input type="text" name="state" id="state" placeholder="Estado" required></div>
-            <div><input type="hidden" value="${customerId}" name="customer" id="customer">
-            <div><button type="submit">Salvar</button>
-        </form>
-    </body>
+  <head>
+    <script
+      src="https://kit.fontawesome.com/c8d140aaae.js"
+      crossorigin="anonymous"
+    ></script>
+    <title>Criar cliente</title>
+    <asset:stylesheet src="index/style.css" />
+    <asset:javascript src="applications/applicationForm.js" />
+  </head>
+  <body>
+    <div class="container">
+      <form
+        autocomplete="off"
+        class="form"
+        data-redirect="${ g.createLink(controller: "customer", action: "customerPage") }"
+        data-url="${ g.createLink(controller: "customer", action: "save") }"
+      >
+        <div class="form-control">
+          <label for="name">Nome Completo: *</label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            placeholder="Ex: João da Silva"
+          />
+          <i class="fas fa-exclamation-circle"></i>
+          <i class="fas fa-check-circle"></i>
+          <small class="js-msg"></small>
+        </div>
+
+        <div class="form-control">
+          <label for="cpfCnpj">CPF/CNPJ: *</label>
+          <input
+            type="number"
+            id="cpfCnpj"
+            name="cpfCnpj"
+            placeholder="Preencha seu CPF/CNPJ"
+          />
+          <i class="fas fa-exclamation-circle"></i>
+          <i class="fas fa-check-circle"></i>
+          <small class="js-msg"></small>
+        </div>
+
+        <div class="form-control">
+          <label for="email">Email: *</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="Ex: meuemail@provedor.com"
+          />
+          <i class="fas fa-exclamation-circle"></i>
+          <i class="fas fa-check-circle"></i>
+          <small class="js-msg"></small>
+        </div>
+
+        <div class="form-control">
+          <label for="postalCode">CEP: *</label>
+          <input
+            type="number"
+            id="postalCode"
+            name="postalCode"
+            placeholder="Digite o seu CEP"
+            maxlength="8"
+          />
+          <i class="fas fa-exclamation-circle"></i>
+          <i class="fas fa-check-circle"></i>
+          <small class="js-msg"></small>
+        </div>
+
+        <div class="form-control">
+          <label for="address">Endereço: *</label>
+          <input
+            type="text"
+            id="address"
+            name="address"
+            placeholder="Digite o seu endereço residencial"
+          />
+          <i class="fas fa-exclamation-circle"></i>
+          <i class="fas fa-check-circle"></i>
+          <small class="js-msg"></small>
+        </div>
+
+        <div class="form-control">
+          <label for="complement">Complemento</label>
+          <input
+            type="text"
+            id="complement"
+            name="complement"
+            placeholder="Informe um complemento (opcional)"
+          />
+          <i class="fas fa-exclamation-circle"></i>
+          <i class="fas fa-check-circle"></i>
+        </div>
+
+        <div class="form-control">
+          <label for="district">Bairro: *</label>
+          <input
+            type="text"
+            id="district"
+            name="district"
+            placeholder="Informe o seu bairro"
+          />
+          <i class="fas fa-exclamation-circle"></i>
+          <i class="fas fa-check-circle"></i>
+          <small class="js-msg"></small>
+        </div>
+
+        <div class="form-control">
+          <label for="city">Cidade: *</label>
+          <input
+            type="text"
+            id="city"
+            name="city"
+            placeholder="Informe a sua cidade"
+          />
+          <i class="fas fa-exclamation-circle"></i>
+          <i class="fas fa-check-circle"></i>
+          <small class="js-msg"></small>
+        </div>
+
+        <div class="form-control">
+          <label for="state">Estado: *</label>
+          <input
+            type="text"
+            id="state"
+            name="state"
+            placeholder="Informe o seu estado"
+          />
+          <i class="fas fa-exclamation-circle"></i>
+          <i class="fas fa-check-circle"></i>
+          <small class="js-msg"></small>
+        </div>
+
+        <input hidden value="${customerId}" name="customer" id="customer" />
+        <button type="submit">Criar</button>
+        <button type="reset" class="js-cancel-button">Cancelar</button>
+      </form>
+    </div>
+  </body>
+</html>
