@@ -2,4 +2,5 @@
 //= require bootstrap
 //= require utils/FormUtilsController
 //= require utils/FillAddressController
+//= require utils/FormValidationsController
 //= require utils/postalCodeApi
