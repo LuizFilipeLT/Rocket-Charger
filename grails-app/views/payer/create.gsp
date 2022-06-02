@@ -9,9 +9,12 @@
     <asset:javascript src="applications/applicationForm.js"/>
 </head>
         <div class="container">
-        <form autocomplete="off" class="form" data-redirect="${ g.createLink(controller: "payer", action: "index", params: [id: customerId])}"
-              data-url="${ g.createLink(controller: "payer", action: "save") }">  
-
+         <form
+        autocomplete="off"
+        class="form"
+        data-redirect="${ g.createLink(controller: "payer", action: "index", params: [id: customerId]) }"
+                  data-url="${ g.createLink(controller: "payer", action: "save") }">  
+      >
         <div class="form-control">
           <label for="name">Nome Completo: *</label>
           <input
@@ -35,28 +38,26 @@
           />
           <i class="fas fa-exclamation-circle"></i>
           <i class="fas fa-check-circle"></i>
-          <small class="js-msg
-          "></small>
+          <small class="js-msg"></small>
         </div>
 
         <div class="form-control">
           <label for="email">Email: *</label>
-          <input 
-            type="email" 
-            id="email" 
+          <input
+            type="email"
+            id="email"
             name="email"
-            placeholder="Ex: meuemail@provedor.com"
+            placeholder="Informe seu e-mail"
           />
           <i class="fas fa-exclamation-circle"></i>
           <i class="fas fa-check-circle"></i>
-          <small class="js-msg
-          "></small>
+          <small class="js-msg"></small>
         </div>
 
         <div class="form-control">
           <label for="postalCode">CEP: *</label>
           <input
-            type="text"
+            type="number"
             id="postalCode"
             name="postalCode"
             placeholder="Informe o seu CEP"
@@ -64,8 +65,7 @@
           />
           <i class="fas fa-exclamation-circle"></i>
           <i class="fas fa-check-circle"></i>
-          <small class="js-msg
-          "></small>
+          <small class="js-msg"></small>
         </div>
 
         <div class="form-control">
@@ -78,12 +78,11 @@
           />
           <i class="fas fa-exclamation-circle"></i>
           <i class="fas fa-check-circle"></i>
-          <small class="js-msg
-          "></small>
+          <small class="js-msg"></small>
         </div>
 
         <div class="form-control">
-          <label for="complement">Complemento: </label>
+          <label for="complement">Complemento</label>
           <input
             type="text"
             id="complement"
@@ -117,8 +116,7 @@
           />
           <i class="fas fa-exclamation-circle"></i>
           <i class="fas fa-check-circle"></i>
-          <small class="js-msg
-          "></small>
+          <small class="js-msg"></small>
         </div>
 
         <div class="form-control">
@@ -131,17 +129,13 @@
           />
           <i class="fas fa-exclamation-circle"></i>
           <i class="fas fa-check-circle"></i>
-          <small class="js-msg
-          "></small>
+          <small class="js-msg"></small>
         </div>
-            <input 
-              hidden 
-              value="${customerId}" 
-              name="customer" 
-              id="customer"
-              />
-            <button type="submit">Salvar</button>
-        </form>
+
+        <input type="hidden" value="${customerId}" name="customerId" id="customerId">
+        <button type="submit">Criar</button>
+        <button type="reset" class="js-cancel-button">Cancelar</button>
+      </form>
         </div>
     </body>
 </html>
