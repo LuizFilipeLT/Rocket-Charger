@@ -18,7 +18,7 @@
             type="text"
             id="name"
             name="name"
-            placeholder="Ex: João da Silva"
+            placeholder="Informe seu nome completo"
           />
           <i class="fas fa-exclamation-circle"></i>
           <i class="fas fa-check-circle"></i>
@@ -31,7 +31,7 @@
             type="number"
             id="cpfCnpj"
             name="cpfCnpj"
-            placeholder="Preencha seu CPF/CNPJ"
+            placeholder="Informe seu CPF/CNPJ"
           />
           <i class="fas fa-exclamation-circle"></i>
           <i class="fas fa-check-circle"></i>
@@ -41,8 +41,12 @@
 
         <div class="form-control">
           <label for="email">Email: *</label>
-          <input type="email" id="email" name="email"
-          placeholder="Ex: meuemail@provedor.com"/>
+          <input 
+            type="email" 
+            id="email" 
+            name="email"
+            placeholder="Ex: meuemail@provedor.com"
+          />
           <i class="fas fa-exclamation-circle"></i>
           <i class="fas fa-check-circle"></i>
           <small class="js-msg
@@ -55,7 +59,7 @@
             type="text"
             id="postalCode"
             name="postalCode"
-            placeholder="Digite o seu CEP"
+            placeholder="Informe o seu CEP"
             maxlength="8"
           />
           <i class="fas fa-exclamation-circle"></i>
@@ -70,7 +74,7 @@
             type="text"
             id="address"
             name="address"
-            placeholder="Digite o seu endereço residencial"
+            placeholder="Informe o seu endereço residencial"
           />
           <i class="fas fa-exclamation-circle"></i>
           <i class="fas fa-check-circle"></i>
@@ -130,7 +134,12 @@
           <small class="js-msg
           "></small>
         </div>
-            <input hidden value="${customerId}" name="customer" id="customer">
+            <input 
+              hidden 
+              value="${customerId}" 
+              name="customer" 
+              id="customer"
+              />
             <button type="submit">Salvar</button>
         </form>
         </div>

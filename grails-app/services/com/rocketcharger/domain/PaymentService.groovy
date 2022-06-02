@@ -13,6 +13,7 @@ import grails.gsp.PageRenderer
 
 @Transactional
 class PaymentService {
+    
     PageRenderer groovyPageRenderer
     def emailService
     

@@ -18,11 +18,11 @@
 
       <form autocomplete="off" class="form" >
         <div class="form-control">
-          <label for="customerName">Nome Completo: *</label>
+          <label for="name">Nome Completo: *</label>
           <input
             type="text"
-            id="customerName"
-            name="customerName"
+            id="name"
+            name="name"
             placeholder="Ex: João da Silva"
           />
           <i class="fas fa-exclamation-circle"></i>
@@ -167,7 +167,6 @@
         </button>
       </form>
     </div>
-    <asset:javascript src="index/formValidations.js"/>
     <asset:javascript src="utils/postalCodeApi.js"/>
   </body>
 </html>

@@ -25,7 +25,7 @@
             type="text"
             id="name"
             name="name"
-            placeholder="Ex: João da Silva"
+            placeholder="Informe seu nome completo"
             value="${customer?.name}"
             readonly
           />
@@ -40,7 +40,7 @@
             type="number"
             id="cpfCnpj"
             name="cpfCnpj"
-            placeholder="Preencha seu CPF/CNPJ"
+            placeholder="Informe seu CPF/CNPJ"
             value="${customer?.cpfCnpj}"
             readonly
           />
@@ -55,7 +55,7 @@
             type="email"
             id="email"
             name="email"
-            placeholder="Ex: meuemail@provedor.com"
+            placeholder="Informe seu e-mail"
             value="${customer?.email}"
             readonly
           />
@@ -70,7 +70,7 @@
             type="text"
             id="postalCode"
             name="postalCode"
-            placeholder="Digite o seu CEP"
+            placeholder="Informe o seu CEP"
             maxlength="8"
             value="${customer?.postalCode}"
             readonly
@@ -86,7 +86,7 @@
             type="text"
             id="address"
             name="address"
-            placeholder="Digite o seu endereço residencial"
+            placeholder="Informe o seu endereço residencial"
             value="${customer?.address}"
             readonly
           />

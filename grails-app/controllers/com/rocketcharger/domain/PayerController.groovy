@@ -7,7 +7,8 @@ import com.rocketcharger.domain.customer.Customer
 
 import grails.converters.JSON
 
-class PayerController extends BaseController{
+class PayerController extends BaseController {
+    
     def payerService
 
     def index() {

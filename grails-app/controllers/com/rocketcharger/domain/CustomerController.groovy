@@ -7,7 +7,8 @@ import static org.springframework.http.HttpStatus.*
 import grails.validation.ValidationException
 import grails.converters.JSON
 
-class CustomerController extends BaseController{
+class CustomerController extends BaseController {
+    
     def customerService
 
     def index() {

@@ -86,6 +86,17 @@ grails:
                 scriptlet: html
                 taglib: none
                 staticparts: none
+grails:
+    mail:
+        host: "smtp.gmail.com"
+        port: 465
+        username: "rocketchargerjl@gmail.com"
+        password: "12345678abc@"
+        props:
+            mail.smtp.auth: "true"
+            mail.smtp.socketFactory.port: "465"
+            mail.smtp.socketFactory.class: "javax.net.ssl.SSLSocketFactory"
+            mail.smtp.socketFactory.fallback: "false"
 management:
     endpoints:
         jmx:
@@ -135,15 +146,3 @@ environments:
                 testOnReturn: false
                 jdbcInterceptors: ConnectionState
                 defaultTransactionIsolation: 2 # TRANSACTION_READ_COMMITTED
-
-grails:
-    mail:
-        host: "smtp.gmail.com"
-        port: 465
-        username: "rocketchargerjl@gmail.com"
-        password: "12345678abc@"
-        props:
-            mail.smtp.auth: "true"
-            mail.smtp.socketFactory.port: "465"
-            mail.smtp.socketFactory.class: "javax.net.ssl.SSLSocketFactory"
-            mail.smtp.socketFactory.fallback: "false"
