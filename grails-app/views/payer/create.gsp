@@ -1,20 +1,21 @@
 <html lang="pt-br">
-<head>
-        <script
-      src="https://kit.fontawesome.com/c8d140aaae.js"
-      crossorigin="anonymous"
-    ></script>
+  <head>
+      <meta name="layout" content="main"/>
+      <script src="https://kit.fontawesome.com/c8d140aaae.js" crossorigin="anonymous"></script>
         <title>Adicionar pagador</title>
-    <asset:stylesheet src="index/style.css" />
-    <asset:javascript src="applications/applicationForm.js"/>
-</head>
+      <asset:stylesheet src="index/style.css" />
+      <asset:javascript src="applications/applicationForm.js"/>
+  </head>
+      <body>
         <div class="container">
-         <form
-        autocomplete="off"
-        class="form"
-        data-redirect="${ g.createLink(controller: "payer", action: "index", params: [id: customerId]) }"
-                  data-url="${ g.createLink(controller: "payer", action: "save") }">  
-      >
+            <div class="header">
+                <h2>Adicionar pagador</h2>
+            </div>
+        <form
+            autocomplete="off" class="form" 
+            data-redirect="${ g.createLink(controller: "payer", action: "index", params: [id: customerId])}"
+            data-url="${ g.createLink(controller: "payer", action: "save") }">  
+
         <div class="form-control">
           <label for="name">Nome Completo: *</label>
           <input
