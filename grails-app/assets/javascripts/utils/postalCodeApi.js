@@ -1,10 +1,10 @@
-const validatePostalCode = function (postalCode) {
+var validatePostalCode = function (postalCode) {
   return /^[0-9]{8}$/.test(postalCode);
 };
 
-const postalCodeLength = 8;
+var postalCodeLength = 8;
 
-const getPostalCode = async (postalCode, callbackFunction) => {
+var getPostalCode = async (postalCode, callbackFunction) => {
   if (postalCode.length !== postalCodeLength) {
     return;
   }

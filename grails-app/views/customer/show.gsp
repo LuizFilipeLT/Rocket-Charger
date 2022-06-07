@@ -1,11 +1,17 @@
 <html>
   <head>
-    <title>Create customer</title>
+    <meta name="layout" content="main"/>
+      <title>Visualização de Dados</title>
+    <asset:stylesheet src="index/style.css" />
     <asset:stylesheet src="customer/show.css" />
     <asset:javascript src="applications/applicationForm.js" />
   </head>
   <body>
     <div class="container">
+          <div class="header">
+              <h2>Dados de ${customer.name}</h2>
+          </div>
+
       <form
         autocomplete="off"
         class="form"
@@ -34,7 +40,21 @@
           <small class="js-msg"></small>
         </div>
 
-        <div class="form-control">
+        <div class="form-control two left">
+          <label for="number">Celular *</label>
+          <input
+            type="tel"
+            id="number"
+            name="number"
+            placeholder="Informe seu número de contato"
+            value="${customer?.phone}" 
+          />
+          <i class="fas fa-exclamation-circle"></i>
+          <i class="fas fa-check-circle"></i>
+          <small class="js-msg"></small>
+        </div>
+
+        <div class="form-control two">
           <label for="cpfCnpj">CPF/CNPJ: *</label>
           <input
             type="number"
@@ -49,7 +69,7 @@
           <small class="js-msg"></small>
         </div>
 
-        <div class="form-control">
+        <div class="form-control two left">
           <label for="email">Email: *</label>
           <input
             type="email"
@@ -64,7 +84,7 @@
           <small class="js-msg"></small>
         </div>
 
-        <div class="form-control">
+        <div class="form-control two">
           <label for="postalCode">CEP: *</label>
           <input
             type="text"
@@ -80,7 +100,7 @@
           <small class="js-msg"></small>
         </div>
 
-        <div class="form-control">
+        <div class="form-control two left">
           <label for="address">Endereço: *</label>
           <input
             type="text"
@@ -95,7 +115,22 @@
           <small class="js-msg"></small>
         </div>
 
-        <div class="form-control">
+        <div class="form-control two left">
+          <label for="addressNumber">Número *</label>
+          <input
+            type="text"
+            id="addressNumber"
+            name="addressNumber"
+            placeholder="Informe o número de sua residência"
+            value="${customer?.addressNumber}"
+            readonly
+          />
+          <i class="fas fa-exclamation-circle"></i>
+          <i class="fas fa-check-circle"></i>
+          <small class="js-msg"></small>
+        </div>
+
+        <div class="form-control two">
           <label for="complement">Complemento: </label>
           <input
             type="text"
@@ -108,7 +143,7 @@
           <i class="fas fa-check-circle"></i>
         </div>
 
-        <div class="form-control">
+        <div class="form-control two left">
           <label for="district">Bairro: *</label>
           <input
             type="text"
@@ -123,7 +158,7 @@
           <small class="js-msg"></small>
         </div>
 
-        <div class="form-control">
+        <div class="form-control two">
           <label for="city">Cidade: *</label>
           <input
             type="text"
@@ -138,7 +173,7 @@
           <small class="js-msg"></small>
         </div>
 
-        <div class="form-control">
+        <div class="form-control two left">
           <label for="state">Estado: *</label>
           <input
             type="text"
@@ -151,15 +186,16 @@
           <i class="fas fa-exclamation-circle"></i>
           <i class="fas fa-check-circle"></i>
           <small class="js-msg"></small>
-        </div>
+        </div>        
         <button class="js-edit">Editar</button>
         <button type="submit" class="js-send-button hide">Salvar</button>
         <button type="reset">Cancelar</button>
       </form>
-    </div>
-    <div>
-      <g:link controller="payer" action="create" id="${customer.id}"
-        ><button>Criar pagador</button></g:link>
+      <div>
+        <g:link controller="customer" action="index" id="${customer.id}"><button class="btn ">Voltar</button></g:link>
+        <g:link controller="payer" action="create" id="${customer.id}"><button class="btn ">Criar pagador</button></g:link>
+        <g:link controller="payment" action="create" id="${customer.id}"><button class="btn ">Nova Cobrança</button></g:link>
+     </div>
     </div>
   </body>
 </html>

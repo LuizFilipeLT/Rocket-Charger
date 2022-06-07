@@ -2,8 +2,7 @@ package com.rocketcharger.base
 
 abstract class BaseController {
 
-
-    private Integer returnSizeLimitPage() {
+    private Integer getSizeLimitPage() {
         return 10
     }
 

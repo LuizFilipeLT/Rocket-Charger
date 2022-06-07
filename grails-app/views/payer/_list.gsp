@@ -4,10 +4,12 @@
          <table>
             <tr>
                <th>Nome</th>
+               <th>Celular<th>
                <th>CPF/CNPJ</th>
                <th>E-mail</th>
                <th>CEP</th>
                <th>Endereço</th>
+               <th>Numero</th>
                <th>Bairro</th>
                <th>Cidade</th>
                <th>Estado</th>
@@ -15,10 +17,12 @@
             <g:each var="payer" in="${payerList}">
                <tr>
                   <td>${payer.name}</td>
+                  <td>${payer.phone}</td>
                   <td>${payer.cpfCnpj}</td>
                   <td>${payer.email}</td>
                   <td>${payer.postalCode}</td>
                   <td>${payer.address}</td>
+                  <td>${payer.addressNumber}</td>
                   <td>${payer.district}</td>
                   <td>${payer.city}</td>
                   <td>${payer.state}</td>

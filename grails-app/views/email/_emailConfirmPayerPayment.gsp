@@ -15,7 +15,7 @@
         </div>
         <div>
             <label>Valor pago:</label>
-            R$${payment.value}
+            <format:monetarySymbol number="${payment.value}"/>
         </div>
         <div>
             <label>Data do vencimento:</label>

@@ -1,21 +1,23 @@
 <html>
   <head>
-    <script
-      src="https://kit.fontawesome.com/c8d140aaae.js"
-      crossorigin="anonymous"
-    ></script>
+    <meta name="layout" content="main"/>
+    <script src="https://kit.fontawesome.com/c8d140aaae.js" crossorigin="anonymous"></script>
     <title>Criar cliente</title>
     <asset:stylesheet src="index/style.css" />
     <asset:javascript src="applications/applicationForm.js" />
   </head>
   <body>
     <div class="container">
+
+      <div class="header">
+        <h2>Cadastro cliente</h2>
+      </div>
+
       <form
-        autocomplete="off"
-        class="form"
+        autocomplete="off" class="form"
         data-redirect="${ g.createLink(controller: "customer", action: "list") }"
-        data-url="${ g.createLink(controller: "customer", action: "save") }"
-      >
+        data-url="${ g.createLink(controller: "customer", action: "save") }">
+        
         <div class="form-control">
           <label for="name">Nome Completo: *</label>
           <input
@@ -29,7 +31,20 @@
           <small class="js-msg"></small>
         </div>
 
-        <div class="form-control">
+        <div class="form-control two left">
+          <label for="phone">Celular *</label>
+          <input
+            type="tel"
+            id="phone"
+            name="phone"
+            placeholder="Informe seu número de contato"
+          />
+          <i class="fas fa-exclamation-circle"></i>
+          <i class="fas fa-check-circle"></i>
+          <small class="js-msg"></small>
+        </div>
+
+        <div class="form-control two">
           <label for="cpfCnpj">CPF/CNPJ: *</label>
           <input
             type="number"
@@ -42,7 +57,7 @@
           <small class="js-msg"></small>
         </div>
 
-        <div class="form-control">
+        <div class="form-control two left">
           <label for="email">Email: *</label>
           <input
             type="email"
@@ -55,7 +70,7 @@
           <small class="js-msg"></small>
         </div>
 
-        <div class="form-control">
+        <div class="form-control two">
           <label for="postalCode">CEP: *</label>
           <input
             type="number"
@@ -69,7 +84,7 @@
           <small class="js-msg"></small>
         </div>
 
-        <div class="form-control">
+        <div class="form-control two left">
           <label for="address">Endereço: *</label>
           <input
             type="text"
@@ -82,7 +97,20 @@
           <small class="js-msg"></small>
         </div>
 
-        <div class="form-control">
+        <div class="form-control two left">
+          <label for="addressNumber">Número *</label>
+          <input
+            type="text"
+            id="addressNumber"
+            name="addressNumber"
+            placeholder="Informe o número de sua residência"
+          />
+          <i class="fas fa-exclamation-circle"></i>
+          <i class="fas fa-check-circle"></i>
+          <small class="js-msg"></small>
+        </div>
+
+        <div class="form-control two">
           <label for="complement">Complemento</label>
           <input
             type="text"
@@ -94,7 +122,7 @@
           <i class="fas fa-check-circle"></i>
         </div>
 
-        <div class="form-control">
+        <div class="form-control two left">
           <label for="district">Bairro: *</label>
           <input
             type="text"
@@ -107,7 +135,7 @@
           <small class="js-msg"></small>
         </div>
 
-        <div class="form-control">
+        <div class="form-control two">
           <label for="city">Cidade: *</label>
           <input
             type="text"
@@ -120,7 +148,7 @@
           <small class="js-msg"></small>
         </div>
 
-        <div class="form-control">
+        <div class="form-control two left">
           <label for="state">Estado: *</label>
           <input
             type="text"

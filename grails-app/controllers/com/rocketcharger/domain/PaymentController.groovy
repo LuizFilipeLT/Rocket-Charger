@@ -17,7 +17,7 @@ class PaymentController extends BaseController {
 
    def list() {  
         Long customerId = params.long("id")
-        List<Payment> paymentList = paymentService.returnPaymentsByCustomer(customerId, returnSizeLimitPage(), getCurrentPage())
+        List<Payment> paymentList = paymentService.returnPaymentsByCustomer(customerId, getSizeLimitPage(), getCurrentPage())
         return [customerId: customerId, paymentList: paymentList, totalCount: paymentList.size()]
     }
 
@@ -48,8 +48,7 @@ class PaymentController extends BaseController {
         try {
             paymentService.recognizePayment(paymentId)
             redirect controller: "payment", action: "list", id: paymentId
-            }
-         catch (Exception e) {
+        } catch(Exception e) {
             render([success: false, message: message(code: "occurrence.error")] as JSON)
         }
     }

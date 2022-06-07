@@ -116,13 +116,13 @@ class PaymentService {
     }
 
     public void notifyNewPayment(Payment payment) {
-        String subject = "Notificação de nova cobrança"
+        String subject = "Nova cobrança"
         emailService.sendEmail(payment.customer.email, subject, groovyPageRenderer.render(template: "/email/emailSendCustomerPayment", model: [payment: payment]))
         emailService.sendEmail(payment.payer.email, subject, groovyPageRenderer.render(template: "/email/emailSendPayerPayment", model: [payment: payment]))
     }
 
-    public void notifyPaymentConfirm(Payment payment) {
-        String subject = "Notificação cobrança confirmada"
+    public void notifyConfirmPayment(Payment payment) {
+        String subject = "Cobrança confirmada"
         emailService.sendEmail(payment.customer.email, subject, groovyPageRenderer.render(template: "/email/emailConfirmCustomerPayment", model: [payment: payment]))
         emailService.sendEmail(payment.payer.email, subject, groovyPageRenderer.render(template: "/email/emailConfirmPayerPayment", model: [payment: payment]))
     }

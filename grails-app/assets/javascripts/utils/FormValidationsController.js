@@ -1,10 +1,10 @@
 function FormValidationsController() {
   this.init = function () {
-    formListener();
-    nameListener();
-    cpfCnpjListener();
-    postalCodeListener();
-    emailListener();
+    bindSubmitForm();
+    bindInputName();
+    bindInputCpfCnpj();
+    bindInputPostalCode();
+    bindInputEmail();
   };
 
   var formReference = document.querySelector("form");
@@ -17,10 +17,11 @@ function FormValidationsController() {
   var districtReference = document.getElementById("district");
   var cityReference = document.getElementById("city");
   var stateReference = document.getElementById("state");
+  var correctPostalCodeLength = 8;
   var correctCpfLength = 11;
   var correctCnpjLength = 14;
 
-  function checkName() {
+  function validateName() {
     let nameValue = nameReference.value;
     if (!nameValue) {
       setErrorFor(nameReference, "O seu nome é obrigatório!");
@@ -29,14 +30,11 @@ function FormValidationsController() {
     setSucessFor(nameReference);
   }
 
-  function checkCpf() {
+  function validateCpf() {
     let cpfCnpjValue = cpfCnpj.value;
+    if (!cpfCnpjValue) return setErrorFor(cpfCnpjReference, "Preencha seu CPF");
     if (cpfCnpjValue.length == correctCpfLength) {
-      if (!cpfCnpjValue) {
-        setErrorFor(cpfCnpjReference, "Preencha seu CPF");
-      } else if (
-        cpfCnpjValue.length !== correctCpfLength ||
-        cpfCnpjValue == "00000000000" ||
+      cpfCnpjValue == "00000000000" ||
         cpfCnpjValue == "11111111111" ||
         cpfCnpjValue == "22222222222" ||
         cpfCnpjValue == "33333333333" ||
@@ -45,19 +43,17 @@ function FormValidationsController() {
         cpfCnpjValue == "66666666666" ||
         cpfCnpjValue == "77777777777" ||
         cpfCnpjValue == "88888888888" ||
-        cpfCnpjValue == "99999999999"
-      ) {
-        setErrorFor(cpfCnpjReference, "O cpf informado é inválido");
-      } else {
-        setSucessFor(cpfCnpjReference);
-      }
+        cpfCnpjValue == "99999999999";
+      return setErrorFor(cpfCnpjReference, "O cpf informado é inválido");
     }
+    setSucessFor(cpfCnpjReference);
   }
 
-  function checkCnpj() {
+  function validateCnpj() {
     let cpfCnpjValue = cpfCnpj.value;
+    if (!cpfCnpjValue) return setErrorFor(cpfCnpjReference, "Preencha seu CPF");
     if (
-      cpfCnpjValue.length !== correctCnpjLength ||
+      cpfCnpjValue.length == correctCnpjLength ||
       cpfCnpjValue == "00000000000000" ||
       cpfCnpjValue == "11111111111111" ||
       cpfCnpjValue == "22222222222222" ||
@@ -69,13 +65,12 @@ function FormValidationsController() {
       cpfCnpjValue == "88888888888888" ||
       cpfCnpjValue == "99999999999999"
     ) {
-      setErrorFor(cpfCnpjReference, "O CNPJ informado é inválido");
-      return;
+      return setErrorFor(cpfCnpjReference, "O CNPJ informado é inválido");
     }
     setSucessFor(cpfCnpjReference);
   }
 
-  function checkEmail() {
+  function validateEmail() {
     let emailValue = emailReference.value;
     if (!emailValue) {
       setErrorFor(emailReference, "O email é obrigatório");
@@ -84,29 +79,29 @@ function FormValidationsController() {
     setSucessFor(emailReference);
   }
 
-  function checkPostalCode() {
+  function validatePostal() {
     let postalCodeValue = postalCodeReference.value;
-    if (!postalCodeValue) {
-      setErrorFor(postalCodeReference, "Favor informar o CEP!");
+    if (!postalCodeValue || postalCodeValue.length != correctPostalCodeLength) {
+      setErrorFor(postalCodeReference, "Favor verificar o CEP");
       return;
     }
     setSucessFor(postalCodeReference);
   }
 
-  function checkSuccessInputs() {
+  function validateRequiredsInputs() {
     let cpfCnpjValue = cpfCnpj.value;
-    checkName();
+    validateName();
     if (cpfCnpjValue.length == correctCpfLength) {
-      checkCpf();
+      validateCpf();
     } else {
-      checkCnpj();
+      validateCnpj();
     }
-    checkPostalCode();
-    checkEmail();
-    checkFormIsValid();
+    validatePostal();
+    validateEmail();
+    validateFormIsValid();
   }
 
-  function checkFormIsValid() {
+  function validateFormIsValid() {
     let formControls = formReference.querySelectorAll(".form-control");
     let formIsValid = [...formControls].every((formControl) => {
       return formControl.className === "form-control success";
@@ -152,45 +147,44 @@ function FormValidationsController() {
     $(formControl).addClass("form-control error").removeClass("success");
   }
 
-  function formListener() {
+  function bindSubmitForm() {
     formReference.addEventListener("submit", (event) => {
-      checkSuccessInputs();
+      validateRequiredsInputs();
     });
   }
 
-  function nameListener() {
+  function bindInputName() {
     nameReference.addEventListener("focusout", (event) => {
-      checkName();
+      validateName();
     });
   }
 
-  function cpfCnpjListener() {
+  function bindInputCpfCnpj() {
     cpfCnpjReference.addEventListener("focusout", (event) => {
       let cpfCnpjValue = cpfCnpj.value;
       if (cpfCnpjValue.length == correctCpfLength) {
-        checkCpf();
+        validateCpf();
         return;
       }
-      checkCnpj();
+      validateCnpj();
     });
   }
 
-  function postalCodeListener() {
+  function bindInputPostalCode() {
     postalCodeReference.addEventListener("focusout", function () {
-      checkPostalCode();
+      validatePostal();
       if (validatePostalCode(this.value)) {
         getPostalCode(this.value, fillAddress);
       }
     });
   }
 
-  function emailListener() {
+  function bindInputEmail() {
     emailReference.addEventListener("focusout", (event) => {
-      checkEmail();
+      validateEmail();
     });
   }
 }
-
 var formValidationsController;
 
 $(document).ready(function () {

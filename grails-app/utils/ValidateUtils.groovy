@@ -20,30 +20,29 @@ class ValidateUtils {
         return string?.replaceAll("[^0-9]", '')
     }
 
-    public static Boolean validateNotNull(String parameter) {
-        if (parameter != null) {
-            return true
+    public static Boolean isNotNull(String parameter) {
+        if (parameter == null) {
+            return false
         }
-        return false
+            return true
     }
 
     public static Boolean validateCpfCnpj(String cpfCnpj) {
         String cleanCpfCnpj = isNumeric(cpfCnpj)
-        if (cleanCpfCnpj != null && cleanCpfCnpj.length() ==  11 || cleanCpfCnpj.length() ==  14) {
-            return true
-        }
-        return false
+        if (cleanCpfCnpj == null) return false
+        if (cleanCpfCnpj.length() !=  11 && cleanCpfCnpj.length() !=  14) return false
+        return true
     }
 
     public static Boolean validatePostalCode(String postalCode) {
         String cleanPostalCode = isNumeric(postalCode)
-        if (cleanPostalCode != null && cleanPostalCode.length() == 8) {
+        if (cleanPostalCode == null && cleanPostalCode.length() != 8) {
+            return false
+        }
             def get = new URL("https://viacep.com.br/ws/" + cleanPostalCode + "/json/").openConnection()
             def sluper = new JsonSlurper()
             def getResponse = sluper.parseText(get.content.text)
             if (getResponse.erro) return false 
             return true
-        }
-        return false
     }
 }
