@@ -2,6 +2,7 @@ function FormValidationsController() {
   this.init = function () {
     bindSubmitForm();
     bindInputName();
+    bindInputPhone;
     bindInputCpfCnpj();
     bindInputPostalCode();
     bindInputEmail();
@@ -10,6 +11,7 @@ function FormValidationsController() {
 
   var formReference = document.querySelector("form");
   var nameReference = document.getElementById("name");
+  var phoneReference = document.getElementById("phone");
   var cpfCnpjReference = document.getElementById("cpfCnpj");
   var postalCodeReference = document.getElementById("postalCode");
   var emailReference = document.getElementById("email");
@@ -28,10 +30,19 @@ function FormValidationsController() {
   function validateName() {
     let nameValue = nameReference.value;
     if (!nameValue) {
-      setErrorFor(nameReference, "O seu nome é obrigatório!");
+      setErrorFor(nameReference, "O seu nome é obrigatório");
       return;
     }
     setSucessFor(nameReference);
+  }
+
+  function validatePhone() {
+    let phoneValue = phoneReference.value;
+    if (!phoneValue) {
+      setErrorFor(phoneReference, "Número de contato obrigatório");
+      return;
+    }
+    setSucessFor(phoneReference);
   }
 
   function validateCpf() {
@@ -187,6 +198,12 @@ function FormValidationsController() {
     });
   }
 
+  function bindInputPhone() {
+    phoneReference.addEventListener("focusout", (event) => {
+      validatePhone();
+    });
+  }
+
   function bindInputCpfCnpj() {
     cpfCnpjReference.addEventListener("focusout", (event) => {
       let cpfCnpjValue = cpfCnpj.value;
@@ -220,6 +237,7 @@ function FormValidationsController() {
     });
   }
 }
+
 var formValidationsController;
 
 $(document).ready(function () {
