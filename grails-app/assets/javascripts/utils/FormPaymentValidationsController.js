@@ -1,10 +1,10 @@
 function FormPaymentValidationsController() {
   this.init = function () {
-    formListener();
-    valueListener();
-    dueDateListener();
-    billingTypeListener();
-    payerListener();
+    bindSubmitForm();
+    bindInputValue();
+    bindInputDueDate();
+    bindInputBillingType();
+    bindSelectPayer();
   };
 
   var formReference = document.querySelector("form");
@@ -15,31 +15,31 @@ function FormPaymentValidationsController() {
   var todayDate = new Date();
   var zeroValue = 0;
 
-  function formListener() {
+  function bindSubmitForm() {
     formReference.addEventListener("submit", (event) => {
       checkSuccessInputs();
     });
   }
 
-  function valueListener() {
+  function bindInputValue() {
     valueReference.addEventListener("focusout", (event) => {
       checkValue();
     });
   }
 
-  function dueDateListener() {
+  function bindInputDueDate() {
     dueDateReference.addEventListener("focusout", (event) => {
       checkDueDate();
     });
   }
 
-  function billingTypeListener() {
+  function bindInputBillingType() {
     billingTypeReference.addEventListener("focusout", (event) => {
       checkBillingType();
     });
   }
 
-  function payerListener() {
+  function bindSelectPayer() {
     payerReference.addEventListener("focusout", (event) => {
       checkPayer();
     });
@@ -66,6 +66,49 @@ function FormPaymentValidationsController() {
     }
     if (dueDateValue < todayDate) {
       setErrorFor(dueDateReference, "Informar acima da data de hoje.");
+      return;
+    }
+    setSucessFor(dueDateReference);
+  }
+
+  function validateDate(dueDate) {
+    var date = dueDateReference.value; // pega o valor do input
+    date = date.replace(/\//g, "-"); // substitui eventuais barras (ex. IE) "/" por hífen "-"
+    var dateArray = date.split("-"); // quebra a date em array
+    var day = dateArray[2];
+    var month = dateArray[1];
+    var year = dateArray[0];
+
+    // para o IE onde será inserido no formato dd/MM/yyyy
+    if (data_array[0].length != 4) {
+      day = data_array[0];
+      month = data_array[1];
+      year = data_array[2];
+    }
+
+    var hoje = new Date();
+    var d1 = hoje.getDate();
+    var m1 = hoje.getMonth() + 1;
+    var y1 = hoje.getFullYear();
+
+    var d1 = new Date(y1, m1, d1);
+    var d2 = new Date(year, month, day);
+
+    var diff = d2.getTime() - d1.getTime();
+    diff = diff / (1000 * 60 * 60 * 24);
+
+    if (diff < zeroValue) {
+      setErrorFor(
+        dueDateReference,
+        "Data selecionada não pode ser anterior ao dia de hoje"
+      );
+      return;
+    }
+    if (diff > 30) {
+      setErrorFor(
+        dueDateReference,
+        "Data não pode ser mais do que 30 dias pra frente"
+      );
       return;
     }
     setSucessFor(dueDateReference);
