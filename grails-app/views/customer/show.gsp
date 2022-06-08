@@ -15,7 +15,7 @@
       <form
         autocomplete="off"
         class="form"
-        data-redirect="${ g.createLink(controller: "customer", action: "customerPage") }"
+        data-redirect="${ g.createLink(controller: "customer", action: "list") }"
         data-url="${ g.createLink(controller: "customer", action: "update") }"
       >
         <input
@@ -41,11 +41,11 @@
         </div>
 
         <div class="form-control two left">
-          <label for="number">Celular *</label>
+          <label for="phone">Celular *</label>
           <input
             type="tel"
-            id="number"
-            name="number"
+            id="phone"
+            name="phone"
             placeholder="Informe seu número de contato"
             value="${customer?.phone}" 
           />

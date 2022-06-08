@@ -17,7 +17,7 @@
         class="form"
         data-redirect="${ g.createLink(controller: "payer", action: "index", params: [id: payer.customer.id]) }" 
         data-url="${ g.createLink(controller: "payer", action: "update") }" >
-        <input type="hidden" class="js-payer-id" name="id" value="${payer?.id}">
+        <input type="hidden" class="js-payer-id" name="id" id="id" value="${payer?.id}">
         
         <div class="form-control">
           <label for="name">Nome Completo: *</label>
@@ -35,11 +35,11 @@
         </div>
 
         <div class="form-control two left">
-          <label for="number">Celular *</label>
+          <label for="phone">Celular *</label>
           <input
             type="tel"
-            id="number"
-            name="number"
+            id="phone"
+            name="phone"
             placeholder="Informe seu número de contato"
             value="${payer?.phone}" 
           />
