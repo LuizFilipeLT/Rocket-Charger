@@ -7,6 +7,10 @@ function FormValidationsController() {
     bindInputPostalCode();
     bindInputEmail();
     bindInputAddressNumber();
+    bindInputAddress()
+    bindInputDistrict();
+    bindInputCity();
+    bindInputState();
   };
 
   var formReference = document.querySelector("form");
@@ -122,7 +126,39 @@ function FormValidationsController() {
     }
     setSucessFor(postalCodeReference);
   }
+  
+  function validateAddress() {
+    if (!addressReference.value) {
+      setErrorFor(addressReference, "Endereço obrigatório");
+      return;
+    }
+    setSucessFor(addressReference);
+  }
 
+  function validateDistrict() {
+    if (!districtReference.value) {
+      setErrorFor(districtReference, "Favor informar o bairro");
+      return;
+    }
+    setSucessFor(districtReference);
+  }
+
+  function validateState() {
+    if (!stateReference.value) {
+      setErrorFor(stateReference, "Favor informar o estado");
+      return;
+    }
+    setSucessFor(stateReference);
+  }
+
+  function validateCity() {
+    if (!cityReference.value) {
+      setErrorFor(cityReference, "Favor informar a cidade");
+      return;
+    }
+    setSucessFor(cityReference);
+  }
+  
   function validateAddressNumber() {
     if (!addressNumberReference.value) {
       setErrorFor(addressNumberReference, "Número da residência obrigatório");
@@ -225,6 +261,30 @@ function FormValidationsController() {
       if (validatePostalCode(this.value)) {
         getPostalCode(this.value, fillAddress);
       }
+    });
+  }
+
+  function bindInputDistrict() {
+    districtReference.addEventListener("focusout", (event) => {
+      validateDistrict();
+    });
+  }
+
+  function bindInputCity() {
+    cityReference.addEventListener("focusout", (event) => {
+      validateCity();
+    });
+  }
+
+  function bindInputState() {
+    stateReference.addEventListener("focusout", (event) => {
+      validateState();
+    });
+  }
+
+  function bindInputAddress() {
+    addressReference.addEventListener("focusout", (event) => {
+      validateAddress();
     });
   }
 
