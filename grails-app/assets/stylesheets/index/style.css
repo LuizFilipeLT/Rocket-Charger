@@ -99,6 +99,26 @@ body {
   visibility: hidden;
 }
 
+.form-control #method {
+  border: 2px solid black;
+  color: black;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  padding: 10px;
+  font-size: 14px;
+  width: 100%;  
+}
+
+.form-control #payerId {
+  border: 2px solid black;
+  color: black;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  padding: 10px;
+  font-size: 14px;
+  width: 100%; 
+} 
+
 .form button {
   background-color: #0030B9;
   border: 1px solid #000000;

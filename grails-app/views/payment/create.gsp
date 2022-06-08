@@ -49,7 +49,7 @@
                name="billingType"
                from="${PaymentMethod?.values()}"
                value="${method}"
-               noSelection="['':'Tipo de pagamento']"
+               noSelection="['':'Selecione...']"
                valueMessagePrefix="PaymentMethod"/>
                <i class="fas fa-exclamation-circle"></i>
                <i class="fas fa-check-circle"></i>
@@ -59,7 +59,7 @@
          <div class="form-control">
             <label> Selecione o pagador:</label>
             <select id="payerId" name="payerId" required>
-               <option>Selecione o pagador</option>
+               <option>Selecione...</option>
                <g:each var="payer" in="${payerList}">
                   <option value="${payer.id}">${payer.name}</option>
                </g:each>
