@@ -5,7 +5,7 @@ function FormPaymentValidationsController() {
     bindInputDueDate();
     bindInputBillingType();
     bindSelectPayer();
-    bindFormSubmit();
+    bindPreventDefaultForm();
   };
 
   var formReference = document.querySelector("form");
@@ -18,7 +18,7 @@ function FormPaymentValidationsController() {
   var dueDateMaxOver = 30;
   var minValue = 2;
 
-  function bindFormSubmit() {
+  function bindPreventDefaultForm() {
     $("form").on("submit", function (e) {
       e.preventDefault();
     });
@@ -26,7 +26,7 @@ function FormPaymentValidationsController() {
 
   function bindSubmitForm() {
     formReference.addEventListener("submit", (event) => {
-      checkSuccessInputs();
+      validateRequiredsInputs();
     });
   }
 
@@ -137,7 +137,7 @@ function FormPaymentValidationsController() {
     setSucessFor(payerReference);
   }
 
-  function checkSuccessInputs() {
+  function validateRequiredsInputs() {
     validateBillingType();
     validateDueDate();
     validatePayer();
@@ -150,7 +150,7 @@ function FormPaymentValidationsController() {
     var formIsValid = [...formControls].every((formControl) => {
       return formControl.className === "form-control success";
     });
-    if (!formIsValid) return;
+    if (formIsValid !== true) return alert("Favor verificar os campos.");
     bindPostFormSubmit();
   }
 

@@ -2,6 +2,8 @@ package com.rocketcharger.utils
 
 import com.rocketcharger.domain.customer.Customer
 import com.rocketcharger.domain.payer.Payer
+import com.rocketcharger.utils.ValidateUtils
+import com.rocketcharger.utils.FormatDateUtils
 import com.rocketcharger.enums.PaymentMethod
 
 import groovy.json.JsonSlurper
@@ -14,24 +16,28 @@ class ValidateUtils {
 
     public static Boolean validateMinValue(String value) {
         BigDecimal intValue = new BigDecimal(value)
-        if (intValue < 2) {
+        if (intValue < 2.00) {
             return false
             }
         return true
     }
 
     public static Boolean validatePaymentDueDate(String dueDate) {
-        if (FormatDateUtils.toDate(dueDate, "yyyy-MM-dd") < new Date()) {
+
+        Date todayDate = new Date()
+        Date overMaxDate = FormatDateUtils.addDays(todayDate, 30);
+
+        if (FormatDateUtils.toDate(dueDate, "yyyy-MM-dd") < todayDate) {
             return false
         }
-        if (FormatDateUtils.toDate(dueDate, "yyyy-MM-dd") > new Date().setDate(getDate()+ 30)) {
+        if (FormatDateUtils.toDate(dueDate, "yyyy-MM-dd") > overMaxDate) {
             return false
         }
         return true
     }
 
-    public static Boolean validatePaymentMethod(String method) {
-        return PaymentMethod.values().contains(PaymentMethod.valueOf(method))
+    public static Boolean validatePaymentMethod(String billingType) {
+        return PaymentMethod.values().contains(PaymentMethod.valueOf(billingType))
     }
 
     public static Boolean emailIsValid(String email) {

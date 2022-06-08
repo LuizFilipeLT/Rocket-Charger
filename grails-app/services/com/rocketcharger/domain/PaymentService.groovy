@@ -20,7 +20,6 @@ class PaymentService {
     def emailService
     
     public Payment save(Map params) {
-        println params
         Payment payment = new Payment()
         payment = validate(payment, params)
         if (payment.hasErrors()) return payment
@@ -69,18 +68,19 @@ class PaymentService {
     }
         
     public Payment validate(Payment payment, Map params) {
+        println params
         if (!ValidateUtils.validateMinValue(params.value)) {
             DomainUtils.addError(payment, "")
         }
-        if (!ValidateUtils.isNotNull(params.payer)) {
+        if (!ValidateUtils.isNotNull(params.payerId)) {
             DomainUtils.addError(payment, "")
         }
-        if (!ValidateUtils.validatePaymentMethod(params.method)) {
-            DomainUtils.addError(payment, "")
-        }
-        if (!ValidateUtils.validatePaymentDueDate(params.dueDate)){
-             DomainUtils.addError(payment, "")
-        }
+        // if (!ValidateUtils.validatePaymentMethod(params.billingType)) {
+        //     DomainUtils.addError(payment, "")
+        // }
+        // if (!ValidateUtils.validatePaymentDueDate(params.dueDate)){
+        //      DomainUtils.addError(payment, "")
+        // }
         return payment
     }
 
