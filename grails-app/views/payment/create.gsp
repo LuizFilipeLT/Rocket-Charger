@@ -2,6 +2,7 @@
 <html>
    <head>
       <meta name="layout" content="main"/>
+         <script src="https://kit.fontawesome.com/c8d140aaae.js" crossorigin="anonymous"></script>
          <title>Criação de Cobrança</title>
       <asset:stylesheet src="index/style.css"/>
       <asset:javascript src="applications/applicationPayment.js" />
