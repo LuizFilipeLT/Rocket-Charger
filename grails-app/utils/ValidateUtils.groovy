@@ -2,6 +2,7 @@ package com.rocketcharger.utils
 
 import com.rocketcharger.domain.customer.Customer
 import com.rocketcharger.domain.payer.Payer
+import com.rocketcharger.enums.PaymentMethod
 
 import groovy.json.JsonSlurper
 import java.lang.String
@@ -10,6 +11,28 @@ import java.net.URL.*
 import org.apache.commons.validator.routines.EmailValidator
 
 class ValidateUtils {
+
+    public static Boolean validateMinValue(String value) {
+        BigDecimal intValue = new BigDecimal(value)
+        if (intValue < 2) {
+            return false
+            }
+        return true
+    }
+
+    public static Boolean validatePaymentDueDate(String dueDate) {
+        if (FormatDateUtils.toDate(dueDate, "yyyy-MM-dd") < new Date()) {
+            return false
+        }
+        if (FormatDateUtils.toDate(dueDate, "yyyy-MM-dd") > new Date().setDate(getDate()+ 30)) {
+            return false
+        }
+        return true
+    }
+
+    public static Boolean validatePaymentMethod(String method) {
+        return PaymentMethod.values().contains(PaymentMethod.valueOf(method))
+    }
 
     public static Boolean emailIsValid(String email) {
         return email ==~ /[A-Za-z0-9_\%\+-]+(\.[A-Za-z0-9_\%\+-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9-]+)*(\.[A-Za-z]{2,15})/

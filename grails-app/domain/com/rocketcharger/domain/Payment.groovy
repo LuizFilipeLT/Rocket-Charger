@@ -23,5 +23,9 @@ class Payment {
     
      static constraints = {
         paymentDate nullable: true
+        value min: 2, blank: false
+        billingType blank: false
+        status blank: false
+        dueDate blank: false
     }
 }

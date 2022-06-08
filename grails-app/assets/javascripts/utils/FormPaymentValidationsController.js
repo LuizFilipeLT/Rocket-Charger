@@ -21,7 +21,6 @@ function FormPaymentValidationsController() {
   function bindFormSubmit() {
     $("form").on("submit", function (e) {
       e.preventDefault();
-      validateForm();
     });
   }
 
@@ -58,7 +57,10 @@ function FormPaymentValidationsController() {
   function validateValue() {
     let inputValue = valueReference.value;
     if (inputValue < minValue) {
-      setErrorFor(valueReference, "Valor minimo para geração de cobrança de R$ 2,00");
+      setErrorFor(
+        valueReference,
+        "Valor minimo para geração de cobrança de R$ 2,00"
+      );
       return;
     }
     if (!inputValue) {
@@ -75,7 +77,7 @@ function FormPaymentValidationsController() {
   function validateDueDate() {
     var dueDateValue = dueDateReference.value;
     if (!dueDateValue) {
-      setErrorFor(dueDateReference, "Favor informar a data de vencimento")
+      setErrorFor(dueDateReference, "Favor informar a data de vencimento");
       return;
     }
     dueDateValue = dueDateValue.replace(/\//g, "-");
@@ -101,11 +103,17 @@ function FormPaymentValidationsController() {
     diff = diff / (1000 * 60 * 60 * 24);
 
     if (diff < zeroValue) {
-      setErrorFor(dueDateReference, "Data não pode ser anterior ao dia de hoje");
+      setErrorFor(
+        dueDateReference,
+        "Data não pode ser anterior ao dia de hoje"
+      );
       return;
     }
     if (diff > dueDateMaxOver) {
-      setErrorFor(dueDateReference, "Data não pode ser mais do que 30 dias pra frente");
+      setErrorFor(
+        dueDateReference,
+        "Data não pode ser mais do que 30 dias pra frente"
+      );
       return;
     }
     setSucessFor(dueDateReference);
