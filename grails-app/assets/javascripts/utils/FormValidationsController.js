@@ -5,6 +5,7 @@ function FormValidationsController() {
     bindInputCpfCnpj();
     bindInputPostalCode();
     bindInputEmail();
+    bindInputAddressNumber();
   };
 
   var formReference = document.querySelector("form");
@@ -13,6 +14,7 @@ function FormValidationsController() {
   var postalCodeReference = document.getElementById("postalCode");
   var emailReference = document.getElementById("email");
   var addressReference = document.getElementById("address");
+  var addressNumberReference = document.getElementById("addressNumber");
   var complementReference = document.getElementById("complement");
   var districtReference = document.getElementById("district");
   var cityReference = document.getElementById("city");
@@ -20,6 +22,8 @@ function FormValidationsController() {
   var correctPostalCodeLength = 8;
   var correctCpfLength = 11;
   var correctCnpjLength = 14;
+  var formatEmail =
+    /[A-Za-z0-9_\%\+-]+(\.[A-Za-z0-9_\%\+-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9-]+)*(\.[A-Za-z]{2,15})/;
 
   function validateName() {
     let nameValue = nameReference.value;
@@ -31,29 +35,36 @@ function FormValidationsController() {
   }
 
   function validateCpf() {
-    let cpfCnpjValue = cpfCnpj.value;
-    if (!cpfCnpjValue) return setErrorFor(cpfCnpjReference, "Preencha seu CPF");
-    if (cpfCnpjValue.length == correctCpfLength) {
+    let cpfCnpjValue = cpfCnpjReference.value;
+    if (!cpfCnpjValue) {
+      setErrorFor(cpfCnpjReference, "Preencha seu CPF");
+      return;
+    }
+    if (
       cpfCnpjValue == "00000000000" ||
-        cpfCnpjValue == "11111111111" ||
-        cpfCnpjValue == "22222222222" ||
-        cpfCnpjValue == "33333333333" ||
-        cpfCnpjValue == "44444444444" ||
-        cpfCnpjValue == "55555555555" ||
-        cpfCnpjValue == "66666666666" ||
-        cpfCnpjValue == "77777777777" ||
-        cpfCnpjValue == "88888888888" ||
-        cpfCnpjValue == "99999999999";
-      return setErrorFor(cpfCnpjReference, "O cpf informado é inválido");
+      cpfCnpjValue == "11111111111" ||
+      cpfCnpjValue == "22222222222" ||
+      cpfCnpjValue == "33333333333" ||
+      cpfCnpjValue == "44444444444" ||
+      cpfCnpjValue == "55555555555" ||
+      cpfCnpjValue == "66666666666" ||
+      cpfCnpjValue == "77777777777" ||
+      cpfCnpjValue == "88888888888" ||
+      cpfCnpjValue == "99999999999"
+    ) {
+      setErrorFor(cpfCnpjReference, "O cpf informado é inválido");
+      return;
     }
     setSucessFor(cpfCnpjReference);
   }
 
   function validateCnpj() {
-    let cpfCnpjValue = cpfCnpj.value;
-    if (!cpfCnpjValue) return setErrorFor(cpfCnpjReference, "Preencha seu CPF");
+    let cpfCnpjValue = cpfCnpjReference.value;
+    if (cpfCnpjValue.length > correctCnpjLength) {
+      setErrorFor(cpfCnpjReference, "O CNPJ informado é inválido");
+      return;
+    }
     if (
-      cpfCnpjValue.length == correctCnpjLength ||
       cpfCnpjValue == "00000000000000" ||
       cpfCnpjValue == "11111111111111" ||
       cpfCnpjValue == "22222222222222" ||
@@ -65,7 +76,8 @@ function FormValidationsController() {
       cpfCnpjValue == "88888888888888" ||
       cpfCnpjValue == "99999999999999"
     ) {
-      return setErrorFor(cpfCnpjReference, "O CNPJ informado é inválido");
+      setErrorFor(cpfCnpjReference, "O CNPJ informado é inválido");
+      return;
     }
     setSucessFor(cpfCnpjReference);
   }
@@ -76,7 +88,15 @@ function FormValidationsController() {
       setErrorFor(emailReference, "O email é obrigatório");
       return;
     }
+    if (validateFormatEmail(emailValue) == false) {
+      setErrorFor(emailReference, "Formato incorreto");
+      return;
+    }
     setSucessFor(emailReference);
+  }
+
+  function validateFormatEmail(email) {
+    return formatEmail.test(email);
   }
 
   function validatePostal() {
@@ -86,6 +106,14 @@ function FormValidationsController() {
       return;
     }
     setSucessFor(postalCodeReference);
+  }
+
+  function validateAddressNumber() {
+    if (!addressNumberReference.value) {
+      setErrorFor(addressNumberReference, "Número da residência obrigatório");
+      return;
+    }
+    setSucessFor(addressNumberReference);
   }
 
   function validateRequiredsInputs() {
@@ -171,7 +199,7 @@ function FormValidationsController() {
   }
 
   function bindInputPostalCode() {
-    postalCodeReference.addEventListener("focusout", function () {
+    postalCodeReference.addEventListener("focusout", (event) => {
       validatePostal();
       if (validatePostalCode(this.value)) {
         getPostalCode(this.value, fillAddress);
@@ -179,8 +207,15 @@ function FormValidationsController() {
     });
   }
 
+  function bindInputAddressNumber() {
+    addressNumberReference.addEventListener("focusout", (event) => {
+      validateAddressNumber();
+    });
+  }
+
   function bindInputEmail() {
     emailReference.addEventListener("focusout", (event) => {
+      validateFormatEmail();
       validateEmail();
     });
   }

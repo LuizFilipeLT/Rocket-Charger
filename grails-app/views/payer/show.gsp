@@ -60,8 +60,7 @@
           />
           <i class="fas fa-exclamation-circle"></i>
           <i class="fas fa-check-circle"></i>
-          <small class="js-msg
-          "></small>
+          <small class="js-msg"></small>
         </div>
 
         <div class="form-control two left">
@@ -75,8 +74,7 @@
           />
           <i class="fas fa-exclamation-circle"></i>
           <i class="fas fa-check-circle"></i>
-          <small class="js-msg
-          "></small>
+          <small class="js-msg"></small>
         </div>
 
         <div class="form-control two">
@@ -92,8 +90,7 @@
           />
           <i class="fas fa-exclamation-circle"></i>
           <i class="fas fa-check-circle"></i>
-          <small class="js-msg
-          "></small>
+          <small class="js-msg"></small>
         </div>
 
         <div class="form-control two left">
@@ -108,8 +105,7 @@
           />
           <i class="fas fa-exclamation-circle"></i>
           <i class="fas fa-check-circle"></i>
-          <small class="js-msg
-          "></small>
+          <small class="js-msg"></small>
         </div>
 
 
@@ -168,8 +164,7 @@
           />
           <i class="fas fa-exclamation-circle"></i>
           <i class="fas fa-check-circle"></i>
-          <small class="js-msg
-          "></small>
+          <small class="js-msg"></small>
         </div>
 
         <div class="form-control two left">
@@ -184,8 +179,7 @@
           />
           <i class="fas fa-exclamation-circle"></i>
           <i class="fas fa-check-circle"></i>
-          <small class="js-msg
-          "></small>
+          <small class="js-msg"></small>
         </div>
           <button class="js-edit" id="button">Editar</button>
           <button type="submit" class="js-send-button hide">Salvar</button>

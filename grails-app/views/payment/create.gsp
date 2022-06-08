@@ -24,6 +24,9 @@
                name="value"
                id="value"
                placeholder="Valor do pagamento"/>
+               <i class="fas fa-exclamation-circle"></i>
+               <i class="fas fa-check-circle"></i>
+               <small class="js-msg"></small>
          </div>
 
          <div class="form-control">
@@ -33,6 +36,9 @@
                name="dueDate"
                id="dueDate"
                placeholder="Data de vencimento"/>
+               <i class="fas fa-exclamation-circle"></i>
+               <i class="fas fa-check-circle"></i>
+               <small class="js-msg"></small>
          </div>
 
          <div class="form-control">
@@ -44,6 +50,9 @@
                value="${method}"
                noSelection="['':'Tipo de pagamento']"
                valueMessagePrefix="PaymentMethod"/>
+               <i class="fas fa-exclamation-circle"></i>
+               <i class="fas fa-check-circle"></i>
+               <small class="js-msg"></small>
          </div>
 
          <div class="form-control">
@@ -54,6 +63,9 @@
                   <option value="${payer.id}">${payer.name}</option>
                </g:each>
             </select>
+               <i class="fas fa-exclamation-circle"></i>
+               <i class="fas fa-check-circle"></i>
+               <small class="js-msg"></small>
          </div>
 
          <input
