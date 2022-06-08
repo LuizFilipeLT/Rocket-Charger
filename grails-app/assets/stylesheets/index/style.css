@@ -150,6 +150,14 @@ body {
   border-color: #e7473c;
 }
 
+.form-control.error #method {
+  border-color: #e7473c;
+}
+
+.form-control.error #payerId {
+  border-color: #e7473c;
+}
+
 .form-control.success #method {
   border-color: #0030b9;
 }
