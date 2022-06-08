@@ -74,6 +74,10 @@ function FormPaymentValidationsController() {
 
   function validateDueDate() {
     var dueDateValue = dueDateReference.value;
+    if (!dueDateValue) {
+      setErrorFor(dueDateReference, "Favor informar a data de vencimento")
+      return;
+    }
     dueDateValue = dueDateValue.replace(/\//g, "-");
     var dueDateArray = dueDateValue.split("-");
     var day = dueDateArray[2];
