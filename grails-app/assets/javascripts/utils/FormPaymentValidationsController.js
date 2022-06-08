@@ -5,6 +5,7 @@ function FormPaymentValidationsController() {
     bindInputDueDate();
     bindInputBillingType();
     bindSelectPayer();
+    bindFormSubmit();
   };
 
   var formReference = document.querySelector("form");
@@ -14,6 +15,15 @@ function FormPaymentValidationsController() {
   var payerReference = document.getElementById("payerId");
   var todayDate = new Date();
   var zeroValue = 0;
+  var dueDateMaxOver = 30;
+  var minValue = 2;
+
+  function bindFormSubmit() {
+    $("form").on("submit", function (e) {
+      e.preventDefault();
+      validateForm();
+    });
+  }
 
   function bindSubmitForm() {
     formReference.addEventListener("submit", (event) => {
@@ -23,30 +33,34 @@ function FormPaymentValidationsController() {
 
   function bindInputValue() {
     valueReference.addEventListener("focusout", (event) => {
-      checkValue();
+      validateValue();
     });
   }
 
   function bindInputDueDate() {
     dueDateReference.addEventListener("focusout", (event) => {
-      checkDueDate();
+      validateDueDate();
     });
   }
 
   function bindInputBillingType() {
     billingTypeReference.addEventListener("focusout", (event) => {
-      checkBillingType();
+      validateBillingType();
     });
   }
 
   function bindSelectPayer() {
     payerReference.addEventListener("focusout", (event) => {
-      checkPayer();
+      validatePayer();
     });
   }
 
-  function checkValue() {
+  function validateValue() {
     let inputValue = valueReference.value;
+    if (inputValue < minValue) {
+      setErrorFor(valueReference, "Valor minimo para geração de cobrança de R$ 2,00");
+      return;
+    }
     if (!inputValue) {
       setErrorFor(valueReference, "Favor informar o valor.");
       return;
@@ -58,38 +72,23 @@ function FormPaymentValidationsController() {
     setSucessFor(valueReference);
   }
 
-  function checkDueDate() {
-    let dueDateValue = dueDateReference.value;
-    if (!dueDateValue) {
-      setErrorFor(dueDateReference, "Favor informar a data de vencimento.");
-      return;
-    }
-    if (dueDateValue < todayDate) {
-      setErrorFor(dueDateReference, "Informar acima da data de hoje.");
-      return;
-    }
-    setSucessFor(dueDateReference);
-  }
+  function validateDueDate() {
+    var dueDateValue = dueDateReference.value;
+    dueDateValue = dueDateValue.replace(/\//g, "-");
+    var dueDateArray = dueDateValue.split("-");
+    var day = dueDateArray[2];
+    var month = dueDateArray[1];
+    var year = dueDateArray[0];
 
-  function validateDate(dueDate) {
-    var date = dueDateReference.value; // pega o valor do input
-    date = date.replace(/\//g, "-"); // substitui eventuais barras (ex. IE) "/" por hífen "-"
-    var dateArray = date.split("-"); // quebra a date em array
-    var day = dateArray[2];
-    var month = dateArray[1];
-    var year = dateArray[0];
-
-    // para o IE onde será inserido no formato dd/MM/yyyy
-    if (data_array[0].length != 4) {
-      day = data_array[0];
-      month = data_array[1];
-      year = data_array[2];
+    if (dueDateArray[0].length != 4) {
+      day = dueDateArray[0];
+      month = dueDateArray[1];
+      year = dueDateArray[2];
     }
 
-    var hoje = new Date();
-    var d1 = hoje.getDate();
-    var m1 = hoje.getMonth() + 1;
-    var y1 = hoje.getFullYear();
+    var d1 = todayDate.getDate();
+    var m1 = todayDate.getMonth() + 1;
+    var y1 = todayDate.getFullYear();
 
     var d1 = new Date(y1, m1, d1);
     var d2 = new Date(year, month, day);
@@ -98,23 +97,17 @@ function FormPaymentValidationsController() {
     diff = diff / (1000 * 60 * 60 * 24);
 
     if (diff < zeroValue) {
-      setErrorFor(
-        dueDateReference,
-        "Data selecionada não pode ser anterior ao dia de hoje"
-      );
+      setErrorFor(dueDateReference,"Data não pode ser anterior ao dia de hoje");
       return;
     }
-    if (diff > 30) {
-      setErrorFor(
-        dueDateReference,
-        "Data não pode ser mais do que 30 dias pra frente"
-      );
+    if (diff > dueDateMaxOver) {
+      setErrorFor(dueDateReference,"Data não pode ser mais do que 30 dias pra frente");
       return;
     }
     setSucessFor(dueDateReference);
   }
 
-  function checkBillingType() {
+  function validateBillingType() {
     let billingTypeValue = billingTypeReference.value;
     if (!billingTypeValue) {
       setErrorFor(billingTypeReference, "Escolha o método de pagamento.");
@@ -123,7 +116,7 @@ function FormPaymentValidationsController() {
     setSucessFor(billingTypeReference);
   }
 
-  function checkPayer() {
+  function validatePayer() {
     let payerValue = payerReference.value;
     if (!payerValue) {
       setErrorFor(payerReference, "Escolha o pagador desta cobrança.");
@@ -133,17 +126,35 @@ function FormPaymentValidationsController() {
   }
 
   function checkSuccessInputs() {
-    checkBillingType();
-    checkDueDate();
-    checkFormIsValid();
-    checkPayer();
-    checkValue();
+    validateBillingType();
+    validateDueDate();
+    validatePayer();
+    validateValue();
+    validateForm();
   }
 
-  function checkFormIsValid() {
-    let formControls = formReference.querySelectorAll(".form-control");
-    let formIsValid = [...formControls].every((formControl) => {
+  function validateForm() {
+    var formControls = formReference.querySelectorAll(".form-control");
+    var formIsValid = [...formControls].every((formControl) => {
       return formControl.className === "form-control success";
+    });
+    if (!formIsValid) return
+    bindPostFormSubmit()
+  }
+
+  function bindPostFormSubmit() {
+    var formReference = $("form");
+    var url = formReference.data("url");
+    var params = formReference.serialize();
+
+    var url = document.querySelector("form").getAttribute("action");
+
+    $.post(url, params, function(response) {
+        if (!response.success) {
+            alert("Erro ao tentar gerar cobrança")
+            return
+        }
+        window.location.href = formReference.data("redirect");
     });
   }
 
