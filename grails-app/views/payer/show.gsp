@@ -17,7 +17,7 @@
         class="form"
         data-redirect="${ g.createLink(controller: "payer", action: "index", params: [id: payer.customer.id]) }" 
         data-url="${ g.createLink(controller: "payer", action: "update") }" >
-        <input type="hidden" class="js-payer-id" name="id" value="${payer?.id}">
+        <input type="hidden" class="js-payer-id" name="id" id="id" value="${payer?.id}">
         
         <div class="form-control">
           <label for="name">Nome Completo: *</label>
@@ -35,11 +35,11 @@
         </div>
 
         <div class="form-control two left">
-          <label for="number">Celular *</label>
+          <label for="phone">Celular *</label>
           <input
             type="tel"
-            id="number"
-            name="number"
+            id="phone"
+            name="phone"
             placeholder="Informe seu número de contato"
             value="${payer?.phone}" 
           />
@@ -60,8 +60,7 @@
           />
           <i class="fas fa-exclamation-circle"></i>
           <i class="fas fa-check-circle"></i>
-          <small class="js-msg
-          "></small>
+          <small class="js-msg"></small>
         </div>
 
         <div class="form-control two left">
@@ -75,8 +74,7 @@
           />
           <i class="fas fa-exclamation-circle"></i>
           <i class="fas fa-check-circle"></i>
-          <small class="js-msg
-          "></small>
+          <small class="js-msg"></small>
         </div>
 
         <div class="form-control two">
@@ -92,8 +90,7 @@
           />
           <i class="fas fa-exclamation-circle"></i>
           <i class="fas fa-check-circle"></i>
-          <small class="js-msg
-          "></small>
+          <small class="js-msg"></small>
         </div>
 
         <div class="form-control two left">
@@ -108,8 +105,7 @@
           />
           <i class="fas fa-exclamation-circle"></i>
           <i class="fas fa-check-circle"></i>
-          <small class="js-msg
-          "></small>
+          <small class="js-msg"></small>
         </div>
 
 
@@ -168,8 +164,7 @@
           />
           <i class="fas fa-exclamation-circle"></i>
           <i class="fas fa-check-circle"></i>
-          <small class="js-msg
-          "></small>
+          <small class="js-msg"></small>
         </div>
 
         <div class="form-control two left">
@@ -184,8 +179,7 @@
           />
           <i class="fas fa-exclamation-circle"></i>
           <i class="fas fa-check-circle"></i>
-          <small class="js-msg
-          "></small>
+          <small class="js-msg"></small>
         </div>
           <button class="js-edit" id="button">Editar</button>
           <button type="submit" class="js-send-button hide">Salvar</button>

@@ -79,7 +79,7 @@ body {
   border: 2px solid black;
   color: black;
   border-radius: 10px;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   padding: 10px;
   font-size: 14px;
   width: 100%;  
@@ -87,7 +87,7 @@ body {
 
 .form-control i {
   position: absolute;
-  top: 45px;
+  top: 35px;
   right: 10px;
   visibility: hidden;
 }
@@ -95,7 +95,7 @@ body {
 .form-control small {
   position: absolute;
   bottom: 0;
-  left: 0;
+  left: 15px;
   visibility: hidden;
 }
 

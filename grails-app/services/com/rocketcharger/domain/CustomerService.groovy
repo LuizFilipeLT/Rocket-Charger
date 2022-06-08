@@ -31,7 +31,7 @@ class CustomerService {
     }
 
     public Customer update(Map params){
-        Customer customer = Customer.get(params.int("id"))
+        Customer customer = Customer.get(params.long("id"))
         customer = validate(customer, params)
         if (customer.hasErrors()) return customer
         customer.name = params.name
@@ -44,7 +44,7 @@ class CustomerService {
         customer.district = params.district
         customer.city = params.city
         customer.state = params.state
-        customer.save(flush: true, failOnError: true)
+        customer.save(failOnError: true)
         return customer
     }
 

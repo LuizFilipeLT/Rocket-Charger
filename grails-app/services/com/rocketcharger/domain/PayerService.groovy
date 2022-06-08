@@ -14,6 +14,7 @@ class PayerService {
         Payer payer = new Payer()
         payer = validate(payer, params)
         if (payer.hasErrors()) return payer
+        payer.customer = customer
         payer.name = params.name
         payer.phone = params.phone
         payer.email = params.email
@@ -32,13 +33,9 @@ class PayerService {
         return Payer.getAll()
     }
 
-    public Payer getPayer(Long id) {
-        return Payer.get(id)
-    }
-
     public Payer update(Map params) {
-        if (!params.id) DomainUtils.addError(payer, "Erro ao realizar edição")
-        Payer payer = Payer.get(params.int("id"))
+        if (!params.id) DomainUtils.addError(payer, "")
+        Payer payer = Payer.get(params.long("id"))
         payer = validate(payer, params)
         if (payer.hasErrors()) return payer
         payer.name = params.name
