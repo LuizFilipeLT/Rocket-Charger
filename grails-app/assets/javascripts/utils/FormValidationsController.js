@@ -48,7 +48,7 @@ function FormValidationsController() {
   function validateCpf() {
     let cpfCnpjValue = cpfCnpjReference.value;
     if (!cpfCnpjValue) {
-      setErrorFor(cpfCnpjReference, "Preencha seu CPF");
+      setErrorFor(cpfCnpjReference, "Preencha seu CPF/CNPJ");
       return;
     }
     if (
@@ -71,6 +71,10 @@ function FormValidationsController() {
 
   function validateCnpj() {
     let cpfCnpjValue = cpfCnpjReference.value;
+    if (!cpfCnpjValue) {
+      setErrorFor(cpfCnpjReference, "Preencha seu CPF/CNPJ");
+      return;
+    }
     if (cpfCnpjValue.length > correctCnpjLength) {
       setErrorFor(cpfCnpjReference, "O CNPJ informado é inválido");
       return;
