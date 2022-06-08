@@ -2,7 +2,7 @@ function FormValidationsController() {
   this.init = function () {
     bindSubmitForm();
     bindInputName();
-    bindInputPhone;
+    bindInputPhone();
     bindInputCpfCnpj();
     bindInputPostalCode();
     bindInputEmail();
