@@ -97,11 +97,11 @@ function FormPaymentValidationsController() {
     diff = diff / (1000 * 60 * 60 * 24);
 
     if (diff < zeroValue) {
-      setErrorFor(dueDateReference,"Data não pode ser anterior ao dia de hoje");
+      setErrorFor(dueDateReference, "Data não pode ser anterior ao dia de hoje");
       return;
     }
     if (diff > dueDateMaxOver) {
-      setErrorFor(dueDateReference,"Data não pode ser mais do que 30 dias pra frente");
+      setErrorFor(dueDateReference, "Data não pode ser mais do que 30 dias pra frente");
       return;
     }
     setSucessFor(dueDateReference);
@@ -138,8 +138,8 @@ function FormPaymentValidationsController() {
     var formIsValid = [...formControls].every((formControl) => {
       return formControl.className === "form-control success";
     });
-    if (!formIsValid) return
-    bindPostFormSubmit()
+    if (!formIsValid) return;
+    bindPostFormSubmit();
   }
 
   function bindPostFormSubmit() {
@@ -147,14 +147,12 @@ function FormPaymentValidationsController() {
     var url = formReference.data("url");
     var params = formReference.serialize();
 
-    var url = document.querySelector("form").getAttribute("action");
-
-    $.post(url, params, function(response) {
-        if (!response.success) {
-            alert("Erro ao tentar gerar cobrança")
-            return
-        }
-        window.location.href = formReference.data("redirect");
+    $.post(url, params, function (response) {
+      if (!response.success) {
+        alert("Erro ao tentar gerar cobrança");
+        return;
+      }
+      window.location.href = formReference.data("redirect");
     });
   }
 
