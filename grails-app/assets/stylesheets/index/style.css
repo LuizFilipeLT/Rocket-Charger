@@ -66,15 +66,6 @@ body {
   color: #000000;
 }
 
-#method {
-  margin-top: 10px;
-}
-
-#payerId {
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
-
 .form-control input {
   border: 2px solid black;
   color: black;
@@ -103,7 +94,7 @@ body {
   border: 2px solid black;
   color: black;
   border-radius: 10px;
-  margin-bottom: 20px;
+  margin-bottom: 25px;
   padding: 10px;
   font-size: 14px;
   width: 100%;  
@@ -113,7 +104,7 @@ body {
   border: 2px solid black;
   color: black;
   border-radius: 10px;
-  margin-bottom: 20px;
+  margin-bottom: 25px;
   padding: 10px;
   font-size: 14px;
   width: 100%; 
@@ -159,6 +150,14 @@ body {
   border-color: #e7473c;
 }
 
+.form-control.success #method {
+  border-color: #0030b9;
+}
+
+.form-control.success #payerId {
+  border-color: #0030b9;
+}
+
 .form-control.success i.fa-check-circle {
   color: #0030b9;
   visibility: visible;
@@ -172,6 +171,25 @@ body {
 .form-control.error small {
   visibility: visible;
   color: #e7473c;
+}
+
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  text-indent: 1px;
+  text-overflow: '';
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="date"]::-webkit-inner-spin-button,
+input[type="date"]::-webkit-calendar-picker-indicator {
+  display: none;
+  -webkit-appearance: none;
 }
 
 @media (max-width: 600px) {
