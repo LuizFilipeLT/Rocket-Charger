@@ -14,6 +14,7 @@ class CustomerService {
         if (customer.hasErrors()) return customer
         customer.name = params.name
         customer.email = params.email
+        customer.phone = params.phone
         customer.cpfCnpj = params.cpfCnpj
         customer.postalCode = params.postalCode
         customer.address = params.address
