@@ -103,17 +103,11 @@ function FormPaymentValidationsController() {
     diff = diff / (1000 * 60 * 60 * 24);
 
     if (diff < zeroValue) {
-      setErrorFor(
-        dueDateReference,
-        "Data não pode ser anterior ao dia de hoje"
-      );
+      setErrorFor(dueDateReference, "Data não pode ser anterior ao dia de hoje");
       return;
     }
     if (diff > dueDateMaxOver) {
-      setErrorFor(
-        dueDateReference,
-        "Data não pode ser mais do que 30 dias pra frente"
-      );
+      setErrorFor(dueDateReference, "Data não pode ser mais do que 30 dias pra frente");
       return;
     }
     setSucessFor(dueDateReference);
@@ -148,7 +142,7 @@ function FormPaymentValidationsController() {
   function validateForm() {
     var formControls = formReference.querySelectorAll(".form-control");
     var formIsValid = [...formControls].every((formControl) => {
-      return formControl.className === "form-control success";
+      return formControl.className.includes("success");
     });
     if (formIsValid !== true) return alert("Favor verificar os campos.");
     bindPostFormSubmit();
