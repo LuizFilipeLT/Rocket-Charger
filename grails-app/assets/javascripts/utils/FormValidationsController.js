@@ -199,7 +199,7 @@ function FormValidationsController() {
     var formIsValid = [...formControls].every((formControl) => {
       return formControl.className.includes("success");
     });
-    if (formIsValid != true) return alert("Favor verificar os campos.");
+    if (!formIsValid) return alert("Favor verificar os campos.");
     bindPostFormSubmit();
   }
 
