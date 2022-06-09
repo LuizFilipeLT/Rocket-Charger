@@ -6,7 +6,7 @@ import java.util.Date;
 
 class FormatDateUtils{
 
-    public static void main(String[] args) {
+    public static void main(String args) {
         Date now = new Date();
 
         DateFormat currentDate = DateFormat.getDateInstance();
