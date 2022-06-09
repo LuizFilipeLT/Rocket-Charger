@@ -7,10 +7,12 @@ function FormValidationsController() {
     bindInputPostalCode();
     bindInputEmail();
     bindInputAddressNumber();
-    bindInputAddress()
+    bindInputAddress();
     bindInputDistrict();
     bindInputCity();
     bindInputState();
+    bindInputComplement();
+    bindPreventDefaultForm();
   };
 
   var formReference = document.querySelector("form");
@@ -30,6 +32,12 @@ function FormValidationsController() {
   var correctCnpjLength = 14;
   var formatEmail =
     /[A-Za-z0-9_\%\+-]+(\.[A-Za-z0-9_\%\+-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9-]+)*(\.[A-Za-z]{2,15})/;
+
+  function bindPreventDefaultForm() {
+    $("form").on("submit", function (e) {
+      e.preventDefault();
+    });
+  }
 
   function validateName() {
     let nameValue = nameReference.value;
@@ -126,7 +134,7 @@ function FormValidationsController() {
     }
     setSucessFor(postalCodeReference);
   }
-  
+
   function validateAddress() {
     if (!addressReference.value) {
       setErrorFor(addressReference, "Endereço obrigatório");
@@ -158,7 +166,13 @@ function FormValidationsController() {
     }
     setSucessFor(cityReference);
   }
-  
+
+  function validateComplement() {
+    if (complementReference) {
+      setSucessFor(complementReference);
+    }
+  }
+
   function validateAddressNumber() {
     if (!addressNumberReference.value) {
       setErrorFor(addressNumberReference, "Número da residência obrigatório");
@@ -177,13 +191,29 @@ function FormValidationsController() {
     }
     validatePostal();
     validateEmail();
-    validateFormIsValid();
+    validateForm();
   }
 
-  function validateFormIsValid() {
-    let formControls = formReference.querySelectorAll(".form-control");
-    let formIsValid = [...formControls].every((formControl) => {
-      return formControl.className === "form-control success";
+  function validateForm() {
+    var formControls = formReference.querySelectorAll(".form-control");
+    var formIsValid = [...formControls].every((formControl) => {
+      return formControl.className.includes("success");
+    });
+    if (!formIsValid) return alert("Favor verificar os campos.");
+    bindPostFormSubmit();
+  }
+
+  function bindPostFormSubmit() {
+    var formReference = $("form");
+    var url = formReference.data("url");
+    var params = formReference.serialize();
+
+    $.post(url, params, function (response) {
+      if (!response.success) {
+        alert("Erro");
+        return;
+      }
+      window.location.href = formReference.data("redirect");
     });
   }
 
@@ -235,6 +265,12 @@ function FormValidationsController() {
   function bindInputName() {
     nameReference.addEventListener("focusout", (event) => {
       validateName();
+    });
+  }
+
+  function bindInputComplement() {
+    complementReference.addEventListener("focusout", (event) => {
+      validateComplement();
     });
   }
 
