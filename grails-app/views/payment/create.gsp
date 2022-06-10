@@ -15,7 +15,7 @@
 
          <form
             autocomplete="off" class="form"
-            data-redirect="${ g.createLink(controller: "payment", action: "list", params: [id: customerId]) }"
+            data-redirect="${ g.createLink(controller: "payment", action: "list", params: [customerId: customerId]) }"
             data-url="${ g.createLink(controller: "payment", action: "save") }">
 
          <div class="form-control">

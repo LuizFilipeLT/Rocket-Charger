@@ -192,9 +192,9 @@
         <button type="reset">Cancelar</button>
       </form>
       <div>
-        <g:link controller="customer" action="index" id="${customer.id}"><button class="btn ">Voltar</button></g:link>
-        <g:link controller="payer" action="create" id="${customer.id}"><button class="btn ">Criar pagador</button></g:link>
-        <g:link controller="payment" action="create" id="${customer.id}"><button class="btn ">Nova Cobrança</button></g:link>
+        <g:link controller="customer" action="index" params="${[customerId: customer.id]}"><button class="btn ">Voltar</button></g:link>
+        <g:link controller="payer" action="create" params="${[customerId: customer.id]}"><button class="btn ">Criar pagador</button></g:link>
+        <g:link controller="payment" action="create" params="${[customerId: customer.id]}"><button class="btn ">Nova Cobrança</button></g:link>
      </div>
     </div>
   </body>

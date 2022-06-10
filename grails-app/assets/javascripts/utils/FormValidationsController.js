@@ -210,7 +210,7 @@ function FormValidationsController() {
 
     $.post(url, params, function (response) {
       if (!response.success) {
-        alert("Erro ao tentar gerar cobrança");
+        alert("Erro");
         return;
       }
       window.location.href = formReference.data("redirect");

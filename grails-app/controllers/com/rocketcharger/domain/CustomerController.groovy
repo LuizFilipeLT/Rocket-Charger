@@ -45,7 +45,7 @@ class CustomerController extends BaseController {
     }
 
     def show() {
-        return [customer: Customer.get(params.long("id"))]
+        return [customer: Customer.get(params.long("customerId"))]
     }
 
     def list() {
