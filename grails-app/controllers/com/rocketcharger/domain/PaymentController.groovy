@@ -23,7 +23,7 @@ class PaymentController extends BaseController {
 
     def create() {
         Long customerId = params.long("customerId")
-        List<Payer> payerList = payerService.returnPayersByCustomer(customerId)
+        List<Payer> payerList = payerService.returnPayersByCustomer(customerId, getSizeLimitPage(), params.offset)
         return [customerId: customerId, payerList: payerList]
     }
 

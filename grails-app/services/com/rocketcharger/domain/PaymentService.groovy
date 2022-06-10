@@ -47,7 +47,7 @@ class PaymentService {
         return Payment.get(paymentId)
     }
 
-    public List<Payment> returnPaymentsByCustomer(Long customerId, Integer max = null, Integer offset = null) {
+    public List<Payment> returnPaymentsByCustomer(Long customerId, Integer max, Integer offset) {
         List<Payment> paymentList = Payment.createCriteria().list(max: max, offset: offset){
             eq("customer", Customer.get(customerId))
         }
