@@ -82,6 +82,7 @@ function FormValidationsController() {
       setSucessFor(cityReference);
       setSucessFor(stateReference);
       setSucessFor(complementReference);
+      addressNumberReference.focus();
     });
   }
 
