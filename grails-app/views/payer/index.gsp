@@ -5,7 +5,7 @@
   </head>
   <body>
     <div>
-        <g:link controller="customer" action="list" update="divForm" params="${customerId}">Pagina inicial</g:link>
+        <g:link controller="customer" action="list" update="divForm" params="${[customerId: customer.id]}">Pagina inicial</g:link>
     </div>
 
     <div id="divLista">
@@ -13,15 +13,7 @@
     </div>
 
     <div id="divForm">
-      <g:paginate
-        total="${totalCount}"
-        controller="payer"
-        action="index"
-        params="${params}"
-        next="Próximo"
-        prev="Anterior"
-        max="3"
-      />
+      <g:paginate total="${totalCount}" controller="payer" action="index" params="${params}" next="Próximo" prev="Anterior" max="3"/>
     </div>
   </body>
 </html>

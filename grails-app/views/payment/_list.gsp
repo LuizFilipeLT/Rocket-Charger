@@ -38,9 +38,9 @@
                   </td>
                   <td>${payment.payer.name}</td>
                   <td>
-                     <g:link controller="payment" action="show" update="divForm" id="${payment.id}">Ver cobrança</g:link>
+                     <g:link controller="payment" action="show" update="divForm" params="${[paymentId: payment.id]}">Ver cobrança</g:link>
                      <g:if test="${payment.status == PaymentStatus.PENDING}">
-                        <g:link controller="payment" action="confirm" update="divForm" id="${payment.id}">Confirmar recebimento</g:link>
+                        <g:link controller="payment" action="confirm" update="divForm" params="${[paymentId: payment.id]}">Confirmar recebimento</g:link>
                      </g:if>
                   </td>
                </tr>

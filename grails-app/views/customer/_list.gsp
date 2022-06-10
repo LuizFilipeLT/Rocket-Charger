@@ -27,7 +27,7 @@
                   <td>${customer.city}</td>
                   <td>${customer.state}</td>
                   <td>
-                     <g:link controller="customer" action="show" update="divForm" id="${customer.id}">editar dados</g:link>
+                     <g:link controller="customer" action="show" update="divForm" params="${[customerId: customer.id]}">editar dados</g:link>
                   </td>
                </tr>
             </g:each>

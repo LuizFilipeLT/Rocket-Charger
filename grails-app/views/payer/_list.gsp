@@ -27,10 +27,10 @@
                   <td>${payer.city}</td>
                   <td>${payer.state}</td>
                   <td>
-                     <g:link controller="payer" action="show" update="divForm" id="${payer.id}">Editar dados</g:link>
+                     <g:link controller="payer" action="show" update="divForm" params="${[payerId: payer.id]}">Editar dados</g:link>
                   </td>
                   <td>
-                     <g:link controller="payer" action="show" update="divForm" id="${payer.id}">Excluir</g:link>
+                     <g:link controller="payer" action="show" update="divForm" params="${[payerId: payer.id]}">Excluir</g:link>
                   </td>
                   </td>
                </tr>

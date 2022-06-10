@@ -29,11 +29,11 @@
         </div>
 
         <div class="form-control two left">
-          <label for="cellphone">Celular *</label>
+          <label for="phone">Celular *</label>
           <input
             type="tel"
-            id="cellphone"
-            name="cellphone"
+            id="phone"
+            name="phone"
             placeholder="Informe seu número de contato"
           />
           <i class="fas fa-exclamation-circle"></i>

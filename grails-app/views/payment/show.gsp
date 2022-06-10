@@ -3,15 +3,12 @@
       <title>Visualização de Cobrança</title>
    </head>
    <body>
-      <form
-      data-redirect="${ g.createLink(controller: "payment", action: "list") }"
-      data-url="${ g.createLink(controller: "payment", action: "update") }">
 
       <input
          type="hidden"
          class="js-payment-id"
          name="id"
-         value="${payment.id}"/>
+         value="${payment.payerId}"/>
 
       <div>
          <h4>Valor: ${payment.value}</h4>
@@ -49,7 +46,6 @@
          <h4>Nome do Pagador: ${payment.payer.name}</h4>
       </div>
 
-      </form>
-      <a href="${ g.createLink(controller: "payment", action: "index", id: payment.id)}">Voltar</a>
+      <a href="${ g.createLink(controller: "payment", action: "list", params: [customerId: payment.customerId])}">Voltar</a>
    </body>
 </html>

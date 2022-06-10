@@ -23,8 +23,8 @@ class Customer {
     String state
     
      static constraints = {
-        name blank: false 
-        phone blank: false 
+        name blank: false
+        phone blank: false
         email email: true, blank: false, unique: true
         cpfCnpj blank: false
         postalCode blank: false
