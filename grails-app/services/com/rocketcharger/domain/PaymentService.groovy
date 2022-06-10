@@ -68,7 +68,6 @@ class PaymentService {
     }
         
     public Payment validate(Payment payment, Map params) {
-        println params
         if (!ValidateUtils.validateMinValue(params.value)) {
             DomainUtils.addError(payment, "")
         }
