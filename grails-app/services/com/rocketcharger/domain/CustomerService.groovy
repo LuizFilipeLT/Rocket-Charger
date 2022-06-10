@@ -13,6 +13,7 @@ class CustomerService {
         customer = validate(customer, params)
         if (customer.hasErrors()) return customer
         customer.name = params.name
+        customer.phone = params.phone
         customer.email = params.email
         customer.phone = params.phone
         customer.cpfCnpj = params.cpfCnpj
@@ -41,7 +42,6 @@ class CustomerService {
         customer.postalCode = params.postalCode
         customer.address = params.address
         customer.addressNumber = params.addressNumber
-        customer.number = params.number
         customer.district = params.district
         customer.city = params.city
         customer.state = params.state
