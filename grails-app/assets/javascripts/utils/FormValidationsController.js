@@ -45,7 +45,7 @@ function FormValidationsController() {
   function bindInputCpfCnpj() {
     cpfCnpjReference.addEventListener("focusout", (event) => {
       let cpfCnpjValue = cpfCnpjReference.value;
-      if (cpfCnpjValue.length == 14) {
+      if (cpfCnpjValue.length == 11) {
         validateCpfValue();
         return;
       }
@@ -267,7 +267,7 @@ function FormValidationsController() {
 
   function validateRequiredsInputs() {
     let cpfCnpjValue = cpfCnpjReference.value;
-    if (cpfCnpjValue.length == 14) {
+    if (cpfCnpjValue.length == 11) {
       validateCpfValue();
     } else {
       validateCnpjValue();

@@ -10,7 +10,7 @@ function FormUtilsController() {
       $(this).hide();
       $(".js-send-button").removeClass("hide");
       inputsReferenceList.each(function (index, input) {
-        $(input).removeAttr("readonly");
+        $(input).removeAttr("readonly").focus();
       });
     });
   }
