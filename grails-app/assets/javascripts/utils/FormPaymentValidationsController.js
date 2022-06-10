@@ -15,7 +15,7 @@ function FormPaymentValidationsController() {
   var payerReference = document.getElementById("payerId");
   var todayDate = new Date();
   var zeroValue = 0;
-  var dueDateMaxOver = 30;
+  var dueDateMaxOver = 90;
   var minValue = 2;
 
   function bindPreventDefaultForm() {
@@ -107,7 +107,7 @@ function FormPaymentValidationsController() {
       return;
     }
     if (diff > dueDateMaxOver) {
-      setErrorFor(dueDateReference, "Data não pode ser mais do que 30 dias pra frente");
+      setErrorFor(dueDateReference, "Data não pode ser mais do que 90 dias pra frente");
       return;
     }
     setSucessFor(dueDateReference);
