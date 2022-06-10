@@ -16,13 +16,13 @@ class PaymentController extends BaseController {
     def payerService
 
    def list() {  
-        Long customerId = params.long("id")
+        Long customerId = params.long("customerId")
         List<Payment> paymentList = paymentService.returnPaymentsByCustomer(customerId, getSizeLimitPage(), getCurrentPage())
         return [customerId: customerId, paymentList: paymentList, totalCount: paymentList.size()]
     }
 
     def create() {
-        Long customerId = params.long("id")
+        Long customerId = params.long("customerId")
         List<Payer> payerList = payerService.returnPayersByCustomer(customerId)
         return [customerId: customerId, payerList: payerList]
     }
@@ -43,16 +43,19 @@ class PaymentController extends BaseController {
     }
 
     def confirm() {
-        Long paymentId = params.long("id")
+        Long paymentId = params.long("paymentId")
         try {
-            paymentService.recognizePayment(paymentId)
-            redirect controller: "payment", action: "list", id: paymentId
+            Payment payment = paymentService.recognizePayment(paymentId)
+                if (payment) {
+                    redirect([controller: "payment", action: "list", params: [customerId: payment.customerId]])
+                }
         } catch(Exception e) {
+            e.printStackTrace()
             render([success: false, message: message(code: "occurrence.error")] as JSON)
         }
     }
 
     def show() {
-        return [payment: Payment.get(params.long("id"))]
+        return [payment: Payment.get(params.long("paymentId"))] 
     }
  }

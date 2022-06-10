@@ -9,8 +9,7 @@ import grails.gorm.transactions.Transactional
 @Transactional
 class PayerService {
 
-    public Payer save(Map params) {
-        Customer customer = Customer.get(params.long("customerId"))
+    public Payer save(Customer customer, Map params) {
         Payer payer = new Payer()
         payer = validate(payer, params)
         if (payer.hasErrors()) return payer
@@ -34,8 +33,8 @@ class PayerService {
     }
 
     public Payer update(Map params) {
-        if (!params.id) DomainUtils.addError(payer, "")
-        Payer payer = Payer.get(params.long("id"))
+        if (!params.payerId) DomainUtils.addError(payer, "")
+        Payer payer = Payer.get(params.long("payerId"))
         payer = validate(payer, params)
         if (payer.hasErrors()) return payer
         payer.name = params.name
@@ -68,31 +67,31 @@ class PayerService {
 
     public Payer validate(Payer payer, Map params) {
         if (!ValidateUtils.isNotNull(params.name)) {
-            DomainUtils.addError(payer, "")
+            DomainUtils.addError(payer, "O campo nome é obrigatório")
         }
         if (!ValidateUtils.emailIsValid(params.email)) {
-            DomainUtils.addError(payer, "")
+            DomainUtils.addError(payer, "O campo email é obrigatório")
         }
         if (!ValidateUtils.validateCpfCnpj(params.cpfCnpj)) {
-            DomainUtils.addError(payer, "")
+            DomainUtils.addError(payer, "O campo CPF/CNPJ é obrigatório")
         }
         if (!ValidateUtils.validatePostalCode(params.postalCode)) {
-            DomainUtils.addError(payer, "")
+            DomainUtils.addError(payer, "O campo CEP é obrigatório")
         }
         if (!ValidateUtils.isNotNull(params.address)) {
-            DomainUtils.addError(payer, "")
+            DomainUtils.addError(payer, "O campo endereço é obrigatório")
         }
         if (!ValidateUtils.isNotNull(params.addressNumber)) {
-            DomainUtils.addError(payer, "")
+            DomainUtils.addError(payer, "O campo número é obrigatório")
         }
         if (!ValidateUtils.isNotNull(params.district)) {
-            DomainUtils.addError(payer, "")
+            DomainUtils.addError(payer, "O campo bairro é obrigatório")
         }
         if (!ValidateUtils.isNotNull(params.city)) {
-            DomainUtils.addError(payer, "")
+            DomainUtils.addError(payer, "O campo cidade é obrigatório")
         }
         if (!ValidateUtils.isNotNull(params.state)) {
-            DomainUtils.addError(payer, "")
+            DomainUtils.addError(payer, "O campo estado é obrigatório")
         }
         return payer
     }

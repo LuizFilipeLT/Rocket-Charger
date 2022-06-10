@@ -43,12 +43,8 @@ class PaymentService {
         return payment
     }
 
-    public List<Payment> list() {
-        return Payment.getAll()
-    }
-
-    public Payment getPayment(Long id) {
-        return Payment.get(id)
+    public Payment getPayment(Long paymentId) {
+        return Payment.get(paymentId)
     }
 
     public List<Payment> returnPaymentsByCustomer(Long customerId, Integer max = null, Integer offset = null) {
