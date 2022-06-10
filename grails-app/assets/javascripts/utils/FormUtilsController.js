@@ -1,7 +1,6 @@
 function FormUtilsController() {
   this.init = function () {
     bindHideButtonAndEditForm();
-    validateRequiredsInputs();
   };
 
   function bindHideButtonAndEditForm() {
