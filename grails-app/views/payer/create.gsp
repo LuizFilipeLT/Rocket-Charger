@@ -42,8 +42,6 @@
           <small class="js-msg"></small>
         </div>
 
-
-
         <div class="form-control two">
           <label for="cpfCnpj">CPF/CNPJ: *</label>
           <input
@@ -74,7 +72,7 @@
         <div class="form-control two">
           <label for="postalCode">CEP: *</label>
           <input
-            type="number"
+            type="text"
             id="postalCode"
             name="postalCode"
             placeholder="Informe o seu CEP"

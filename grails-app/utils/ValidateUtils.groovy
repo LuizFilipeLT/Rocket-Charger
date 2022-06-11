@@ -15,7 +15,7 @@ import org.apache.commons.validator.routines.EmailValidator
 class ValidateUtils {
 
     public static Boolean validateMinValue(String value) {
-        BigDecimal intValue = new BigDecimal(value)
+        BigDecimal intValue = new BigDecimal(value.replaceAll(",", ""))
         if (intValue < 2.00) {
             return false
             }
