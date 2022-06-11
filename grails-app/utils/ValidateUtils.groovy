@@ -23,14 +23,9 @@ class ValidateUtils {
     }
 
     public static Boolean validatePaymentDueDate(String dueDate) {
-
         Date todayDate = new Date()
-        Date overMaxDate = FormatDateUtils.addDays(todayDate, 30);
 
         if (FormatDateUtils.toDate(dueDate, "yyyy-MM-dd") < todayDate) {
-            return false
-        }
-        if (FormatDateUtils.toDate(dueDate, "yyyy-MM-dd") > overMaxDate) {
             return false
         }
         return true

@@ -29,7 +29,9 @@ class PaymentController extends BaseController {
 
     def save() {
         try {
-            Payment payment = paymentService.save(params)
+            Customer customer = Customer.get(params.customerId)
+            Payer payer = Payer.get(params.payerId)
+            Payment payment = paymentService.save(customer, payer, params)
 
             if (payment.hasErrors()) {
                 render([success: false, message: message(code: payment.errors.allErrors.defaultMessage)] as JSON)
@@ -38,6 +40,7 @@ class PaymentController extends BaseController {
 
             render([success: true] as JSON)
         } catch(Exception e) {
+            e.printStackTrace()
             render([success: false, message: message(code: "occurrence.error")] as JSON)
         } 
     }
@@ -46,11 +49,13 @@ class PaymentController extends BaseController {
         Long paymentId = params.long("paymentId")
         try {
             Payment payment = paymentService.recognizePayment(paymentId)
+
                 if (payment) {
-                    redirect([controller: "payment", action: "list", params: [customerId: payment.customerId]])
+                    redirect(controller: "payment", action: "list", params: [customerId: payment.customerId])
+                    return
                 }
+
         } catch(Exception e) {
-            e.printStackTrace()
             render([success: false, message: message(code: "occurrence.error")] as JSON)
         }
     }

@@ -19,15 +19,15 @@ class PaymentService {
     PageRenderer groovyPageRenderer
     def emailService
     
-    public Payment save(Map params) {
+    public Payment save(Customer customer, Payer payer, Map params) {
         Payment payment = new Payment()
         payment = validate(payment, params)
         if (payment.hasErrors()) return payment
         payment.value = new BigDecimal(params.value)
         payment.dueDate = FormatDateUtils.toDate(params.dueDate, "yyyy-MM-dd")
         payment.billingType = PaymentMethod.valueOf(params.billingType)
-        payment.payer = Payer.get(params.long("payerId"))
-        payment.customer = Customer.get(params.long("customerId"))
+        payment.customer = customer
+        payment.payer = payer
         payment.status = PaymentStatus.PENDING
         payment.save(failOnError: true)
         notifyNewPayment(payment)
@@ -70,12 +70,12 @@ class PaymentService {
         if (!ValidateUtils.isNotNull(params.payerId)) {
             DomainUtils.addError(payment, "")
         }
-        // if (!ValidateUtils.validatePaymentMethod(params.billingType)) {
-        //     DomainUtils.addError(payment, "")
-        // }
-        // if (!ValidateUtils.validatePaymentDueDate(params.dueDate)){
-        //      DomainUtils.addError(payment, "")
-        // }
+        if (!ValidateUtils.validatePaymentMethod(params.billingType)) {
+            DomainUtils.addError(payment, "")
+        }
+        if (!ValidateUtils.validatePaymentDueDate(params.dueDate)){
+             DomainUtils.addError(payment, "")
+        }
         return payment
     }
 
