@@ -15,6 +15,7 @@ class PayerService {
         if (payer.hasErrors()) return payer
         payer.customer = customer
         payer.name = params.name
+        payer.phone = params.phone
         payer.email = params.email
         payer.cpfCnpj = params.cpfCnpj
         payer.postalCode = params.postalCode
@@ -43,7 +44,6 @@ class PayerService {
         payer.postalCode = params.postalCode
         payer.address = params.address
         payer.addressNumber = params.addressNumber
-        payer.number = params.number
         payer.district = params.district
         payer.city = params.city
         payer.state = params.state
@@ -51,14 +51,8 @@ class PayerService {
         return payer
     }
 
-    public List<Payer> returnPayersByCustomer(Long customerId, Integer max = null, Integer offset = null) {
+    public List<Payer> returnPayersByCustomer(Long customerId, Integer max, Integer offset) {
         def payerCriteria = Payer.createCriteria()
-        if (max == null || offset == null) {
-            List<Payer> payerList = payerCriteria.list() {
-                eq("customer", Customer.get(customerId))
-            }
-            return payerList
-        }
         List<Payer> payerList = payerCriteria.list(max: max, offset: offset) {
             eq("customer", Customer.get(customerId))
         }
@@ -67,31 +61,31 @@ class PayerService {
 
     public Payer validate(Payer payer, Map params) {
         if (!ValidateUtils.isNotNull(params.name)) {
-            DomainUtils.addError(payer, "")
+            DomainUtils.addError(payer, "O campo nome é obrigatório")
         }
         if (!ValidateUtils.emailIsValid(params.email)) {
-            DomainUtils.addError(payer, "")
+            DomainUtils.addError(payer, "O campo email é obrigatório")
         }
         if (!ValidateUtils.validateCpfCnpj(params.cpfCnpj)) {
-            DomainUtils.addError(payer, "")
+            DomainUtils.addError(payer, "O campo CPF/CNPJ é obrigatório")
         }
         if (!ValidateUtils.validatePostalCode(params.postalCode)) {
-            DomainUtils.addError(payer, "")
+            DomainUtils.addError(payer, "O campo CEP é obrigatório")
         }
         if (!ValidateUtils.isNotNull(params.address)) {
-            DomainUtils.addError(payer, "")
+            DomainUtils.addError(payer, "O campo endereço é obrigatório")
         }
         if (!ValidateUtils.isNotNull(params.addressNumber)) {
-            DomainUtils.addError(payer, "")
+            DomainUtils.addError(payer, "O campo número é obrigatório")
         }
         if (!ValidateUtils.isNotNull(params.district)) {
-            DomainUtils.addError(payer, "")
+            DomainUtils.addError(payer, "O campo bairro é obrigatório")
         }
         if (!ValidateUtils.isNotNull(params.city)) {
-            DomainUtils.addError(payer, "")
+            DomainUtils.addError(payer, "O campo cidade é obrigatório")
         }
         if (!ValidateUtils.isNotNull(params.state)) {
-            DomainUtils.addError(payer, "")
+            DomainUtils.addError(payer, "O campo estado é obrigatório")
         }
         return payer
     }
