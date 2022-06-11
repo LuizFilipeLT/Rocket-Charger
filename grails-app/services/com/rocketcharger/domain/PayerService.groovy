@@ -9,12 +9,7 @@ import grails.gorm.transactions.Transactional
 @Transactional
 class PayerService {
 
-<<<<<<< Updated upstream
-    public Payer save(Map params) {
-        Customer customer = Customer.get(params.int("customerId"))
-=======
     public Payer save(Customer customer, Map params) {
->>>>>>> Stashed changes
         Payer payer = new Payer()
         payer = validate(payer, params)
         if (payer.hasErrors()) return payer

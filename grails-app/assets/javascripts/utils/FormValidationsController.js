@@ -29,9 +29,7 @@ function FormValidationsController() {
   var stateReference = document.getElementById("state");
   var correctPostalCodeLength = 8;
   var correctCpfLength = 11;
-  var correctCnpjLength = 14;
-  var formatEmail =
-    /[A-Za-z0-9_\%\+-]+(\.[A-Za-z0-9_\%\+-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9-]+)*(\.[A-Za-z]{2,15})/;
+  var formatEmail = /[A-Za-z0-9_\%\+-]+(\.[A-Za-z0-9_\%\+-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9-]+)*(\.[A-Za-z]{2,15})/;
 
   function bindPreventDefaultForm() {
     $("form").on("submit", function (e) {
