@@ -31,6 +31,12 @@ function FormValidationsController() {
   var correctCpfLength = 13;
   var formatEmail = /[A-Za-z0-9_\%\+-]+(\.[A-Za-z0-9_\%\+-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9-]+)*(\.[A-Za-z]{2,15})/;
 
+  function bindPreventDefaultForm() {
+    formReference.addEventListener("submit", (event) => {
+      event.preventDefault();
+    });
+  }
+
   function validateName() {
     let nameValue = nameReference.value;
     if (!nameValue) {

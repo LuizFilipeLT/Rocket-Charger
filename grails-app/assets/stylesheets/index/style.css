@@ -181,6 +181,10 @@ body {
   color: #e7473c;
 }
 
+.form-control input:read-only {
+  background-color: rgb(209, 204, 204);
+}
+
 select {
   -webkit-appearance: none;
   -moz-appearance: none;
