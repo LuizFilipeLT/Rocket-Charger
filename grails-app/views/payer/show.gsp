@@ -41,7 +41,8 @@
             id="phone"
             name="phone"
             placeholder="Informe seu número de contato"
-            value="${payer?.phone}" 
+            value="${payer?.phone}"
+            readonly
           />
           <i class="fas fa-exclamation-circle"></i>
           <i class="fas fa-check-circle"></i>
@@ -51,7 +52,7 @@
         <div class="form-control two">
           <label for="cpfCnpj">CPF/CNPJ: *</label>
           <input
-            type="number"
+            type="text"
             id="cpfCnpj"
             name="cpfCnpj"
             placeholder="Informe seu CPF/CNPJ"
@@ -84,7 +85,7 @@
             id="postalCode"
             name="postalCode"
             placeholder="Informe o seu CEP"
-            maxlength="8"
+            maxlength="9"
             value="${payer?.postalCode}"
             readonly
           />
