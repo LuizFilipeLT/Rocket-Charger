@@ -80,5 +80,6 @@
             </div>
          </form>
       </div>
+      <asset:javascript src="applications/applicationMaskMoney.js" />
    </body>
 </html>

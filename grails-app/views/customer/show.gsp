@@ -197,5 +197,6 @@
         <g:link controller="payment" action="create" params="${[customerId: customer.id]}"><button class="btn ">Nova Cobrança</button></g:link>
      </div>
     </div>
+    <asset:javascript src="applications/applicationMasks.js" />
   </body>
 </html>
