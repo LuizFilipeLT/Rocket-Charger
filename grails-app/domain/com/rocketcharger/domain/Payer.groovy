@@ -28,7 +28,7 @@ class Payer {
 
     static constraints = {
         name blank: false
-        phone blank: false 
+        phone blank: false
         email email: true, blank: false, unique: true
         cpfCnpj blank: false
         postalCode blank: false

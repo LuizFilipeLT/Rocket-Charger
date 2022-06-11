@@ -4,6 +4,7 @@ function FormUtilsController() {
   };
 
   function bindHideButtonAndEditForm() {
+    let nameReference = document.getElementById("name");
     let inputsReferenceList = $("input");
     $(".js-edit").on("click", function (e) {
       e.preventDefault();
@@ -12,6 +13,7 @@ function FormUtilsController() {
       inputsReferenceList.each(function (index, input) {
         $(input).removeAttr("readonly").focus();
       });
+      nameReference.focus();
     });
   }
 }

@@ -1,15 +1,15 @@
-var validatePostalCode = function (postalCode) {
+const validatePostalCode = function (postalCode) {
   return /^[0-9]{8}$/.test(postalCode);
 };
 
-var postalCodeLength = 8;
+const replacePostalCode = function (postalCode) {
+  return postalCode.replace(/\D/g, "");
+};
 
-var getPostalCode = async (postalCode, callbackFunction) => {
-  if (postalCode.length !== postalCodeLength) {
-    return;
-  }
-  let url = `https://viacep.com.br/ws/${postalCode}/json`;
-  let dados = await fetch(url);
-  let data = await dados.json();
-  callbackFunction(data);
+const getPostalCode = async (postalCode, callbackfunction) => {
+  if (replacePostalCode(postalCode).length != 8) return;
+    let url = `https://viacep.com.br/ws/${postalCode}/json/`;
+    let dados = await fetch(url);
+    let address = await dados.json();
+    callbackfunction(address);
 };

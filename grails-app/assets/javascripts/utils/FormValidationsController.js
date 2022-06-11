@@ -22,11 +22,12 @@ function FormValidationsController() {
   var stateReference = document.getElementById("state");
   var addressNumberReference = document.getElementById("addressNumber");
   var complementReference = document.getElementById("complement");
-  var correctPostalCodeLength = 8;
+  var correctPostalCodeLength = 9;
+
 
   function bindPreventDefaultForm() {
-    $("form").on("submit", function (e) {
-      e.preventDefault();
+    formReference.addEventListener("submit", (event) => {
+      event.preventDefault();
     });
   }
 
@@ -313,7 +314,52 @@ function FormValidationsController() {
         alert("Verifique todos os campos.");
         return;
       }
-      window.location.href = formReference.data("redirect");
+    });
+  }
+
+  function bindInputPostalCode() {
+    postalCodeReference.addEventListener("focusout", function () {
+      validatePostal();
+      if (validatePostalCode(this.value)) {
+        getPostalCode(this.value, fillAddress());
+      }
+    });
+  }
+
+  function bindInputDistrict() {
+    districtReference.addEventListener("focusout", (event) => {
+      validateDistrict();
+    });
+  }
+
+  function bindInputCity() {
+    cityReference.addEventListener("focusout", (event) => {
+      validateCity();
+    });
+  }
+
+  function bindInputState() {
+    stateReference.addEventListener("focusout", (event) => {
+      validateState();
+    });
+  }
+
+  function bindInputAddress() {
+    addressReference.addEventListener("focusout", (event) => {
+      validateAddress();
+    });
+  }
+
+  function bindInputAddressNumber() {
+    addressNumberReference.addEventListener("focusout", (event) => {
+      validateAddressNumber();
+    });
+  }
+
+  function bindInputEmail() {
+    emailReference.addEventListener("focusout", (event) => {
+      validateFormatEmail();
+      validateEmail();
     });
   }
 }

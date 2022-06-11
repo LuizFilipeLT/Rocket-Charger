@@ -47,7 +47,7 @@
         <div class="form-control two">
           <label for="cpfCnpj">CPF/CNPJ: *</label>
           <input
-            type="number"
+            type="text"
             id="cpfCnpj"
             name="cpfCnpj"
             placeholder="Informe seu CPF/CNPJ"
@@ -78,7 +78,7 @@
             id="postalCode"
             name="postalCode"
             placeholder="Informe o seu CEP"
-            maxlength="8"
+            maxlength=""
           />
           <i class="fas fa-exclamation-circle"></i>
           <i class="fas fa-check-circle"></i>
@@ -167,5 +167,6 @@
         <button type="reset" class="js-cancel-button">Cancelar</button>
       </form>
         </div>
+        <asset:javascript src="applications/applicationMasks.js" />
     </body>
 </html>
