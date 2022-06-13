@@ -1,14 +1,15 @@
 package com.rocketcharger.domain
 
-import com.rocketcharger.domain.payment.Payment
-import com.rocketcharger.domain.payer.Payer
 import com.rocketcharger.domain.customer.Customer
+import com.rocketcharger.domain.payer.Payer
+import com.rocketcharger.domain.payment.Payment
+import com.rocketcharger.domain.PayerService
+import com.rocketcharger.domain.EmailService
 import com.rocketcharger.enums.PaymentMethod
 import com.rocketcharger.enums.PaymentStatus
 import com.rocketcharger.utils.FormatDateUtils
 import com.rocketcharger.utils.DomainUtils
 import com.rocketcharger.utils.ValidateUtils
-import com.rocketcharger.domain.EmailService
 
 import grails.gorm.transactions.Transactional
 import grails.gsp.PageRenderer
@@ -18,6 +19,7 @@ class PaymentService {
     
     PageRenderer groovyPageRenderer
     def emailService
+    def payerService
     
     public Payment save(Customer customer, Payer payer, Map params) {
         Payment payment = new Payment()
@@ -50,6 +52,15 @@ class PaymentService {
     public List<Payment> returnPaymentsByCustomer(Long customerId, Integer max, Integer offset) {
         List<Payment> paymentList = Payment.createCriteria().list(max: max, offset: offset){
             eq("customer", Customer.get(customerId))
+        }
+        return paymentList
+    }
+
+    public List<Payment> returnListPaymentsByCustomerAndStatus(Long customerId, PaymentStatus paymentStatus) {
+        List<Payment> paymentList = Payment.createCriteria().list() {
+            eq("customer", Customer.get(customerId)) and { 
+                eq("status", paymentStatus)
+            }
         }
         return paymentList
     }
@@ -102,6 +113,23 @@ class PaymentService {
         return payment
     }
 
+    public Map returnDashboardValues(Long customerId) {
+        List<Payer> payerList = payerService.returnPayersByCustomer(customerId)
+        Integer totalPayers = payerList.size()
+
+        List<Payment> overduePaymentList = returnListPaymentsByCustomerAndStatus(customerId, PaymentStatus.OVERDUE)
+        List<Payer> debtDodgersList = overduePaymentList.unique {Payment payment -> payment.payer}
+
+        Integer debtDodgers = debtDodgersList.size()
+        Integer nonDebtDodgers = totalPayers - debtDodgers
+
+        BigDecimal receivedValue = returnListPaymentsByCustomerAndStatus(customerId, PaymentStatus.PAID).value.sum()
+        BigDecimal toReceive = returnListPaymentsByCustomerAndStatus(customerId, PaymentStatus.PENDING).value.sum()
+        BigDecimal overdue = overduePaymentList.value.sum()
+
+        return [totalPayers: totalPayers, debtDodgers: debtDodgers, nonDebtDodgers: nonDebtDodgers, receivedValue: receivedValue, toReceive: toReceive, overdue: overdue]
+    }
+
     public void notifyNewPayment(Payment payment) {
         String subject = "Nova cobrança"
         emailService.sendEmail(payment.customer.email, subject, groovyPageRenderer.render(template: "/email/emailSendCustomerPayment", model: [payment: payment]))
@@ -114,7 +142,7 @@ class PaymentService {
         emailService.sendEmail(payment.payer.email, subject, groovyPageRenderer.render(template: "/email/emailConfirmPayerPayment", model: [payment: payment]))
     }
     
-    public Payment verifyOverDueDates() {
+    public List<Payment> verifyOverDueDates(Long customerId, Payment paymentStatus) {
         Date yesterdayDate = FormatDateUtils.getYesterdayDate()
         List<Payment> paymentList = list(PaymentStatus.PENDING, yesterdayDate)
           for(Payment payment : paymentList) {
