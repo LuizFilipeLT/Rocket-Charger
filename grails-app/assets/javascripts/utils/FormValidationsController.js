@@ -1,4 +1,4 @@
-function FormValidateController() {
+function FormValidationsController() {
   this.init = function () {
     bindSubmitForm();
     bindInputName();
@@ -165,7 +165,7 @@ function FormValidateController() {
     if (!addressReference.value)
       setErrorFor(addressReference, "O endereço é obrigatório.");
     if (!districtReference.value)
-      setErrorFor(districtReference, "O  estado é obrigatŕoio.");
+      setErrorFor(districtReference, "O bairro é obrigatŕoio.");
     if (!cityReference.value)
       setErrorFor(cityReference, "O cidade é obrigatório.");
     if (!stateReference.value)
@@ -318,9 +318,9 @@ function FormValidateController() {
   }
 }
 
-var formValidateController;
+var formValidationsController;
 
 $(document).ready(function () {
-  formValidateController = new FormValidateController();
-  formValidateController.init();
+  formValidationsController = new FormValidationsController();
+  formValidationsController.init();
 });
