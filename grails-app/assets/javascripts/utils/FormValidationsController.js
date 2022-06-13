@@ -204,7 +204,7 @@ function FormValidationsController() {
 
     $.post(url, params, function (response) {
       if (!response.success) {
-        alert("Erro");
+        alert("Favor verificar os campos.");
         return;
       }
       window.location.href = formReference.data("redirect");
