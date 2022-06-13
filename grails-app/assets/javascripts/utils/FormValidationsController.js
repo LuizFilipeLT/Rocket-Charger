@@ -287,6 +287,20 @@ function FormValidationsController() {
     bindPostFormSubmit();
   }
 
+  function bindPostFormSubmit() {
+    var formReference = $("form");
+    var url = formReference.data("url");
+    var params = formReference.serialize();
+
+    $.post(url, params, function (response) {
+      if (!response.success) {
+        alert("Favor verificar os campos.");
+        return;
+      }
+      window.location.href = formReference.data("redirect");
+    });
+  }
+
   function setSucessFor(input) {
     let formControl = input.parentElement;
 
@@ -299,19 +313,6 @@ function FormValidationsController() {
 
     smallDisplayError.innerText = message;
     $(formControl).addClass("form-control error").removeClass("success");
-  }
-  function bindPostFormSubmit() {
-    var formReference = $("form");
-    var url = formReference.data("url");
-    var params = formReference.serialize();
-
-    $.post(url, params, function (response) {
-      if (!response.success) {
-        alert("Verifique todos os campos.");
-        return;
-      }
-      window.location.href = formReference.data("redirect");
-    });
   }
 }
 

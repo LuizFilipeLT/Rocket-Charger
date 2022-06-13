@@ -82,22 +82,16 @@ class PaymentService {
     public Payment validateRecognizePayment(Map params) {
         Payment payment = new Payment()
         if (!params.value) {
-            DomainUtils.addError(payment, "")
+            DomainUtils.addError(payment, "O campo valor é obrigatório")
         }
         if (!params.dueDate) {
-            DomainUtils.addError(payment, "")
+            DomainUtils.addError(payment, "O campo data de vencimento é obrigatório")
         }
         if (!params.billingType) {
-            DomainUtils.addError(payment, "")
+            DomainUtils.addError(payment, "O campo método de pagamento é obrigatório")
         }
         if (!params.payer) {
-            DomainUtils.addError(payment, "")
-        }
-        if (!params.customer) {
-            DomainUtils.addError(payment, "")
-        }
-        if (!params.status) {
-            DomainUtils.addError(payment, "")
+            DomainUtils.addError(payment, "O campo pagador é obrigatório")
         }
         return payment
     }
