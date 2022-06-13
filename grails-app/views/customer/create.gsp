@@ -111,7 +111,7 @@
         </div>
 
         <div class="form-control two">
-          <label for="complement">Complemento</label>
+          <label for="complement">Complemento: </label>
           <input
             type="text"
             id="complement"

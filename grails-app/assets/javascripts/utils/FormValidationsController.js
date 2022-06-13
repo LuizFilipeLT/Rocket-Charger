@@ -206,7 +206,7 @@ function FormValidationsController() {
       setErrorFor(emailReference, "O email é obrigatório");
       return;
     }
-    if (validateFormatEmail(emailValue) != true) {
+    if (!validateFormatEmail(emailValue)) {
       setErrorFor(emailReference, "Formato de e-mail incorreto.");
       return;
     }
@@ -216,11 +216,11 @@ function FormValidationsController() {
   function validateCpfValue() {
     let cpfCnpjValue = cpfCnpjReference.value;
     cpfCnpjValue = validateFormatCpf(cpfCnpjValue);
-    if (validateFormatCpf(cpfCnpjValue) == false) {
+    if (!validateFormatCpf(cpfCnpjValue)) {
       setErrorFor(cpfCnpjReference, "CPF/CNPJ é obrigatório");
       return;
     }
-    if (validateCpf(cpfCnpjValue) == false) {
+    if (!validateCpf(cpfCnpjValue)) {
       setErrorFor(cpfCnpjReference, "CPF/CNPJ inválido");
       return;
     }
@@ -230,11 +230,11 @@ function FormValidationsController() {
   function validateCnpjValue() {
     let cpfCnpjValue = cpfCnpjReference.value;
     cpfCnpjValue = validateFormatCnpj(cpfCnpjValue);
-    if (validateFormatCnpj(cpfCnpjValue) == false) {
+    if (!validateFormatCnpj(cpfCnpjValue)) {
       setErrorFor(cpfCnpjReference, "CNPJ é obrigatório");
       return;
     }
-    if (validateCnpj(cpfCnpjValue) == false) {
+    if (!validateCnpj(cpfCnpjValue)) {
       setErrorFor(cpfCnpjReference, "CPF/CNPJ inválido");
       return;
     }
@@ -250,10 +250,10 @@ function FormValidationsController() {
   }
 
   function validateFormatEmail(email) {
-    if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
-      return true;
+    if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
+      return false;
     }
-    return false;
+    return true;
   }
 
   function validatePostal() {

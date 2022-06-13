@@ -29,7 +29,7 @@
         </div>
 
         <div class="form-control two left">
-          <label for="phone">Celular *</label>
+          <label for="phone">Celular: *</label>
           <input
             type="tel"
             id="phone"
@@ -42,7 +42,7 @@
         </div>
 
         <div class="form-control two">
-          <label for="cpfCnpj">CPF/CNPJ *</label>
+          <label for="cpfCnpj">CPF/CNPJ: *</label>
           <input
             type="number"
             id="cpfCnpj"
@@ -56,7 +56,7 @@
         </div>
 
         <div class="form-control two">
-          <label for="email">Email *</label>
+          <label for="email">Email: *</label>
           <input type="email" id="email" name="email"
           placeholder="Ex: meuemail@provedor.com"/>
           <i class="fas fa-exclamation-circle"></i>
@@ -66,7 +66,7 @@
         </div>
 
         <div class="form-control two left">
-          <label for="postalCode">CEP *</label>
+          <label for="postalCode">CEP: *</label>
           <input
             type="text"
             id="postalCode"
@@ -81,7 +81,7 @@
         </div>
 
         <div class="form-control two">
-          <label for="address">Endereço *</label>
+          <label for="address">Endereço: *</label>
           <input
             type="text"
             id="address"
@@ -95,7 +95,7 @@
         </div>
 
         <div class="form-control two left">
-          <label for="addressNumber">Número *</label>
+          <label for="addressNumber">Número: *</label>
           <input
             type="text"
             id="addressNumber"
@@ -108,7 +108,7 @@
         </div>
 
         <div class="form-control two">
-          <label for="complement">Complemento</label>
+          <label for="complement">Complemento: </label>
           <input
             type="text"
             id="complement"
@@ -120,7 +120,7 @@
         </div>
 
         <div class="form-control two left">
-          <label for="district">Bairro *</label>
+          <label for="district">Bairro: *</label>
           <input
             type="text"
             id="district"
@@ -133,7 +133,7 @@
         </div>
 
         <div class="form-control two">
-          <label for="city">Cidade *</label>
+          <label for="city">Cidade: *</label>
           <input
             type="text"
             id="city"
@@ -147,7 +147,7 @@
         </div>
 
         <div class="form-control two left">
-          <label for="state">Estado *</label>
+          <label for="state">Estado: *</label>
           <input
             type="text"
             id="state"
