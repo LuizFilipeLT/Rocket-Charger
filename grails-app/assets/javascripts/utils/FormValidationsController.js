@@ -22,7 +22,8 @@ function FormValidationsController() {
   var complementReference = document.getElementById("complement");
   var stateReference = document.getElementById("state");
   var addressNumberReference = document.getElementById("addressNumber");
-  var correctPostalCodeLength = 9;
+  var correctPostalCodeLength = 8;
+  var correctCpfLength = 11;
 
   function bindPreventDefaultForm() {
     $("form").on("submit", function (e) {
@@ -45,11 +46,12 @@ function FormValidationsController() {
   function bindInputCpfCnpj() {
     cpfCnpjReference.addEventListener("focusout", (event) => {
       let cpfCnpjValue = cpfCnpjReference.value;
-      if (cpfCnpjValue.length == 14) {
-        validateCpfValue();
+      cpfCnpjValue = validateFormatCnpj(cpfCnpjValue);
+      if (cpfCnpjValue.length != correctCpfLength) {
+        validateCnpjValue();
         return;
       }
-      validateCnpjValue();
+      validateCpfValue();
     });
   }
 
@@ -247,8 +249,13 @@ function FormValidationsController() {
     return true;
   }
 
+  function cleanMasks(input) {
+    return input.replace(/[^0-9]+/g, "");
+  }
+
   function validatePostal() {
     let postalCodeValue = postalCodeReference.value;
+    postalCodeValue = cleanMasks(postalCodeValue);
     if (!postalCodeValue || postalCodeValue.length != correctPostalCodeLength) {
       setErrorFor(postalCodeReference, "Favor verificar o CEP");
       return;
