@@ -112,7 +112,7 @@ class PaymentService {
         Integer totalPayers = payerList.size()
 
         List<Payment> overduePaymentList = returnListPaymentsByCustomerAndStatus(customerId, PaymentStatus.OVERDUE)
-        List<Payer> debtDodgersList = overduePaymentList.unique {Payment payment -> payment.payer}
+        List<Payer> debtDodgersList = overduePaymentList.unique{Payment payment -> payment.payer}
 
         Integer debtDodgers = debtDodgersList.size()
         Integer nonDebtDodgers = totalPayers - debtDodgers
