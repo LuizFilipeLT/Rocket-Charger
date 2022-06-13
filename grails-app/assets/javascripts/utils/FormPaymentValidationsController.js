@@ -95,14 +95,14 @@ function FormPaymentValidationsController() {
     var m1 = todayDate.getMonth() + 1;
     var y1 = todayDate.getFullYear();
 
-    var d1 = new Date(y1, m1, d1);
+    d1 = new Date(y1, m1, d1);
     var d2 = new Date(year, month, day);
 
     var diff = d2.getTime() - d1.getTime();
     diff = diff / (1000 * 60 * 60 * 24);
 
-    if (diff < zeroValue) {
-      setErrorFor(dueDateReference, "Data não pode ser anterior ao dia de hoje");
+    if (diff <= zeroValue) {
+      setErrorFor(dueDateReference, "Data não pode ser anterior ou definida para o dia de hoje");
       return;
     }
     setSucessFor(dueDateReference);

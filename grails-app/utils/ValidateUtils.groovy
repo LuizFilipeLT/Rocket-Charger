@@ -16,9 +16,10 @@ class ValidateUtils {
 
     public static Boolean validateMinValue(String value) {
         BigDecimal intValue = new BigDecimal(value.replaceAll(",", ""))
+
         if (intValue < 2.00) {
             return false
-            }
+        }
         return true
     }
 
@@ -48,7 +49,7 @@ class ValidateUtils {
         if (parameter == null) {
             return false
         }
-            return true
+        return true
     }
 
     public static Boolean validateCpfCnpj(String cpfCnpj) {

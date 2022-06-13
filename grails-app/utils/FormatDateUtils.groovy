@@ -1,8 +1,6 @@
 package com.rocketcharger.utils
 
 import java.text.SimpleDateFormat
-import java.text.DateFormat;
-import java.util.Date;
 
 class FormatDateUtils{
 
