@@ -74,15 +74,6 @@ function FormValidationsController() {
   function bindInputPostalCode() {
     postalCodeReference.addEventListener("focusout", function () {
       validatePostal();
-      if (!validatePostal) {
-        setErrorFor(addressReference);
-      }
-      setSucessFor(addressReference);
-      setSucessFor(districtReference);
-      setSucessFor(cityReference);
-      setSucessFor(complementReference);
-      setSucessFor(stateReference);
-      addressNumberReference.focus();
     });
   }
 
@@ -263,6 +254,12 @@ function FormValidationsController() {
       return;
     }
     setSucessFor(postalCodeReference);
+    setSucessFor(addressReference);
+    setSucessFor(districtReference);
+    setSucessFor(cityReference);
+    setSucessFor(complementReference);
+    setSucessFor(stateReference);
+    addressNumberReference.focus();
   }
 
   function validateRequiredsInputs() {

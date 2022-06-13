@@ -72,7 +72,7 @@
             id="postalCode"
             name="postalCode"
             placeholder="Digite o seu CEP"
-            maxlength="8"
+            maxlength="9"
           />
           <i class="fas fa-exclamation-circle"></i>
           <i class="fas fa-check-circle"></i>

@@ -76,7 +76,7 @@
             id="postalCode"
             name="postalCode"
             placeholder="Informe o seu CEP"
-            maxlength=""
+            maxlength="9"
           />
           <i class="fas fa-exclamation-circle"></i>
           <i class="fas fa-check-circle"></i>
