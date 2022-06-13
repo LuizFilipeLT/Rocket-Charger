@@ -90,17 +90,7 @@ body {
   visibility: hidden;
 }
 
-.form-control #method {
-  border: 2px solid black;
-  color: black;
-  border-radius: 10px;
-  margin-bottom: 25px;
-  padding: 10px;
-  font-size: 14px;
-  width: 100%;  
-}
-
-.form-control #payerId {
+.form-control #method, .form-control #payerId {
   border: 2px solid black;
   color: black;
   border-radius: 10px;
@@ -110,7 +100,7 @@ body {
   width: 100%; 
 } 
 
-.form button {
+.form button, .form button:hover {
   background-color: #0030B9;
   border: 1px solid #000000;
   text-shadow: 0.1em 0.1em 0.2em rgb(201, 194, 194) ;
@@ -121,11 +111,6 @@ body {
   padding: 10px;
   margin-bottom: 5px;
   cursor: pointer;
-}
-
-.form button:hover {
-  background: #0026b1;
-  color: white;
 }
 
 .btn {
