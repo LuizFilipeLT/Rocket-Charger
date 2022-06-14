@@ -15,7 +15,7 @@
       <form
         autocomplete="off"
         class="form"
-        data-redirect="${ g.createLink(controller: "customer", action: "list") }"
+        data-redirect="${ g.createLink(controller: "customer", action: "show", params: [customerId: customer.id])}"
         data-url="${ g.createLink(controller: "customer", action: "update") }"
       >
         <input
@@ -191,17 +191,6 @@
         <button class="js-edit">Editar</button>
         <button type="submit" class="js-send-button hide">Salvar</button>
       </form>
-      <div>
-        <g:link controller="payer" action="create" params="${[customerId: customer.id]}"><button class="btn ">Cadastrar cliente</button></g:link>
-        <g:if test="${customer.payer}">
-        <g:link controller="payer" action="list" params="${[customerId: customer.id]}"><button class="btn ">Meus clientes</button></g:link>
-        </g:if>
-        <g:if test="${customer.payment}">
-        <g:link controller="payment" action="list" params="${[customerId: customer.id]}"><button class="btn ">Minhas cobranças</button></g:link>
-        </g:if>
-        <g:link controller="payment" action="create" params="${[customerId: customer.id]}"><button class="btn ">Nova Cobrança</button></g:link>
-        <g:link controller="dashboard" action="index" params="${[customerId: customer.id]}"><button class="btn ">Resumo de Cobranças</button></g:link>
-     </div>
     </div>
     <asset:javascript src="applications/applicationMasks.js" />
   </body>

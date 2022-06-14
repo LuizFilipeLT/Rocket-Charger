@@ -8,14 +8,14 @@
   </head>
   <body>
     <div class="container">
-
-      <div class="header">
-        <h2>Cadastro cliente</h2>
+      <div class="conteudo">
+        <div class="header">
+          <h2>Cadastro cliente</h2>
+        </div>
       </div>
-
       <form
         autocomplete="off" class="form"
-        data-redirect="${ g.createLink(controller: "customer", action: "list")}"
+        data-redirect="${ g.createLink(controller: "customer", action: "show" params:[customerId: customer.Id]])}"
         data-url="${ g.createLink(controller: "customer", action: "save")}">
         
         <div class="form-control">

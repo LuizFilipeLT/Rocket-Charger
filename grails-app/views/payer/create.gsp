@@ -1,4 +1,3 @@
-<html lang="pt-br">
   <head>
       <meta name="layout" content="main"/>
       <script src="https://kit.fontawesome.com/c8d140aaae.js" crossorigin="anonymous"></script>
@@ -6,12 +5,14 @@
       <asset:stylesheet src="index/style.css" />
       <asset:javascript src="applications/applicationForm.js"/>
   </head>
-      <body>
-        <div class="container">
-            <div class="header">
-                <h2>Adicionar pagador</h2>
-            </div>
-        <form
+ <body>
+    <div class="container">
+      <div class="conteudo">
+        <div class="header">
+          <h2>Cadastrar cliente</h2>
+        </div>
+      </div>
+      <form
             autocomplete="off" class="form" 
             data-redirect="${ g.createLink(controller: "payer", action: "list", params: [customerId: customerId])}"
             data-url="${ g.createLink(controller: "payer", action: "save") }">  
@@ -166,4 +167,3 @@
         </div>
         <asset:javascript src="applications/applicationMasks.js" />
     </body>
-</html>
