@@ -21,7 +21,7 @@
             <td>${payer.email}</td>
             <td id="phone">${payer.phone}</td>
             <td>
-            <a href="${ g.createLink([controller:"payer", action:"show", params:[payerId: payer.id]])}">
+            <a href="${ g.createLink([controller:"payer", action:"show", params:[payerId: customer.payer.payerId]])}">
             <button type="button">Editar</button>
             </a>
             </td>

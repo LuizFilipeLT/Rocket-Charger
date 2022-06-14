@@ -8,12 +8,9 @@
       <asset:javascript src="applications/applicationPayment.js" />
    </head>
    <body>
+     <utilsTagLib:header />
       <div class="container-payment">
-         <div class="conteudo">
-            <div class="header">
-            <h2>Cadastrar cliente</h2>
-         </div>
-      </div>
+      
          <form
          autocomplete="off" class="form"
          data-redirect="${ g.createLink(controller: "payment", action: "list", params: [customerId: customerId]) }"

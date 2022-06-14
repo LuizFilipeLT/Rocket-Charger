@@ -3,7 +3,7 @@
 <%@ page import="com.rocketcharger.utils.FormatDateUtils" %>
     <head>
         <meta name="layout" content="main"/>
-        <title>Cobranças</title>
+        <utilsTagLib:header />
     </head>
   <body>
       <g:if test="${paymentList}">

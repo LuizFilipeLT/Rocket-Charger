@@ -7,7 +7,7 @@
     <asset:javascript src="applications/applicationForm.js" />
   </head>
   <body>
-  <h4>Dashboard cobranças</h4>
+    <utilsTagLib:header />
 <div>
   <section>
     <h5>Valores</h5>

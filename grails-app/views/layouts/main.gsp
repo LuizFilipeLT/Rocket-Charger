@@ -12,40 +12,10 @@
     <g:layoutHead />
   </head>
   <body>
-        <div class="sidebar">
-            <header>Menu</header>
-            <g:link controller="dashboard" action="index" params="${[customerId: customer.id]}">
-                <i class="fas fa-qrcode"></i>
-                <span>Dashboard</span>
-            </g:link>
-            <g:link controller="customer" action="show" params="${[customerId: customer.id]}">
-                <i class="fas fa-link"></i>
-                <span>Meus dados</span>
-            </g:link>
-            <g:link controller="payer" action="create" params="${[customerId: customer.id]}">
-                <i class="fas fa-stream"></i>
-                <span>Cadastrar cliente</span>
-            </g:link>
-           <g:link controller="payment" action="create" params="${[customerId: customer.id]}">
-                <i class="fas fa-calendar"></i>
-                <span>Criar Cobrança</span>
-            </g:link>
-            <a href="#">
-                <i class="fas fa-question-circle"></i>
-                <span>Sobre</span>
-            </a>
-            <a href="#">
-                <i class="fas fa-sliders-h"></i>
-                <span>Serviços</span>
-            </a>
-            <a href="#">
-                <i class="fas fa-envelope"></i>
-                <span>Contato</span>
-            </a>
-        </div>
+        <g:render template="/utils/sidebar" model="[customer: customer]" />
+        <div class="container-body">
+          <g:layoutBody/>
         <div>
-          <g:layoutBody />
-        </div>
     <footer>
       <h6 class="center">RocketCharger® 2022 - Todos os direitos reservados</h6>
     </footer>

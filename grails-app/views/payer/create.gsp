@@ -1,17 +1,12 @@
   <head>
       <meta name="layout" content="main"/>
-      <script src="https://kit.fontawesome.com/c8d140aaae.js" crossorigin="anonymous"></script>
         <title>Adicionar pagador</title>
       <asset:stylesheet src="index/style.css" />
       <asset:javascript src="applications/applicationForm.js"/>
   </head>
  <body>
+  <utilsTagLib:header />
     <div class="container">
-      <div class="conteudo">
-        <div class="header">
-          <h2>Cadastrar cliente</h2>
-        </div>
-      </div>
       <form
             autocomplete="off" class="form" 
             data-redirect="${ g.createLink(controller: "payer", action: "list", params: [customerId: customerId])}"

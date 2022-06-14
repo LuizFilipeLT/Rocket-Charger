@@ -21,16 +21,24 @@ footer {
   bottom: 0;
 }
 
-.container {
-  background-color: #ffffff;
-}
-
 .container-payment {
   width: 800px;
 }
 
-.conteudo {
-  padding: 45px;
+.container-body {
+  padding: 30px;
+}
+
+.page-header {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.2;
+  padding-left: 30px;
+  color: #000000;
+  border-bottom: 2px solid black; 
+  border-radius: 5px;
+  color: #000000;
+  text-shadow: 0.1em 0.1em 0.2em rgb(201, 194, 194);
 }
 
 .two {
@@ -42,20 +50,6 @@ footer {
 .two left {
   padding-left: 2%;
   width: 50%;
-}
-
-.header {
-  background-color: #ffffff;
-  padding-left: 30px;
-  border-bottom: 2px solid black; 
-  border-radius: 5px;
-  color: #000000;
-  text-shadow: 0.1em 0.1em 0.2em rgb(201, 194, 194) ;
-  background-image: url("../../images/rocketico.png");
-  background-size: 3%;
-  background-repeat: no-repeat;
-  background-position-x: 90%;
-  background-position-y: 38%;
 }
 
 .form {
@@ -210,8 +204,4 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   .left {
     padding-left: 0%;
   }
-}
-
-.top {
-  float: top;
 }

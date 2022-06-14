@@ -46,10 +46,12 @@ class CustomerController extends BaseController {
     }
 
     def show() {
-        return [customer: Customer.get(params.long("customerId"))]
+        Customer customer = Customer.get(params.customerId)
+        return [customer: customer]
     }
 
     def list() {
-        return [customerList: Customer.list(max: getSizeLimitPage(), offset: getCurrentPage()), totalCount: Customer.count()]
+        Customer customer = Customer.get(params.customerId)
+        return [customerList: Customer.list(max: getSizeLimitPage(), offset: getCurrentPage()), customer: customer, totalCount: Customer.count()]
     }
  }
