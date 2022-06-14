@@ -187,7 +187,7 @@
           <i class="fas fa-check-circle"></i>
           <small class="js-msg"></small>
         </div>
-        <g:render template="/customer/dashboard"/>   
+
         <button class="js-edit">Editar</button>
         <button type="submit" class="js-send-button hide">Salvar</button>
         <button type="reset" class="js-send-button hide">Cancelar</button>
@@ -197,6 +197,7 @@
         <g:link controller="payer" action="index" params="${[customerId: customer.id]}"><button class="btn ">Meus clientes</button></g:link>
         <g:link controller="payment" action="list" params="${[customerId: customer.id]}"><button class="btn ">Minhas cobranças</button></g:link>
         <g:link controller="payment" action="create" params="${[customerId: customer.id]}"><button class="btn ">Nova Cobrança</button></g:link>
+        <g:link controller="dashboard" action="index" params="${[customerId: customer.id]}"><button class="btn ">Resumo de Cobranças</button></g:link>
      </div>
     </div>
     <asset:javascript src="applications/applicationMasks.js" />

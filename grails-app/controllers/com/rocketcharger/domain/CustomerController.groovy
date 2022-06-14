@@ -2,6 +2,7 @@ package com.rocketcharger.domain
 
 import com.rocketcharger.domain.customer.Customer
 import com.rocketcharger.domain.PaymentService
+import com.rocketcharger.domain.DashboardService
 import com.rocketcharger.base.BaseController
 import grails.validation.ValidationException
 import grails.converters.JSON
@@ -9,7 +10,7 @@ import static org.springframework.http.HttpStatus.*
 
 class CustomerController extends BaseController {
     
-    def paymentService
+    def dashboardService
     def customerService
 
     def create() {}
@@ -45,9 +46,7 @@ class CustomerController extends BaseController {
     }
 
     def show() {
-        Long customerId = params.long("customerId")
-        Map dashboard = paymentService.returnDashboardValues(customerId) 
-        return [customer: Customer.get(customerId), dashboard: dashboard]
+        return [customer: Customer.get(params.long("customerId"))]
     }
 
     def list() {
