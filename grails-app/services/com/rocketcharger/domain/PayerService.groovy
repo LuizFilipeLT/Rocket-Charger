@@ -27,10 +27,6 @@ class PayerService {
         payer.save(failOnError: true)
         return payer
     }
-    
-    public List<Payer> index() {
-        return Payer.getAll()
-    }
 
     public Payer update(Map params) {
         if (!params.payerId) DomainUtils.addError(payer, "")

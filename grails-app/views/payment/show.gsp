@@ -1,12 +1,11 @@
-<html>
    <head>
+      <meta name="layout" content="main" />
       <title>Visualização de Cobrança</title>
    </head>
    <body>
 
       <input
          type="hidden"
-         class="js-payment-id"
          name="id"
          value="${payment.payerId}"/>
 

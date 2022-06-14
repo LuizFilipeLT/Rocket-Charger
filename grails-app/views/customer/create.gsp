@@ -15,8 +15,8 @@
 
       <form
         autocomplete="off" class="form"
-        data-redirect="${ g.createLink(controller: "customer", action: "list") }"
-        data-url="${ g.createLink(controller: "customer", action: "save") }">
+        data-redirect="${ g.createLink(controller: "customer", action: "list")}"
+        data-url="${ g.createLink(controller: "customer", action: "save")}">
         
         <div class="form-control">
           <label for="name">Nome Completo: *</label>
@@ -160,9 +160,9 @@
           <small class="js-msg"></small>
         </div>
 
-        <input hidden value="${customerId}" name="customer" id="customer" />
+        <input hidden value="${customerId}" name="customerId" id="customerId" />
         <button type="submit">Criar</button>
-        <button type="reset" class="js-cancel-button">Cancelar</button>
+        <button type="reset">Cancelar</button>
       </form>
     </div>
         <asset:javascript src="applications/applicationMasks.js" />

@@ -15,7 +15,7 @@
     <form 
         autocomplete="off"
         class="form"
-        data-redirect="${ g.createLink(controller: "payer", action: "index", params: [customerId: payer.customerId]) }" 
+        data-redirect="${ g.createLink(controller: "payer", action: "list", params: [customerId: payer.customerId]) }" 
         data-url="${ g.createLink(controller: "payer", action: "update") }" >
         <input type="hidden" class="js-payer-id" name="payerId" id="payerId" value="${payer.id}">
         
