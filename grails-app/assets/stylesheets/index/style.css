@@ -9,8 +9,7 @@
 }
 
 body {
-  display: flex;
-  background-color: #f0f2f5;
+  background-color: #fafafa;
   min-height: 100vh;
   min-width: 100vw
 }
@@ -19,6 +18,10 @@ footer {
   text-align: center;
   display: none;
   bottom: 0;
+}
+
+h2 {
+  text-align: center;
 }
 
 .container {
@@ -34,28 +37,16 @@ footer {
 }
 
 .two {
-  float: left;
-  width: 50%;
-  padding-left: 1%;
-}
-
-.two left {
-  padding-left: 2%;
-  width: 50%;
+  display: flex;
+  gap: 20px;
 }
 
 .header {
-  background-color: #ffffff;
-  padding-left: 30px;
+  background-color: #fafafa;
+  padding:0 30px;
   border-bottom: 2px solid black; 
   border-radius: 5px;
   color: #000000;
-  text-shadow: 0.1em 0.1em 0.2em rgb(201, 194, 194) ;
-  background-image: url("../../images/rocketico.png");
-  background-size: 3%;
-  background-repeat: no-repeat;
-  background-position-x: 90%;
-  background-position-y: 38%;
 }
 
 .form {
@@ -64,13 +55,23 @@ footer {
 }
 
 .form-control {
-  padding-left: 10px;
-  position: relative;
+  display: flex;
+  gap: 24px;
+}
+
+.form-control:first-child {
+  flex-direction: column;
+  gap: 0;
+}
+
+.form-control > div {
+  width: 50%;
 }
   
 .form-control label {
-  text-shadow: 0.1em 0.1em 0.2em rgb(201, 194, 194);
   color: #000000;
+  display: flex;
+  gap: 20px;
 }
 
 .form-control input {
@@ -107,10 +108,8 @@ footer {
   width: 100%; 
 } 
 
-.form button, .form button:hover {
-  background-color: #0030B9;
-  border: 1px solid #000000;
-  text-shadow: 0.1em 0.1em 0.2em rgb(201, 194, 194) ;
+.form button {
+  background-color: #0043fa;
   color: #ffffff;
   font-size: 14px;
   width: 100%;
@@ -118,20 +117,11 @@ footer {
   padding: 10px;
   margin-bottom: 5px;
   cursor: pointer;
+  transition: .2s ease-in-out;
 }
 
-.btn {
-  background-color: #0030B9;
-  border: 1px solid #000000;
-  text-shadow: 0.1em 0.1em 0.2em rgb(201, 194, 194) ;
-  color: #ffffff;
-  font-size: 14px;
-  width: 45%;
-  border-radius: 10px;
-  padding: 10px;
-  margin-left: 20px;
-  margin-bottom: 5px;
-  cursor: pointer;
+.form button:hover {
+  background-color: #0030b9;
 }
 
 .form-control.success input {
