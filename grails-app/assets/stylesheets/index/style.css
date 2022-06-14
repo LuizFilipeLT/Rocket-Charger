@@ -12,7 +12,7 @@ body {
   display: flex;
   background-color: #f0f2f5;
   min-height: 100vh;
-  min-width: 100vw;
+  min-width: 100vw
 }
 
 footer {
