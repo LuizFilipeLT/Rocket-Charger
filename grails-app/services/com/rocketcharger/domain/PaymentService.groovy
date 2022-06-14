@@ -56,15 +56,6 @@ class PaymentService {
         return paymentList
     }
 
-    public List<Payment> returnListPaymentsByCustomerAndStatus(Long customerId, PaymentStatus paymentStatus) {
-        List<Payment> paymentList = Payment.createCriteria().list() {
-            eq("customer", Customer.get(customerId)) and { 
-                eq("status", paymentStatus)
-            }
-        }
-        return paymentList
-    }
-
     public List<Payment> list(PaymentStatus paymentStatus, Date yesterdayDate) {
         List<Payment> paymentList = Payment.createCriteria().list() {
             eq("status", paymentStatus) and {
@@ -105,23 +96,6 @@ class PaymentService {
             DomainUtils.addError(payment, "O campo pagador é obrigatório")
         }
         return payment
-    }
-
-    public Map returnDashboardValues(Long customerId) {
-        List<Payer> payerList = payerService.returnPayersByCustomer(customerId)
-        Integer totalPayers = payerList.size()
-
-        List<Payment> overduePaymentList = returnListPaymentsByCustomerAndStatus(customerId, PaymentStatus.OVERDUE)
-        List<Payer> debtDodgersList = overduePaymentList.unique{Payment payment -> payment.payer}
-
-        Integer debtDodgers = debtDodgersList.size()
-        Integer nonDebtDodgers = totalPayers - debtDodgers
-
-        BigDecimal receivedValue = returnListPaymentsByCustomerAndStatus(customerId, PaymentStatus.PAID).value.sum()
-        BigDecimal toReceive = returnListPaymentsByCustomerAndStatus(customerId, PaymentStatus.PENDING).value.sum()
-        BigDecimal overdue = overduePaymentList.value.sum()
-
-        return [totalPayers: totalPayers, debtDodgers: debtDodgers, nonDebtDodgers: nonDebtDodgers, receivedValue: receivedValue, toReceive: toReceive, overdue: overdue]
     }
 
     public void notifyNewPayment(Payment payment) {
