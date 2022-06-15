@@ -54,8 +54,8 @@ class PayerController extends BaseController {
     }
 
     def show() {
-        println params
+        Customer customer = Customer.get(params.customerId)
         Payer payer = Payer.get(params.payerId)
-        return [payer: payer]
+        return [payer: payer, customer: customer]
     }
 }

@@ -1,6 +1,5 @@
 <html>
   <head>
-    <meta name="layout" content="main"/>
     <script src="https://kit.fontawesome.com/c8d140aaae.js" crossorigin="anonymous"></script>
     <title>Criar cliente</title>
     <asset:stylesheet src="index/style.css" />

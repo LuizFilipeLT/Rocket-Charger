@@ -63,6 +63,9 @@ class PaymentController extends BaseController {
     }
 
     def show() {
-        return [payment: Payment.get(params.long("paymentId"))] 
+        println params
+        Customer customer = Customer.get(params.customerId)
+        Long customerId = params.long("customerId")
+        return [payment: Payment.get(params.long("paymentId")), customerId: customerId, customer: customer] 
     }
  }

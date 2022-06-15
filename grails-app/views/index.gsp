@@ -1,6 +1,5 @@
  <html> 
   <head>
-    <meta name="layout" content="main"/>
         <script src="https://kit.fontawesome.com/c8d140aaae.js" crossorigin="anonymous"></script>
         <asset:link rel="icon" href="rocketico.png" type="image/x-ico"/>
         <asset:stylesheet src="index/style.css"/>

@@ -1,38 +1,37 @@
 <head>
+    <asset:stylesheet src="list.css"/>
     <meta name="layout" content="main" />
-    <title>Meus pagadores</title>
+    <title>Meus clientes</title>
   </head>
   <body>
-    <table>
-      <thead>
-        <tr>
-          <th>Nome</th>
-          <th>CPF/CNPJ</th>
-          <th>Email</th>
-          <th>Telefone</th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody>
-        <g:each var="payer" in="${ payerList }">
+  <utilsTagLib:header />
+    <div class="container-body">
+      <table>
+        <thead>
           <tr>
-            <td>${payer.name}</td>
-            <td id="cpfCnpj">${payer.cpfCnpj}</td>
-            <td>${payer.email}</td>
-            <td id="phone">${payer.phone}</td>
-            <td>
-            <a href="${ g.createLink([controller:"payer", action:"show", params:[payerId: customer.payer.payerId]])}">
-            <button type="button">Editar</button>
-            </a>
-            </td>
+            <th>Nome</th>
+            <th>CPF/CNPJ</th>
+            <th>Email</th>
+            <th>Telefone</th>
+            <th>Edição</th>
           </tr>
-        </g:each>
-      </tbody>
-    </table>
-    <div>
-    <a
-      href="${ g.createLink([controller:"customer", action:"show", params:[customerId: customerId]])}"
-      ><button>Voltar</button></a>
+        </thead>
+        <tbody>
+          <g:each var="payer" in="${ payerList }">
+            <tr>
+              <td>${payer.name}</td>
+              <td id="cpfCnpj">${payer.cpfCnpj}</td>
+              <td>${payer.email}</td>
+              <td id="phone">${payer.phone}</td>
+              <td>
+              <g:link controller="payer" action="show" params="${[payerId: payer.id]}">
+              <button type="button" role="button" class="button">Editar</button>
+              </g:link>
+              </td>
+            </tr>
+          </g:each>
+        </tbody>
+      </table>
       <g:paginate total="${totalCount}" controller="payer" action="list" params="${params}" next="Próxima" prev="Anterior" max="9"/>
     </div>
   </body>

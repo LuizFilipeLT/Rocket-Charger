@@ -34,11 +34,9 @@ footer {
   font-weight: 700;
   line-height: 1.2;
   padding-left: 30px;
-  color: #000000;
   border-bottom: 2px solid black; 
   border-radius: 5px;
   color: #000000;
-  text-shadow: 0.1em 0.1em 0.2em rgb(201, 194, 194);
 }
 
 .two {
@@ -52,7 +50,7 @@ footer {
   width: 50%;
 }
 
-.form {
+form {
   padding: 20px;
   width: 100%;
 }
