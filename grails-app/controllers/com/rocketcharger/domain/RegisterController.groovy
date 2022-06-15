@@ -29,18 +29,8 @@ class RegisterController {
             redirect action: "index"
             return
         } 
-            def user = User.findByUsername(params.username)?: new User(username: params.username, password: params.password).save()
-            def role = Role.get(2)
-            if(user && role) {
-                UserRole.create user, role
-
-                UserRole.withSession {
-                    it.flush()
-                    it.clear()
-                }
-
-                flash.message = "You have registered successfully. Please login."
-                redirect controller: "login", action: "auth"
+            registerService.register(params)
+            flash.message = "You have registered successfully. Please login."
+            redirect controller: "login", action: "auth"
         } 
-        }
     }
