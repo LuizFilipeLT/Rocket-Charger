@@ -5,9 +5,6 @@
     <asset:stylesheet src="authAndRegister/register.css"/>
 </head>
 <body>
-    <g:if test='${flash.message}'>
-        <div class="alert alert-danger" role="alert">${flash.message}</div>
-    </g:if>
     <form action="register" method="POST" id="loginForm" autocomplete="off">
       <asset:image src="simbolo-asaas-azul.png" alt="logo" id="logo"/>
       <h2>Criar sua Conta</h2>

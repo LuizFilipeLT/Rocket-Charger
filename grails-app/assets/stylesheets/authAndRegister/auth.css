@@ -28,7 +28,7 @@ p {
     left: 230px;
     top: 20px;
     width: 100px;
-    height: 100px;
+    height: 90px;
 }
 
 .form-control label {
@@ -62,19 +62,4 @@ p {
 
 #login:hover {
     background: #0026b1;
-}
-
-#create {
-    position: relative;
-    left: 5px;
-    font-size: 18px;
-    background-color: white;
-    border: 1px solid #a8a8a8;
-    border-radius: 4px;
-    color: black;
-    cursor: pointer;
-}
-
-#create:hover {
-    background-color: #adadadc4;
 }

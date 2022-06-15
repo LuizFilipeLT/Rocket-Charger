@@ -2,7 +2,7 @@
 <head>
     <asset:javascript src="applications/applicationRegisterLoginAndLogout.js"/>
     <asset:stylesheet src="authAndRegister/auth.css"/>
-    <title><g:message code='springSecurity.login.title'/></title>
+    <title>Login></title>
 </head>
 <body>
   <form action="${postUrl ?: '/login/authenticate'}" method="POST" id="loginForm" autocomplete="off">
@@ -19,8 +19,11 @@
     </div>
     <button id="login" type="submit"><strong>Acessar sua conta</strong></button>
     <hr>
-    <p>Ainda não tem uma conta?</p> 
-    <g:link controller="register" action="index"><button id="create"><strong>Criar uma conta</strong></button></g:link>
+    <p>Ainda não tem uma conta? 
+      <a href="register/index"> 
+        <strong>Criar uma conta</strong>
+      </a>
+    </p>
   </form>
 </body>
 </html>
