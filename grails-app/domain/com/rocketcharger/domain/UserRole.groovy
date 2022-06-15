@@ -26,13 +26,11 @@ class UserRole implements Serializable {
     @Override
 	int hashCode() {
 	    int hashCode = HashCodeHelper.initHash()
-        if (user) {
+        if (!user) return
             hashCode = HashCodeHelper.updateHash(hashCode, user.id)
-		}
-		if (role) {
+		if (!role) return
 		    hashCode = HashCodeHelper.updateHash(hashCode, role.id)
-		}
-		hashCode
+			hashCode
 	}
 
 	static UserRole get(long userId, long roleId) {

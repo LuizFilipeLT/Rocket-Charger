@@ -28,9 +28,19 @@ class RegisterController {
             flash.message = "Password and Re-Password not match"
             redirect action: "index"
             return
-        } else {
-            registerService.register(params)
-            redirect controller: "login", action: "auth"
+        } 
+            def user = User.findByUsername(params.username)?: new User(username: params.username, password: params.password).save()
+            def role = Role.get(2)
+            if(user && role) {
+                UserRole.create user, role
+
+                UserRole.withSession {
+                    it.flush()
+                    it.clear()
+                }
+
+                flash.message = "You have registered successfully. Please login."
+                redirect controller: "login", action: "auth"
+        } 
         }
     }
-}

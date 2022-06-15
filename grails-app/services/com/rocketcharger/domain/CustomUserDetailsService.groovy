@@ -25,9 +25,9 @@ class CustomUserDetailsService implements GrailsUserDetailsService {
       User user = User.findByUsername(username)
       if (!user) throw new NoStackUsernameNotFoundException()
 
-      def roles = user.authorities
+      LinkedHashSet roles = user.authorities
 
-      def authorities = roles.collect {
+      LinkedHashSet authorities = roles.collect {
          new SimpleGrantedAuthority(it.authority)
       }
 
