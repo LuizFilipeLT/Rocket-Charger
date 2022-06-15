@@ -5,11 +5,13 @@ import com.rocketcharger.base.BaseController
 import com.rocketcharger.domain.payer.Payer
 import com.rocketcharger.domain.customer.Customer
 import grails.converters.JSON
+import grails.plugin.springsecurity.annotation.Secured
 
 class PayerController extends BaseController {
     
     def payerService
 
+    @Secured(['ROLE_ADMIN', 'ROLE_USER'])
     def list() {
         Customer customer = Customer.get(params.customerId)
         Long customerId = params.long("customerId")
@@ -17,11 +19,13 @@ class PayerController extends BaseController {
         return[customerId: customerId, payerList: payerList, customer: customer, totalCount: Payer.count()]
     }
 
+    @Secured(['ROLE_ADMIN', 'ROLE_USER'])
     def create() {
         Customer customer = Customer.get(params.customerId)
         return [customerId: params.long("customerId"), customer: customer]
     }
 
+    @Secured(['ROLE_ADMIN', 'ROLE_USER'])
     def save() {
         try {
             Customer customer = Customer.get(params.customerId)
@@ -38,6 +42,7 @@ class PayerController extends BaseController {
         }
     }
 
+    @Secured(['ROLE_ADMIN', 'ROLE_USER'])
     def update() {
         try {
             Payer payer = payerService.update(params)
@@ -53,6 +58,7 @@ class PayerController extends BaseController {
         }
     }
 
+    @Secured(['ROLE_ADMIN', 'ROLE_USER'])
     def show() {
         Customer customer = Customer.get(params.customerId)
         Payer payer = Payer.get(params.payerId)

@@ -18,6 +18,7 @@
         <div>
     <footer>
       <h6 class="center">RocketCharger® 2022 - Todos os direitos reservados</h6>
+      <g:link controller="logout">Sair</g:link>
     </footer>
   </body>
 </html>
