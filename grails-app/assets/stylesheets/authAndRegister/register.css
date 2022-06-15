@@ -1,17 +1,19 @@
 body {
     background-color: rgb(230, 230, 230);
+    min-height: 100vh;
+    min-width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 form {
-    position: absolute;
-    left: 30%;
-    top:12%;
     background-color: #fafafa;
     border: 1px solid rgb(230, 230, 230);
     border-radius: 8px;
-    margin-top: 5px;
-    height: 60%;
-    width: 30%;
+    min-height: 50vh;
+    min-width: 40vw;
+    padding: 2rem;
     font-size: 20px;
 }
 
@@ -26,8 +28,7 @@ p {
 
 #logo {
     position: relative;
-    left: 230px;
-    top: 20px;
+    left: 43%;
     width: 100px;
     height: 90px;
 }
