@@ -1,24 +1,26 @@
 <html>
 <head>
     <asset:javascript src="applications/applicationRegisterLoginAndLogout.js"/>
+    <asset:stylesheet src="authAndRegister/auth.css"/>
     <title><g:message code='springSecurity.login.title'/></title>
 </head>
 <body>
+  <form action="${postUrl ?: '/login/authenticate'}" method="POST" id="loginForm" autocomplete="off">
+  <asset:image src="simbolo-asaas-azul.png" alt="logo" id="logo"/>
   <h2>Acesso ao RocketCharger</h2>
   <p>Olá, use os campos abaixo para acessar sua conta RocketCharger.</p>
-  <form action="${postUrl ?: '/login/authenticate'}" method="POST" id="loginForm" autocomplete="off">
-    <div>
-      <label for="username">Informe seu e-mail</label>
-      <input type="text" name="${usernameParameter ?: 'username'}" id="username" autocapitalize="none"/>
+    <div class="form-control">
+      <label for="username">Email</label><br>
+      <input id="form-control-user" class="form-control-input" type="text" name="${usernameParameter ?: 'username'}" id="username" placeholder="Informe seu e-mail" autocapitalize="none"/>
     </div>
-    <div>
-      <label for="password">Informe sua senha</label>
-      <input type="password" name="${passwordParameter ?: 'password'}" id="password"/>
-      <i id="passwordToggler" title="toggle password display" onclick="passwordDisplayToggle()">&#128065;</i>
+    <div class="form-control">
+      <label for="password">Senha</label><br>
+      <input id="form-control-password" class="form-control-input" type="password" name="${passwordParameter ?: 'password'}" id="password" placeholder="Informe sua senha"/>
     </div>
-    <button id="login" type="submit">Acessar sua conta</button>
+    <button id="login" type="submit"><strong>Acessar sua conta</strong></button>
     <hr>
-    <p>Ainda não tem uma conta? <g:link controller="register">Registre-se</g:link></p>
+    <p>Ainda não tem uma conta?</p> 
+    <g:link controller="register" action="index"><button id="create"><strong>Criar uma conta</strong></button></g:link>
   </form>
 </body>
 </html>
