@@ -8,6 +8,13 @@ body {
 .container-body {
     padding: 30px;
 }
+
+button {
+    display: inline-block;
+    vertical-align: middle;
+    text-align: center;
+    margin-left: 40px;
+}
   
 .page-header {
     font-size: 20px;

@@ -7,28 +7,27 @@ import com.rocketcharger.domain.customer.Customer
 import grails.converters.JSON
 import grails.plugin.springsecurity.annotation.Secured
 
+@Secured(['ROLE_ADMIN', 'ROLE_USER'])
 class PayerController extends BaseController {
     
     def payerService
 
-    @Secured(['ROLE_ADMIN', 'ROLE_USER'])
     def list() {
-        Customer customer = Customer.get(params.customerId)
-        Long customerId = params.long("customerId")
-        List<Payer> payerList = payerService.returnPayersByCustomer(customerId, getSizeLimitPage(), getCurrentPage())
-        return[customerId: customerId, payerList: payerList, customer: customer, totalCount: Payer.count()]
+        Customer customer = getCurrentCustomer()
+        List<Payer> payerList = payerService.returnPayersByCustomer(customer, getSizeLimitPage(), getCurrentPage())
+        return[payerList: payerList, customer: customer, totalCount: Payer.count()]
     }
 
-    @Secured(['ROLE_ADMIN', 'ROLE_USER'])
+
     def create() {
-        Customer customer = Customer.get(params.customerId)
+        Customer customer = getCurrentCustomer()
         return [customerId: params.long("customerId"), customer: customer]
     }
 
-    @Secured(['ROLE_ADMIN', 'ROLE_USER'])
+
     def save() {
         try {
-            Customer customer = Customer.get(params.customerId)
+            Customer customer = getCurrentCustomer()
             Payer payer = payerService.save(customer, params)
             
             if (payer.hasErrors()) {
@@ -42,7 +41,6 @@ class PayerController extends BaseController {
         }
     }
 
-    @Secured(['ROLE_ADMIN', 'ROLE_USER'])
     def update() {
         try {
             Payer payer = payerService.update(params)
@@ -58,9 +56,8 @@ class PayerController extends BaseController {
         }
     }
 
-    @Secured(['ROLE_ADMIN', 'ROLE_USER'])
     def show() {
-        Customer customer = Customer.get(params.customerId)
+        Customer customer = getCurrentCustomer()
         Payer payer = Payer.get(params.payerId)
         return [payer: payer, customer: customer]
     }

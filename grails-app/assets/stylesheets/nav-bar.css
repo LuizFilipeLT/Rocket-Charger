@@ -16,7 +16,7 @@
     font-size:28px;
     color:white;
     line-height:70px;
-    text-align:center;
+    margin-left: 35px;
     background:#1b1b1b;
     user-select:none;
     font-family:'Montserrat',sans-serif;
@@ -38,12 +38,14 @@
     text-decoration: none;
 }
 
-a.active, a:hover {
-    color:#ffffff;
+.sidebar a:hover {
+    color: #9FA8F0;
+    text-decoration: none;
 }
 
 .sidebar a i {
     font-size: 23px;
+    vertical-align: middle;
 }
 
 .sidebar a span {

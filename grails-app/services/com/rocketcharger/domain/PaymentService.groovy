@@ -45,9 +45,9 @@ class PaymentService {
         return payment
     }
 
-    public List<Payment> returnPaymentsByCustomer(Long customerId, Integer max, Integer offset) {
+    public List<Payment> returnPaymentsByCustomer(Customer customerId, Integer max, Integer offset) {
         List<Payment> paymentList = Payment.createCriteria().list(max: max, offset: offset){
-            eq("customer", Customer.get(customerId))
+            eq("customer", customerId)
         }
         return paymentList
     }
@@ -63,22 +63,25 @@ class PaymentService {
         
     public Payment validate(Payment payment, Map params) {
         if (!ValidateUtils.validateMinValue(params.value)) {
-            DomainUtils.addError(payment, "")
+            DomainUtils.addError(payment, "O campo valor é obrigatório")
         }
         if (!ValidateUtils.isNotNull(params.payerId)) {
-            DomainUtils.addError(payment, "")
+            DomainUtils.addError(payment, "O campo pagador é obrigatório")
         }
         if (!ValidateUtils.validatePaymentMethod(params.billingType)) {
-            DomainUtils.addError(payment, "")
+            DomainUtils.addError(payment, "O campo método de pagamento é obrigatório")
         }
         if (!ValidateUtils.validatePaymentDueDate(params.dueDate)){
-             DomainUtils.addError(payment, "")
+             DomainUtils.addError(payment, "O campo data de vencimento é obrigatório")
         }
         return payment
     }
 
     public Payment validateRecognizePayment(Map params) {
         Payment payment = new Payment()
+        if (payment.status == PaymentStatus.OVERDUE) {
+            DomainUtils.addError(payment, "Uma cobrança vencida não pode ser paga.")
+        }
         if (!params.value) {
             DomainUtils.addError(payment, "O campo valor é obrigatório")
         }
