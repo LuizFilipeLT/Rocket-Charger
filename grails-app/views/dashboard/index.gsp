@@ -36,12 +36,12 @@
     </div>
     <div>
       <h4>Adimplentes: 
-          <g:formatNumber number="${dashboard.nonDebtDodgers}" type="number"/>
+          <g:formatNumber number="${dashboard.nonDefaulters}" type="number"/>
       </h4>
     </div>
     <div>
       <h4>Inadimplentes: 
-          <g:formatNumber number="${dashboard.debtDodgers}" type="number"/>
+          <g:formatNumber number="${dashboard.defaulters}" type="number"/>
       </h4>
     </div>
   </section>
