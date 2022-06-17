@@ -17,8 +17,8 @@
       <div class="form-control">
         <label for="password">Senha</label>
         <input id="form-control-password" class="form-control-input" type="password" name="password" id="password" required/>
-      </div>
-
+      </div> 
+       
       <div class="form-control">
         <label for="password">Confirmar senha</label>
         <input id="form-control-password" class="form-control-input" type="password" name="repassword" id="repassword" required/>
