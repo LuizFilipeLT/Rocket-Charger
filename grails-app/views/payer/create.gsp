@@ -45,15 +45,15 @@
         <div class="form-control two">
           <label for="cpfCnpj">CPF/CNPJ: *</label>
           <input
-            type="number"
+            type="text"
             id="cpfCnpj"
             name="cpfCnpj"
             placeholder="Informe seu CPF/CNPJ"
+            maxlength="14"
           />
           <i class="fas fa-exclamation-circle"></i>
           <i class="fas fa-check-circle"></i>
-          <small class="js-msg
-          "></small>
+          <small class="js-msg"></small>
         </div>
 
         <div class="form-control two left">
@@ -66,8 +66,7 @@
           />
           <i class="fas fa-exclamation-circle"></i>
           <i class="fas fa-check-circle"></i>
-          <small class="js-msg
-          "></small>
+          <small class="js-msg"></small>
         </div>
 
         <div class="form-control two">
@@ -77,12 +76,11 @@
             id="postalCode"
             name="postalCode"
             placeholder="Informe o seu CEP"
-            maxlength="8"
+            maxlength="9"
           />
           <i class="fas fa-exclamation-circle"></i>
           <i class="fas fa-check-circle"></i>
-          <small class="js-msg
-          "></small>
+          <small class="js-msg"></small>
         </div>
 
         <div class="form-control two left">
@@ -95,8 +93,7 @@
           />
           <i class="fas fa-exclamation-circle"></i>
           <i class="fas fa-check-circle"></i>
-          <small class="js-msg
-          "></small>
+          <small class="js-msg"></small>
         </div>
 
         <div class="form-control two left">
@@ -147,8 +144,7 @@
           />
           <i class="fas fa-exclamation-circle"></i>
           <i class="fas fa-check-circle"></i>
-          <small class="js-msg
-          "></small>
+          <small class="js-msg"></small>
         </div>
 
         <div class="form-control two left">
@@ -161,8 +157,7 @@
           />
           <i class="fas fa-exclamation-circle"></i>
           <i class="fas fa-check-circle"></i>
-          <small class="js-msg
-          "></small>
+          <small class="js-msg"></small>
         </div>
 
         <input type="hidden" value="${customerId}" name="customerId" id="customerId">

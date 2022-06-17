@@ -15,6 +15,7 @@ class CustomerService {
         customer.name = params.name
         customer.phone = params.phone
         customer.email = params.email
+        customer.phone = params.phone
         customer.cpfCnpj = params.cpfCnpj
         customer.postalCode = params.postalCode
         customer.address = params.address
@@ -50,31 +51,31 @@ class CustomerService {
 
     public Customer validate(Customer customer, Map params) {
         if (!ValidateUtils.isNotNull(params.name)) {
-            DomainUtils.addError(customer, "")
+            DomainUtils.addError(customer, "O campo nome é obrigatório")
         }
         if (!ValidateUtils.emailIsValid(params.email)) {
-            DomainUtils.addError(customer, "")
+            DomainUtils.addError(customer, "O campo email é obrigatório")
         }
         if (!ValidateUtils.validateCpfCnpj(params.cpfCnpj)) {
-            DomainUtils.addError(customer, "")
+            DomainUtils.addError(customer, "O campo CPF/CNPJ é obrigatório")
         }
         if (!ValidateUtils.validatePostalCode(params.postalCode)) {
-            DomainUtils.addError(customer, "")
+            DomainUtils.addError(customer, "O campo CEP é obrigatório")
         }
         if (!ValidateUtils.isNotNull(params.address)) {
-            DomainUtils.addError(customer, "")
+            DomainUtils.addError(customer, "O campo endereço é obrigatório")
         }
         if (!ValidateUtils.isNotNull(params.addressNumber)) {
-            DomainUtils.addError(customer, "")
+            DomainUtils.addError(customer, "O campo número é obrigatório")
         }
         if (!ValidateUtils.isNotNull(params.district)) {
-            DomainUtils.addError(customer, "")
+            DomainUtils.addError(customer, "O campo bairro é obrigatório")
         }
         if (!ValidateUtils.isNotNull(params.city)) {
-            DomainUtils.addError(customer, "")
+            DomainUtils.addError(customer, "O campo cidade é obrigatório")
         }
         if (!ValidateUtils.isNotNull(params.state)) {
-            DomainUtils.addError(customer, "")
+            DomainUtils.addError(customer, "O campo estado é obrigatório")
         }
         return customer
     } 

@@ -41,7 +41,8 @@
             id="phone"
             name="phone"
             placeholder="Informe seu número de contato"
-            value="${payer?.phone}" 
+            value="${payer?.phone}"
+            readonly
           />
           <i class="fas fa-exclamation-circle"></i>
           <i class="fas fa-check-circle"></i>
@@ -51,7 +52,7 @@
         <div class="form-control two">
           <label for="cpfCnpj">CPF/CNPJ: *</label>
           <input
-            type="number"
+            type="text"
             id="cpfCnpj"
             name="cpfCnpj"
             placeholder="Informe seu CPF/CNPJ"
@@ -60,8 +61,7 @@
           />
           <i class="fas fa-exclamation-circle"></i>
           <i class="fas fa-check-circle"></i>
-          <small class="js-msg
-          "></small>
+          <small class="js-msg"></small>
         </div>
 
         <div class="form-control two left">
@@ -75,8 +75,7 @@
           />
           <i class="fas fa-exclamation-circle"></i>
           <i class="fas fa-check-circle"></i>
-          <small class="js-msg
-          "></small>
+          <small class="js-msg"></small>
         </div>
 
         <div class="form-control two">
@@ -86,14 +85,13 @@
             id="postalCode"
             name="postalCode"
             placeholder="Informe o seu CEP"
-            maxlength="8"
+            maxlength="9"
             value="${payer?.postalCode}"
             readonly
           />
           <i class="fas fa-exclamation-circle"></i>
           <i class="fas fa-check-circle"></i>
-          <small class="js-msg
-          "></small>
+          <small class="js-msg"></small>
         </div>
 
         <div class="form-control two left">
@@ -108,8 +106,7 @@
           />
           <i class="fas fa-exclamation-circle"></i>
           <i class="fas fa-check-circle"></i>
-          <small class="js-msg
-          "></small>
+          <small class="js-msg"></small>
         </div>
 
 
@@ -168,8 +165,7 @@
           />
           <i class="fas fa-exclamation-circle"></i>
           <i class="fas fa-check-circle"></i>
-          <small class="js-msg
-          "></small>
+          <small class="js-msg"></small>
         </div>
 
         <div class="form-control two left">
@@ -184,8 +180,7 @@
           />
           <i class="fas fa-exclamation-circle"></i>
           <i class="fas fa-check-circle"></i>
-          <small class="js-msg
-          "></small>
+          <small class="js-msg"></small>
         </div>
           <button class="js-edit" id="button">Editar</button>
           <button type="submit" class="js-send-button hide">Salvar</button>

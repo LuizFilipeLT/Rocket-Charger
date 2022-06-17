@@ -66,20 +66,11 @@ body {
   color: #000000;
 }
 
-#method {
-  margin-top: 10px;
-}
-
-#payerId {
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
-
 .form-control input {
   border: 2px solid black;
   color: black;
   border-radius: 10px;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   padding: 10px;
   font-size: 14px;
   width: 100%;  
@@ -87,7 +78,7 @@ body {
 
 .form-control i {
   position: absolute;
-  top: 45px;
+  top: 35px;
   right: 10px;
   visibility: hidden;
 }
@@ -95,11 +86,21 @@ body {
 .form-control small {
   position: absolute;
   bottom: 0;
-  left: 0;
+  left: 15px;
   visibility: hidden;
 }
 
-.form button {
+.form-control #method, .form-control #payerId {
+  border: 2px solid black;
+  color: black;
+  border-radius: 10px;
+  margin-bottom: 25px;
+  padding: 10px;
+  font-size: 14px;
+  width: 100%; 
+} 
+
+.form button, .form button:hover {
   background-color: #0030B9;
   border: 1px solid #000000;
   text-shadow: 0.1em 0.1em 0.2em rgb(201, 194, 194) ;
@@ -110,11 +111,6 @@ body {
   padding: 10px;
   margin-bottom: 5px;
   cursor: pointer;
-}
-
-.form button:hover {
-  background: #0026b1;
-  color: white;
 }
 
 .btn {
@@ -131,12 +127,16 @@ body {
   cursor: pointer;
 }
 
-.form-control.success input {
-  border-color: #0030b9;
-}
-
+.form-control.error #method,
+.form-control.error #payerId,
 .form-control.error input {
   border-color: #e7473c;
+}
+
+.form-control.success #method,
+.form-control.success #payerId,
+.form-control.success input {
+  border-color: #0030b9;
 }
 
 .form-control.success i.fa-check-circle {
@@ -144,14 +144,33 @@ body {
   visibility: visible;
 }
 
-.form-control.error i.fa-exclamation-circle {
+.form-control.error i.fa-exclamation-circle,
+.form-control.error small {
   color: #e7473c;
   visibility: visible;
 }
 
-.form-control.error small {
-  visibility: visible;
-  color: #e7473c;
+.form-control input:read-only {
+  background-color: rgb(209, 204, 204);
+}
+
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  text-indent: 1px;
+  text-overflow: '';
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="date"]::-webkit-inner-spin-button,
+input[type="date"]::-webkit-calendar-picker-indicator {
+  display: none;
+  -webkit-appearance: none;
 }
 
 @media (max-width: 600px) {

@@ -2,37 +2,60 @@ function FormValidationsController() {
   this.init = function () {
     bindSubmitForm();
     bindInputName();
+    bindInputPhone();
     bindInputCpfCnpj();
     bindInputPostalCode();
     bindInputEmail();
+    bindInputAddressNumber();
+    bindInputAddress();
+    bindInputDistrict();
+    bindInputCity();
+    bindInputState();
+    bindPreventDefaultForm();
   };
 
   var formReference = document.querySelector("form");
   var nameReference = document.getElementById("name");
+  var phoneReference = document.getElementById("phone");
   var cpfCnpjReference = document.getElementById("cpfCnpj");
   var postalCodeReference = document.getElementById("postalCode");
   var emailReference = document.getElementById("email");
   var addressReference = document.getElementById("address");
+  var addressNumberReference = document.getElementById("addressNumber");
   var complementReference = document.getElementById("complement");
   var districtReference = document.getElementById("district");
   var cityReference = document.getElementById("city");
   var stateReference = document.getElementById("state");
   var correctPostalCodeLength = 9;
   var correctCpfLength = 13;
-  var correctCnpjLength = 17;
   var formatEmail = /[A-Za-z0-9_\%\+-]+(\.[A-Za-z0-9_\%\+-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9-]+)*(\.[A-Za-z]{2,15})/;
+
+  function bindPreventDefaultForm() {
+    formReference.addEventListener("submit", (event) => {
+      event.preventDefault();
+    });
+  }
 
   function validateName() {
     let nameValue = nameReference.value;
     if (!nameValue) {
-      setErrorFor(nameReference, "O seu nome é obrigatório!");
+      setErrorFor(nameReference, "O seu nome é obrigatório");
       return;
     }
     setSucessFor(nameReference);
   }
 
+  function validatePhone() {
+    let phoneValue = phoneReference.value;
+    if (!phoneValue) {
+      setErrorFor(phoneReference, "Número de contato obrigatório");
+      return;
+    }
+    setSucessFor(phoneReference);
+  }
+
   function validateCpf() {
-    let cpfCnpjValue = cpfCnpj.value;
+    let cpfCnpjValue = cpfCnpjReference.value;
     if (!cpfCnpjValue) {
       setErrorFor(cpfCnpjReference, "Preencha seu CPF/CNPJ");
       return;
@@ -56,7 +79,7 @@ function FormValidationsController() {
   }
 
   function validateCnpj() {
-    let cpfCnpjValue = cpfCnpj.value;
+    let cpfCnpjValue = cpfCnpjReference.value;
     if (!cpfCnpjValue) {
       setErrorFor(cpfCnpjReference, "Preencha seu CPF/CNPJ");
       return;
@@ -85,7 +108,15 @@ function FormValidationsController() {
       setErrorFor(emailReference, "O email é obrigatório");
       return;
     }
+    if (!validateFormatEmail(emailValue)) {
+      setErrorFor(emailReference, "Formato incorreto");
+      return;
+    }
     setSucessFor(emailReference);
+  }
+
+  function validateFormatEmail(email) {
+    return formatEmail.test(email);
   }
 
   function validatePostal() {
@@ -95,6 +126,46 @@ function FormValidationsController() {
       return;
     }
     setSucessFor(postalCodeReference);
+  }
+
+  function validateAddress() {
+    if (!addressReference.value) {
+      setErrorFor(addressReference, "Endereço obrigatório");
+      return;
+    }
+    setSucessFor(addressReference);
+  }
+
+  function validateDistrict() {
+    if (!districtReference.value) {
+      setErrorFor(districtReference, "Favor informar o bairro");
+      return;
+    }
+    setSucessFor(districtReference);
+  }
+
+  function validateState() {
+    if (!stateReference.value) {
+      setErrorFor(stateReference, "Favor informar o estado");
+      return;
+    }
+    setSucessFor(stateReference);
+  }
+
+  function validateCity() {
+    if (!cityReference.value) {
+      setErrorFor(cityReference, "Favor informar a cidade");
+      return;
+    }
+    setSucessFor(cityReference);
+  }
+
+  function validateAddressNumber() {
+    if (!addressNumberReference.value) {
+      setErrorFor(addressNumberReference, "Número da residência obrigatório");
+      return;
+    }
+    setSucessFor(addressNumberReference);
   }
 
   function validateRequiredsInputs() {
@@ -107,13 +178,29 @@ function FormValidationsController() {
     }
     validatePostal();
     validateEmail();
-    validateFormIsValid();
+    validateForm();
   }
 
-  function validateFormIsValid() {
-    let formControls = formReference.querySelectorAll(".form-control");
-    let formIsValid = [...formControls].every((formControl) => {
-      return formControl.className === "form-control success";
+  function validateForm() {
+    var formControls = formReference.querySelectorAll(".form-control");
+    var formIsValid = [...formControls].every((formControl) => {
+      return formControl.className.includes("success");
+    });
+    if (!formIsValid) return alert("Favor verificar os campos.");
+    bindPostFormSubmit();
+  }
+
+  function bindPostFormSubmit() {
+    var formReference = $("form");
+    var url = formReference.data("url");
+    var params = formReference.serialize();
+
+    $.post(url, params, function (response) {
+      if (!response.success) {
+        alert("Favor verificar os campos.");
+        return;
+      }
+      window.location.href = formReference.data("redirect");
     });
   }
 
@@ -168,6 +255,12 @@ function FormValidationsController() {
     });
   }
 
+  function bindInputPhone() {
+    phoneReference.addEventListener("focusout", (event) => {
+      validatePhone();
+    });
+  }
+
   function bindInputCpfCnpj() {
     cpfCnpjReference.addEventListener("focusout", (event) => {
       let cpfCnpjValue = cpfCnpj.value;
@@ -180,7 +273,7 @@ function FormValidationsController() {
   }
 
   function bindInputPostalCode() {
-    postalCodeReference.addEventListener("input", function () {
+    postalCodeReference.addEventListener("focusout", function () {
       validatePostal();
       if (validatePostalCode(this.value)) {
         getPostalCode(this.value, fillAddress());
@@ -188,12 +281,44 @@ function FormValidationsController() {
     });
   }
 
+  function bindInputDistrict() {
+    districtReference.addEventListener("focusout", (event) => {
+      validateDistrict();
+    });
+  }
+
+  function bindInputCity() {
+    cityReference.addEventListener("focusout", (event) => {
+      validateCity();
+    });
+  }
+
+  function bindInputState() {
+    stateReference.addEventListener("focusout", (event) => {
+      validateState();
+    });
+  }
+
+  function bindInputAddress() {
+    addressReference.addEventListener("focusout", (event) => {
+      validateAddress();
+    });
+  }
+
+  function bindInputAddressNumber() {
+    addressNumberReference.addEventListener("focusout", (event) => {
+      validateAddressNumber();
+    });
+  }
+
   function bindInputEmail() {
     emailReference.addEventListener("focusout", (event) => {
+      validateFormatEmail();
       validateEmail();
     });
   }
 }
+
 var formValidationsController;
 
 $(document).ready(function () {

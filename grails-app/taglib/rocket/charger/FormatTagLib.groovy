@@ -6,7 +6,6 @@ class FormatTagLib {
     static returnObjectForTags = ["monetarySymbol"]
 
     def monetarySymbol = { attrs ->
-    println(attrs.number)
        out << "R\$ " + attrs.number
     }
 }

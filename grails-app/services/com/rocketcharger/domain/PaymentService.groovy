@@ -6,6 +6,8 @@ import com.rocketcharger.domain.customer.Customer
 import com.rocketcharger.enums.PaymentMethod
 import com.rocketcharger.enums.PaymentStatus
 import com.rocketcharger.utils.FormatDateUtils
+import com.rocketcharger.utils.DomainUtils
+import com.rocketcharger.utils.ValidateUtils
 import com.rocketcharger.domain.EmailService
 
 import grails.gorm.transactions.Transactional
@@ -17,13 +19,15 @@ class PaymentService {
     PageRenderer groovyPageRenderer
     def emailService
     
-    public Payment save(Map params) {
+    public Payment save(Customer customer, Payer payer, Map params) {
         Payment payment = new Payment()
+        payment = validate(payment, params)
+        if (payment.hasErrors()) return payment
         payment.value = new BigDecimal(params.value)
         payment.dueDate = FormatDateUtils.toDate(params.dueDate, "yyyy-MM-dd")
         payment.billingType = PaymentMethod.valueOf(params.billingType)
-        payment.payer = Payer.get(params.long("payerId"))
-        payment.customer = Customer.get(params.long("customerId"))
+        payment.customer = customer
+        payment.payer = payer
         payment.status = PaymentStatus.PENDING
         payment.save(failOnError: true)
         notifyNewPayment(payment)
@@ -39,15 +43,11 @@ class PaymentService {
         return payment
     }
 
-    public List<Payment> list() {
-        return Payment.getAll()
+    public Payment getPayment(Long paymentId) {
+        return Payment.get(paymentId)
     }
 
-    public Payment getPayment(Long id) {
-        return Payment.get(id)
-    }
-
-    public List<Payment> returnPaymentsByCustomer(Long customerId, Integer max = null, Integer offset = null) {
+    public List<Payment> returnPaymentsByCustomer(Long customerId, Integer max, Integer offset) {
         List<Payment> paymentList = Payment.createCriteria().list(max: max, offset: offset){
             eq("customer", Customer.get(customerId))
         }
@@ -61,6 +61,39 @@ class PaymentService {
             }
         }
         return paymentList
+    }
+        
+    public Payment validate(Payment payment, Map params) {
+        if (!ValidateUtils.validateMinValue(params.value)) {
+            DomainUtils.addError(payment, "O campo valor é obrigatório")
+        }
+        if (!ValidateUtils.isNotNull(params.payer)) {
+            DomainUtils.addError(payment, "O campo pagador é obrigatório")
+        }
+        if (!ValidateUtils.validatePaymentMethod(params.billingType)) {
+            DomainUtils.addError(payment, "O campo método de pagamento é obrigatório")
+        }
+        if (!ValidateUtils.validatePaymentDueDate(params.dueDate)){
+             DomainUtils.addError(payment, "O campo data de vencimento é obrigatório")
+        }
+        return payment
+    }
+
+    public Payment validateRecognizePayment(Map params) {
+        Payment payment = new Payment()
+        if (!params.value) {
+            DomainUtils.addError(payment, "O campo valor é obrigatório")
+        }
+        if (!params.dueDate) {
+            DomainUtils.addError(payment, "O campo data de vencimento é obrigatório")
+        }
+        if (!params.billingType) {
+            DomainUtils.addError(payment, "O campo método de pagamento é obrigatório")
+        }
+        if (!params.payer) {
+            DomainUtils.addError(payment, "O campo pagador é obrigatório")
+        }
+        return payment
     }
 
     public void notifyNewPayment(Payment payment) {

@@ -11,48 +11,58 @@ import grails.validation.ValidationException
 import grails.converters.JSON
 import grails.plugin.springsecurity.annotation.Secured
 
+@Secured(['ROLE_ADMIN', 'ROLE_USER'])
 class PaymentController extends BaseController {
     
     def paymentService
     def payerService
 
-    @Secured(['ROLE_ADMIN', 'ROLE_USER'])
     def list() {  
-            Long customerId = params.long("id")
+            Long customerId = params.long("customerId")
             List<Payment> paymentList = paymentService.returnPaymentsByCustomer(customerId, getSizeLimitPage(), getCurrentPage())
             return [customerId: customerId, paymentList: paymentList, totalCount: paymentList.size()]
         }
 
-    @Secured(['ROLE_ADMIN', 'ROLE_USER'])
     def create() {
-        Long customerId = params.long("id")
-        List<Payer> payerList = payerService.returnPayersByCustomer(customerId)
+        Long customerId = params.long("customerId")
+        List<Payer> payerList = payerService.returnPayersByCustomer(customerId, getSizeLimitPage(), params.offset)
         return [customerId: customerId, payerList: payerList]
     }
 
-    @Secured(['ROLE_ADMIN', 'ROLE_USER'])
     def save() {
         try {
-            paymentService.save(params)
+            Customer customer = Customer.get(params.customerId)
+            Payer payer = Payer.get(params.payerId)
+            Payment payment = paymentService.save(customer, payer, params)
+
+            if (payment.hasErrors()) {
+                render([success: false, message: message(code: payment.errors.allErrors.defaultMessage)] as JSON)
+                return
+            }
+
             render([success: true] as JSON)
         } catch(Exception e) {
+            e.printStackTrace()
             render([success: false, message: message(code: "occurrence.error")] as JSON)
         } 
     }
 
-    @Secured(['ROLE_ADMIN', 'ROLE_USER'])
     def confirm() {
-        Long paymentId = params.long("id")
+        Long paymentId = params.long("paymentId")
         try {
-            paymentService.recognizePayment(paymentId)
-            redirect controller: "payment", action: "list", id: paymentId
+            Payment payment = paymentService.recognizePayment(paymentId)
+
+                if (payment) {
+                    redirect(controller: "payment", action: "list", params: [customerId: payment.customerId])
+                    return
+                }
+
         } catch(Exception e) {
             render([success: false, message: message(code: "occurrence.error")] as JSON)
         }
     }
 
-    @Secured(['ROLE_ADMIN', 'ROLE_USER'])
     def show() {
-        return [payment: Payment.get(params.long("id"))]
+        return [payment: Payment.get(params.long("paymentId"))] 
     }
 }
