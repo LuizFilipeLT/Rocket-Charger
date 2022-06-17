@@ -2,7 +2,6 @@ package com.rocketcharger.domain
 
 import com.rocketcharger.domain.customer.Customer
 import com.rocketcharger.domain.PaymentService
-import com.rocketcharger.domain.DashboardService
 import com.rocketcharger.base.BaseController
 import grails.validation.ValidationException
 import grails.converters.JSON
@@ -10,7 +9,6 @@ import static org.springframework.http.HttpStatus.*
 
 class CustomerController extends BaseController {
     
-    def dashboardService
     def customerService
 
     def create() {}
