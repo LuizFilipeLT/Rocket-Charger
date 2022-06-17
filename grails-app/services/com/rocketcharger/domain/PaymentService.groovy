@@ -65,7 +65,7 @@ class PaymentService {
         if (!ValidateUtils.validateMinValue(params.value)) {
             DomainUtils.addError(payment, "O campo valor é obrigatório")
         }
-        if (!ValidateUtils.isNotNull(params.payer)) {
+        if (!ValidateUtils.isNotNull(params.payerId)) {
             DomainUtils.addError(payment, "O campo pagador é obrigatório")
         }
         if (!ValidateUtils.validatePaymentMethod(params.billingType)) {
