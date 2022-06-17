@@ -32,7 +32,7 @@
         </div>
 
         <div class="form-control two left">
-          <label for="phone">Celular *</label>
+          <label for="phone">Celular: *</label>
           <input
             type="tel"
             id="phone"
@@ -51,7 +51,6 @@
             id="cpfCnpj"
             name="cpfCnpj"
             placeholder="Informe seu CPF/CNPJ"
-            maxlength="14"
           />
           <i class="fas fa-exclamation-circle"></i>
           <i class="fas fa-check-circle"></i>
@@ -98,7 +97,7 @@
         </div>
 
         <div class="form-control two left">
-          <label for="addressNumber">Número *</label>
+          <label for="addressNumber">Número: *</label>
           <input
             type="text"
             id="addressNumber"
@@ -111,7 +110,7 @@
         </div>
 
         <div class="form-control two">
-          <label for="complement">Complemento</label>
+          <label for="complement">Complemento: </label>
           <input
             type="text"
             id="complement"

@@ -2,6 +2,9 @@ package com.rocketcharger.utils
 
 import com.rocketcharger.domain.customer.Customer
 import com.rocketcharger.domain.payer.Payer
+import com.rocketcharger.utils.ValidateUtils
+import com.rocketcharger.utils.FormatDateUtils
+import com.rocketcharger.enums.PaymentMethod
 
 import groovy.json.JsonSlurper
 import java.lang.String
@@ -10,6 +13,28 @@ import java.net.URL.*
 import org.apache.commons.validator.routines.EmailValidator
 
 class ValidateUtils {
+
+    public static Boolean validateMinValue(String value) {
+        BigDecimal intValue = new BigDecimal(value.replaceAll(",", ""))
+
+        if (intValue < 2.00) {
+            return false
+        }
+        return true
+    }
+
+    public static Boolean validatePaymentDueDate(String dueDate) {
+        Date todayDate = new Date()
+
+        if (FormatDateUtils.toDate(dueDate, "yyyy-MM-dd") < todayDate) {
+            return false
+        }
+        return true
+    }
+
+    public static Boolean validatePaymentMethod(String billingType) {
+        return PaymentMethod.values().contains(PaymentMethod.valueOf(billingType))
+    }
 
     public static Boolean emailIsValid(String email) {
         return email ==~ /[A-Za-z0-9_\%\+-]+(\.[A-Za-z0-9_\%\+-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9-]+)*(\.[A-Za-z]{2,15})/
@@ -24,7 +49,7 @@ class ValidateUtils {
         if (parameter == null) {
             return false
         }
-            return true
+        return true
     }
 
     public static Boolean validateCpfCnpj(String cpfCnpj) {

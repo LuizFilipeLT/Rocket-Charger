@@ -30,9 +30,9 @@
         </div>
 
         <div class="form-control two left">
-          <label for="phone">Celular *</label>
+          <label for="phone">Celular: *</label>
           <input
-            type="tel"
+            type="text"
             id="phone"
             name="phone"
             placeholder="Informe seu número de contato"
@@ -49,7 +49,6 @@
             id="cpfCnpj"
             name="cpfCnpj"
             placeholder="Informe seu CPF/CNPJ"
-            maxlength="14"
           />
           <i class="fas fa-exclamation-circle"></i>
           <i class="fas fa-check-circle"></i>
@@ -58,11 +57,11 @@
 
         <div class="form-control two left">
           <label for="email">Email: *</label>
-          <input 
-            type="email" 
-            id="email" 
+          <input
+            type="email"
+            id="email"
             name="email"
-            placeholder="Ex: meuemail@provedor.com"
+            placeholder="Informe seu e-mail"
           />
           <i class="fas fa-exclamation-circle"></i>
           <i class="fas fa-check-circle"></i>

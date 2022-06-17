@@ -35,7 +35,7 @@
         </div>
 
         <div class="form-control two left">
-          <label for="phone">Celular *</label>
+          <label for="phone">Celular: *</label>
           <input
             type="tel"
             id="phone"
