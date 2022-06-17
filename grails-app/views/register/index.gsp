@@ -16,7 +16,7 @@
             <div class="form-group">
                     <label for="username">Email</label>
               <input type="text" class="form-control" name="username" id="username" autocapitalize="none"/>
-            </div>
+            </div> 
 
       <div>
         <label for="password">Senha</label>
