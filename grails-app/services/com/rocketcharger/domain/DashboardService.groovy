@@ -17,7 +17,7 @@ class DashboardService {
     def paymentService
 
     public Map returnDashboardValues(Long customerId) {
-        List<Payer> payerList = payerService.returnPayersByCustomer(customerId)
+        List<Payer> payerList = payerService.returnPayersByCustomer(customerId, getSizeLimitPage(), params.offset)
         Integer totalPayers = payerList.size()
 
         List<Payment> overduePaymentList = returnListPaymentsByCustomerAndStatus(customerId, PaymentStatus.OVERDUE)
