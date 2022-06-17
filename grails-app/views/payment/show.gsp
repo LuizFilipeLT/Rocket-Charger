@@ -51,8 +51,12 @@
          <div>
             <h4>Nome do Pagador: ${payment.payer.name}</h4>
          </div>
-      </div>
 
-      <a href="${ g.createLink(controller: "payment", action: "list", params: [customerId: payment.customerId])}">Voltar</a>
+         <g:if test="${payment.status == PaymentStatus.PENDING}">
+            <a href="${g.createLink([controller:"payment", action:"confirm", params: [paymentId: payment.id]])}">
+               <button type="button" class="button">Confirmar recebimento</button>
+            </a>
+         </g:if>
+      </div>
    </body>
 </html>

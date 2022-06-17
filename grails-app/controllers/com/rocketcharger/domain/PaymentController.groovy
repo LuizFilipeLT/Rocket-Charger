@@ -17,23 +17,22 @@ class PaymentController extends BaseController {
     def paymentService
     def payerService
 
-   def list() {  
-        Customer customer = Customer.get(params.customerId)
-        Long customerId = params.long("customerId")
-        List<Payment> paymentList = paymentService.returnPaymentsByCustomer(customerId, getSizeLimitPage(), getCurrentPage())
-        return [customerId: customerId, paymentList: paymentList, customer: customer, totalCount: paymentList.size()]
+    def create() {
+        Customer customer = getCurrentCustomer()
+        List<Payer> payerList = payerService.returnPayersByCustomer(customer, getSizeLimitPage(), params.offset)
+        return [payerList: payerList, customer: customer]
     }
 
-    def create() {
-        Long customerId = params.long("customerId")
-        Customer customer = Customer.get(customerId)
-        List<Payer> payerList = payerService.returnPayersByCustomer(customerId, getSizeLimitPage(), params.offset)
-        return [customerId: customerId, payerList: payerList, customer: customer]
+    def list() {  
+        Customer customer = getCurrentCustomer()
+        List<Payment> paymentList = paymentService.returnPaymentsByCustomer(customer, getSizeLimitPage(), getCurrentPage())
+        return [paymentList: paymentList, customer: customer, totalCount: paymentList.size()]
     }
+
 
     def save() {
         try {
-            Customer customer = Customer.get(params.customerId)
+            Customer customer = getCurrentCustomer()
             Payer payer = Payer.get(params.payerId)
             Payment payment = paymentService.save(customer, payer, params)
 
@@ -44,7 +43,6 @@ class PaymentController extends BaseController {
 
             render([success: true] as JSON)
         } catch(Exception e) {
-            e.printStackTrace()
             render([success: false, message: message(code: "occurrence.error")] as JSON)
         } 
     }
@@ -65,9 +63,8 @@ class PaymentController extends BaseController {
     }
 
     def show() {
-        println params
-        Customer customer = Customer.get(params.customerId)
-        Long customerId = params.long("customerId")
-        return [payment: Payment.get(params.long("paymentId")), customerId: customerId, customer: customer] 
+        Payment payment = Payment.get(params.long("paymentId"))
+        Customer customer = getCurrentCustomer()
+        return [payment: payment, customer: customer] 
     }
 }

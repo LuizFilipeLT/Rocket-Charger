@@ -1,27 +1,31 @@
 <div class="sidebar">
     <header>Menu</header>
-    <g:link controller="dashboard" action="index" params="${[customerId: customer?.id]}">
-        <i class="fas fa-qrcode"></i>
+    <g:link controller="dashboard" action="index">
+        <i class="fas fa-chart-bar"></i>
         <span>Dashboard</span>
     </g:link>
-    <g:link controller="customer" action="show" params="${[customerId: customer?.id]}">
-        <i class="fas fa-link"></i>
-        <span>Meus dados</span>
+    <g:link controller="payment" action="create">
+        <i class="fas fa-money-bill-alt"></i>
+        <span>Criar Cobrança</span>
     </g:link>
-    <g:link controller="payer" action="create" params="${[customerId: customer?.id]}">
+    <g:link controller="payment" action="list">
+        <i class="fas fa-list-alt"></i>
+        <span>Minhas cobranças</span>
+    </g:link>
+    <g:link controller="payer" action="create">
         <i class="fas fa-stream"></i>
         <span>Cadastrar cliente</span>
     </g:link>
-    <g:link controller="payer" action="list" params="${[customerId: customer?.id]}">
-        <i class="fas fa-question-circle"></i>
+    <g:link controller="payer" action="list">
+        <i class="fas fa-user"></i>
         <span>Meus clientes</span>
     </g:link>
-    <g:link controller="payment" action="create" params="${[customerId: customer?.id]}">
-        <i class="fas fa-calendar"></i>
-        <span>Criar Cobrança</span>
+    <g:link controller="customer" action="show">
+        <i class="fas fa-id-card"></i>
+        <span>Meus dados</span>
     </g:link>
-    <g:link controller="payment" action="list" params="${[customerId: payment?.customerId]}">
+    <g:link controller="logout">
         <i class="fas fa-question-circle"></i>
-        <span>Minhas cobranças</span>
+        <span>Sair</span>
     </g:link>
 </div>

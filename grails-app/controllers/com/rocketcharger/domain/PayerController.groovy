@@ -13,23 +13,20 @@ class PayerController extends BaseController {
     def payerService
 
     def list() {
-        Customer customer = Customer.get(params.customerId)
-    }
-    
-    def index() {
-        Long customerId = params.long("customerId")
-        List<Payer> payerList = payerService.returnPayersByCustomer(customerId, getSizeLimitPage(), getCurrentPage())
-        return[customerId: customerId, payerList: payerList, customer: customer, totalCount: Payer.count()]
+        Customer customer = getCurrentCustomer()
+        List<Payer> payerList = payerService.returnPayersByCustomer(customer, getSizeLimitPage(), getCurrentPage())
+        return[payerList: payerList, customer: customer, totalCount: Payer.count()]
     }
 
+
     def create() {
-        Customer customer = Customer.get(params.customerId)
+        Customer customer = getCurrentCustomer()
         return [customerId: params.long("customerId"), customer: customer]
     }
 
     def save() {
         try {
-            Customer customer = Customer.get(params.customerId)
+            Customer customer = getCurrentCustomer()
             Payer payer = payerService.save(customer, params)
             
             if (payer.hasErrors()) {
@@ -59,7 +56,7 @@ class PayerController extends BaseController {
     }
 
     def show() {
-        Customer customer = Customer.get(params.customerId)
+        Customer customer = getCurrentCustomer()
         Payer payer = Payer.get(params.payerId)
         return [payer: payer, customer: customer]
     }

@@ -14,15 +14,6 @@ class CustomerController extends BaseController {
  
     def customerService
     def registerService
-    def springSecurityService
-
-    def create() {
-        return [customer: Customer.get(params.long("customerId"))]
-    }
-
-    def index() {  
-        return [customerList: Customer.list(max: getSizeLimitPage(), offset: getCurrentPage()), totalCount: Customer.count()]
-    }
 
     def save() {
         try {
@@ -55,9 +46,9 @@ class CustomerController extends BaseController {
     }
 
     def show() {
-        return [customer: springSecurityService.currentUser.customer]
+        Customer customer = getCurrentCustomer()
+        return [customer: customer]
     }
-
 
     def list() {
         return [customerList: Customer.list(max: getSizeLimitPage(), offset: getCurrentPage()), totalCount: Customer.count()]

@@ -2,7 +2,7 @@
     <asset:stylesheet src="list.css"/>
     <meta name="layout" content="main" />
     <title>Meus clientes</title>
-  </head>
+</head>
   <body>
   <utilsTagLib:header />
     <div class="container-body">
@@ -13,7 +13,7 @@
             <th>CPF/CNPJ</th>
             <th>Email</th>
             <th>Telefone</th>
-            <th>Edição</th>
+            <th>Opções</th>
           </tr>
         </thead>
         <tbody>
