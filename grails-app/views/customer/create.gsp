@@ -1,6 +1,5 @@
 <html>
   <head>
-    <meta name="layout" content="main"/>
     <script src="https://kit.fontawesome.com/c8d140aaae.js" crossorigin="anonymous"></script>
     <title>Criar cliente</title>
     <asset:stylesheet src="index/style.css" />
@@ -8,15 +7,15 @@
   </head>
   <body>
     <div class="container">
-
-      <div class="header">
-        <h2>Cadastro cliente</h2>
+      <div class="conteudo">
+        <div class="header">
+          <h2>Cadastro cliente</h2>
+        </div>
       </div>
-
       <form
         autocomplete="off" class="form"
-        data-redirect="${ g.createLink(controller: "customer", action: "list") }"
-        data-url="${ g.createLink(controller: "customer", action: "save") }">
+        data-redirect="${ g.createLink(controller: "customer", action: "show" params:[customerId: customer.Id]])}"
+        data-url="${ g.createLink(controller: "customer", action: "save")}">
         
         <div class="form-control">
           <label for="name">Nome Completo: *</label>
@@ -160,9 +159,9 @@
           <small class="js-msg"></small>
         </div>
 
-        <input hidden value="${customerId}" name="customer" id="customer" />
+        <input hidden value="${customerId}" name="customerId" id="customerId" />
         <button type="submit">Criar</button>
-        <button type="reset" class="js-cancel-button">Cancelar</button>
+        <button type="reset">Cancelar</button>
       </form>
     </div>
         <asset:javascript src="applications/applicationMasks.js" />

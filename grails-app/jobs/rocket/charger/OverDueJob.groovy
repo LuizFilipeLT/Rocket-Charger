@@ -5,9 +5,6 @@ import com.rocketcharger.domain.PaymentService
 import com.rocketcharger.utils.FormatDateUtils
 import com.rocketcharger.enums.PaymentStatus
 
-import grails.gorm.transactions.Transactional
-
-@Transactional
 class OverDueJob {
     def paymentService
 

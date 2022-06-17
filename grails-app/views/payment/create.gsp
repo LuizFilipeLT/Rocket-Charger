@@ -8,15 +8,13 @@
       <asset:javascript src="applications/applicationPayment.js" />
    </head>
    <body>
-      <div class="container">
-         <div class="header">
-            <h2>Criação de Cobrança</h2>
-         </div>
-
+     <utilsTagLib:header />
+      <div class="container-payment">
+      
          <form
-            autocomplete="off" class="form"
-            data-redirect="${ g.createLink(controller: "payment", action: "list", params: [customerId: customerId]) }"
-            data-url="${ g.createLink(controller: "payment", action: "save") }">
+         autocomplete="off" class="form"
+         data-redirect="${ g.createLink(controller: "payment", action: "list", params: [customerId: customerId]) }"
+         data-url="${ g.createLink(controller: "payment", action: "save") }">
 
          <div class="form-control">
             <label>Valor do pagamento:</label>

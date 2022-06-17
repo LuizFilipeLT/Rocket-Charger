@@ -7,23 +7,26 @@ import com.rocketcharger.domain.customer.Customer
 import grails.converters.JSON
 import grails.plugin.springsecurity.annotation.Secured
 
+@Secured(['ROLE_ADMIN', 'ROLE_USER'])
 class PayerController extends BaseController {
     
     def payerService
 
-    @Secured(['ROLE_ADMIN', 'ROLE_USER'])
+    def list() {
+        Customer customer = Customer.get(params.customerId)
+    }
+    
     def index() {
         Long customerId = params.long("customerId")
         List<Payer> payerList = payerService.returnPayersByCustomer(customerId, getSizeLimitPage(), getCurrentPage())
-        render(template:"list", model:[customerId: customerId, payerList: payerList, totalCount: Payer.count()])
+        return[customerId: customerId, payerList: payerList, customer: customer, totalCount: Payer.count()]
     }
 
-    @Secured(['ROLE_ADMIN', 'ROLE_USER'])
     def create() {
-        return [customerId: params.long("customerId")]
+        Customer customer = Customer.get(params.customerId)
+        return [customerId: params.long("customerId"), customer: customer]
     }
 
-    @Secured(['ROLE_ADMIN', 'ROLE_USER'])
     def save() {
         try {
             Customer customer = Customer.get(params.customerId)
@@ -40,7 +43,6 @@ class PayerController extends BaseController {
         }
     }
 
-    @Secured(['ROLE_ADMIN', 'ROLE_USER'])
     def update() {
         try {
             Payer payer = payerService.update(params)
@@ -52,13 +54,13 @@ class PayerController extends BaseController {
             
             render([success: true] as JSON)
         } catch (Exception e) {
-            e.printStackTrace()
             render([success: false, message: message(code: "occurrence.error")] as JSON)
         }
     }
 
-    @Secured(['ROLE_ADMIN', 'ROLE_USER'])
     def show() {
-        return [payer: Payer.get(params.long("payerId"))]
+        Customer customer = Customer.get(params.customerId)
+        Payer payer = Payer.get(params.payerId)
+        return [payer: payer, customer: customer]
     }
 }

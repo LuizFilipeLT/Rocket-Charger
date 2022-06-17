@@ -59,30 +59,6 @@ function FormValidationsController() {
     });
   }
 
-  function bindInputEmail() {
-    emailReference.addEventListener("focusout", (event) => {
-      validateEmail();
-    });
-  }
-
-  function bindInputPhone() {
-    phoneReference.addEventListener("focusout", (event) => {
-      validatePhone();
-    });
-  }
-
-  function bindInputAddressNumber() {
-    addressNumberReference.addEventListener("focusout", (event) => {
-      validateAddressNumber();
-    });
-  }
-
-  function bindInputPostalCode() {
-    postalCodeReference.addEventListener("focusout", function () {
-      validatePostal();
-    });
-  }
-
   function validateCpf(cpf) {
     if (
       !cpf ||
@@ -262,14 +238,8 @@ function FormValidationsController() {
     postalCodeValue = cleanMasks(postalCodeValue);
     if (!postalCodeValue || postalCodeValue.length != correctPostalCodeLength) {
       setErrorFor(postalCodeReference, "Favor verificar o CEP");
-    } setSucessFor(postalCodeReference)
-  }
-      
-  function validateAddressNumber() {
-    if (!addressNumberReference.value) {
-      setErrorFor(addressNumberReference, "Número da residência obrigatório");
-      return;
     }
+    setSucessFor(postalCodeReference);
     setSucessFor(postalCodeReference);
     setSucessFor(addressReference);
     setSucessFor(districtReference);
@@ -347,17 +317,6 @@ function FormValidationsController() {
   function bindInputPhone() {
     phoneReference.addEventListener("focusout", (event) => {
       validatePhone();
-    });
-  }
-
-  function bindInputCpfCnpj() {
-    cpfCnpjReference.addEventListener("focusout", (event) => {
-      let cpfCnpjValue = cpfCnpj.value;
-      if (cpfCnpjValue.length == correctCpfLength) {
-        validateCpf();
-        return;
-      }
-      validateCnpj();
     });
   }
 

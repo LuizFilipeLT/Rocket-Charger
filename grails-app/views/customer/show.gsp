@@ -7,15 +7,13 @@
     <asset:javascript src="applications/applicationForm.js" />
   </head>
   <body>
+    <utilsTagLib:header />
     <div class="container">
-          <div class="header">
-              <h2>Dados de cadastro</h2>
-          </div>
 
       <form
         autocomplete="off"
         class="form"
-        data-redirect="${ g.createLink(controller: "customer", action: "list") }"
+        data-redirect="${ g.createLink(controller: "customer", action: "show", params:[customerId: customerId]) }"
         data-url="${ g.createLink(controller: "customer", action: "update") }"
       >
         <input
@@ -178,17 +176,10 @@
           <i class="fas fa-check-circle"></i>
           <small class="js-msg"></small>
         </div>
-
         <button class="js-edit">Editar</button>
         <button type="submit" class="js-send-button hide">Salvar</button>
-        <button type="reset" class="js-send-button hide">Cancelar</button>
       </form>
       <div>
-        <g:link controller="payer" action="create" params="${[customerId: customer.id]}"><button class="btn ">Cadastrar cliente</button></g:link>
-        <g:link controller="payer" action="index" params="${[customerId: customer.id]}"><button class="btn ">Meus clientes</button></g:link>
-        <g:link controller="payment" action="list" params="${[customerId: customer.id]}"><button class="btn ">Minhas cobranças</button></g:link>
-        <g:link controller="payment" action="create" params="${[customerId: customer.id]}"><button class="btn ">Nova Cobrança</button></g:link>
-        <g:link controller="dashboard" action="index" params="${[customerId: customer.id]}"><button class="btn ">Resumo de Cobranças</button></g:link>
      </div>
     </div>
     <asset:javascript src="applications/applicationMasks.js" />

@@ -2,46 +2,50 @@
   <head>
     <meta name="layout" content="main"/>
       <title>Dashboard Cobranças</title>
-    <asset:stylesheet src="index/style.css" />
-    <asset:stylesheet src="customer/show.css" />
-    <asset:javascript src="applications/applicationForm.js" />
+    <asset:stylesheet src="dashboard.css" />
   </head>
   <body>
-  <h4>Dashboard cobranças</h4>
-<div>
-  <section>
-    <h5>Valores</h5>
-    <div>
-      <h4>Recebidos:
-          <g:formatNumber number="${dashboard.receivedValue}" type="currency" currencyCode="BRL"/>
-      </h4>
-    </div>
-    <div>
-      <h4>À Receber:
-          <g:formatNumber number="${dashboard.toReceive}" type="currency" currencyCode="BRL"/>
-      </h4>
-    </div>
-    <div>
-      <h4>Vencidos: 
-          <g:formatNumber number="${dashboard.overdue}" type="currency" currencyCode="BRL"/>
-      </h4>
-    </div>
-  </section>
-  <section>
-    <h5>Clientes</h5>
-    <div>
-      <h4>Total: 
+    <utilsTagLib:header />
+<div class="values-container">
+  <section class="box">
+    <h5 class="box-header">Clientes</h5>
+    <div class="display-value-small">
+      <h4 class="box-content">Total: 
           <g:formatNumber number="${dashboard.totalPayers}" type="number"/>
       </h4>
     </div>
-    <div>
-      <h4>Adimplentes: 
+    <div class="display-value-small">
+      <h4 class="box-content">Em dia: 
           <g:formatNumber number="${dashboard.nonDefaulters}" type="number"/>
       </h4>
     </div>
-    <div>
-      <h4>Inadimplentes: 
+    <div class="display-value-small">
+      <h4 class="box-content">Inadimplentes: 
           <g:formatNumber number="${dashboard.defaulters}" type="number"/>
+      </h4>
+    </div>
+  </section>
+  <section class="box">
+    <h5 class="box-header">Valores</h5>
+    <div class="display-value-small">
+      <h4 class="box-content">Previstas:
+        <span class="yellow-text">
+          <g:formatNumber number="${dashboard.toReceive}" type="currency" currencyCode="BRL"/>
+        </span>
+      </h4>
+    </div>
+    <div class="display-value-small">
+      <h4 class="box-content">Recebidas:
+        <span class="green-text">
+          <g:formatNumber number="${dashboard.receivedValue}" type="currency" currencyCode="BRL"/>
+        </span>
+      </h4>
+    </div>
+    <div class="display-value-small">
+      <h4 class="box-content">Vencidas:
+        <span class="red-text">
+          <g:formatNumber number="${dashboard.overdue}" type="currency" currencyCode="BRL"/>
+        </span>
       </h4>
     </div>
   </section>
