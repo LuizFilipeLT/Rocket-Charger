@@ -7,6 +7,10 @@ function FormValidationsController() {
     bindInputPhone();
     bindInputPostalCode();
     bindInputAddressNumber();
+    bindInputAddress();
+    bindInputDistrict();
+    bindInputCity();
+    bindInputState();
     bindPreventDefaultForm();
   };
 
@@ -258,6 +262,12 @@ function FormValidationsController() {
     postalCodeValue = cleanMasks(postalCodeValue);
     if (!postalCodeValue || postalCodeValue.length != correctPostalCodeLength) {
       setErrorFor(postalCodeReference, "Favor verificar o CEP");
+    } setSucessFor(postalCodeReference)
+  }
+      
+  function validateAddressNumber() {
+    if (!addressNumberReference.value) {
+      setErrorFor(addressNumberReference, "Número da residência obrigatório");
       return;
     }
     setSucessFor(postalCodeReference);
@@ -320,6 +330,81 @@ function FormValidationsController() {
 
     smallDisplayError.innerText = message;
     $(formControl).addClass("form-control error").removeClass("success");
+  }
+
+  function bindSubmitForm() {
+    formReference.addEventListener("submit", (event) => {
+      validateRequiredsInputs();
+    });
+  }
+
+  function bindInputName() {
+    nameReference.addEventListener("focusout", (event) => {
+      validateName();
+    });
+  }
+
+  function bindInputPhone() {
+    phoneReference.addEventListener("focusout", (event) => {
+      validatePhone();
+    });
+  }
+
+  function bindInputCpfCnpj() {
+    cpfCnpjReference.addEventListener("focusout", (event) => {
+      let cpfCnpjValue = cpfCnpj.value;
+      if (cpfCnpjValue.length == correctCpfLength) {
+        validateCpf();
+        return;
+      }
+      validateCnpj();
+    });
+  }
+
+  function bindInputPostalCode() {
+    postalCodeReference.addEventListener("focusout", function () {
+      validatePostal();
+      if (validatePostalCode(this.value)) {
+        getPostalCode(this.value, fillAddress());
+      }
+    });
+  }
+
+  function bindInputDistrict() {
+    districtReference.addEventListener("focusout", (event) => {
+      validateDistrict();
+    });
+  }
+
+  function bindInputCity() {
+    cityReference.addEventListener("focusout", (event) => {
+      validateCity();
+    });
+  }
+
+  function bindInputState() {
+    stateReference.addEventListener("focusout", (event) => {
+      validateState();
+    });
+  }
+
+  function bindInputAddress() {
+    addressReference.addEventListener("focusout", (event) => {
+      validateAddress();
+    });
+  }
+
+  function bindInputAddressNumber() {
+    addressNumberReference.addEventListener("focusout", (event) => {
+      validateAddressNumber();
+    });
+  }
+
+  function bindInputEmail() {
+    emailReference.addEventListener("focusout", (event) => {
+      validateFormatEmail();
+      validateEmail();
+    });
   }
 }
 

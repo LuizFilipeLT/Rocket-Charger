@@ -90,7 +90,7 @@ grails:
         host: "smtp.gmail.com"
         port: 465
         username: "rocketchargerjl@gmail.com"
-        password: "12345678abc@"
+        password: "yequusxpebflcewv"
         props:
             mail.smtp.auth: "true"
             mail.smtp.socketFactory.port: "465"
@@ -119,8 +119,8 @@ environments:
         dataSource:
             dbCreate: "update"
             #logSql: true
-            url: "jdbc:mysql://localhost/rocketchargerMain?useSSL=false&allowPublicKeyRetrieval=true"
-            driverClassName: "com.mysql.jdbc.Driver"
+            url: "jdbc:mysql://localhost/rocketcharger"
+            driverClassName: "com.mysql.cj.jdbc.Driver"
             username: "root"
             password: "basedeelite"
             type: "com.zaxxer.hikari.HikariDataSource"

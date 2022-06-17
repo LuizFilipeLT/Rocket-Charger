@@ -9,17 +9,19 @@ import com.rocketcharger.enums.PaymentStatus
 import static org.springframework.http.HttpStatus.*
 import grails.validation.ValidationException
 import grails.converters.JSON
+import grails.plugin.springsecurity.annotation.Secured
 
+@Secured(['ROLE_ADMIN', 'ROLE_USER'])
 class PaymentController extends BaseController {
     
     def paymentService
     def payerService
 
-   def list() {  
-        Long customerId = params.long("customerId")
-        List<Payment> paymentList = paymentService.returnPaymentsByCustomer(customerId, getSizeLimitPage(), getCurrentPage())
-        return [customerId: customerId, paymentList: paymentList, totalCount: paymentList.size()]
-    }
+    def list() {  
+            Long customerId = params.long("customerId")
+            List<Payment> paymentList = paymentService.returnPaymentsByCustomer(customerId, getSizeLimitPage(), getCurrentPage())
+            return [customerId: customerId, paymentList: paymentList, totalCount: paymentList.size()]
+        }
 
     def create() {
         Long customerId = params.long("customerId")
@@ -63,4 +65,4 @@ class PaymentController extends BaseController {
     def show() {
         return [payment: Payment.get(params.long("paymentId"))] 
     }
- }
+}
