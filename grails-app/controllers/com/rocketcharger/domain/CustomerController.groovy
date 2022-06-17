@@ -5,12 +5,21 @@ import com.rocketcharger.base.BaseController
 import grails.validation.ValidationException
 import grails.converters.JSON
 import static org.springframework.http.HttpStatus.*
+import grails.plugin.springsecurity.annotation.Secured
 
+@Secured(['ROLE_ADMIN', 'ROLE_USER'])
 class CustomerController extends BaseController {
     
     def customerService
+    def registerService
+    def springSecurityService
 
-    def create() {}
+    def create() {
+    }
+
+    def index() {  
+        return [customerList: Customer.list(max: getSizeLimitPage(), offset: getCurrentPage()), totalCount: Customer.count()]
+    }
 
     def save() {
         try {
@@ -43,8 +52,9 @@ class CustomerController extends BaseController {
     }
 
     def show() {
-        return [customer: Customer.get(params.long("customerId"))]
+        return [customer: springSecurityService.currentUser.customer]
     }
+
 
     def list() {
         return [customerList: Customer.list(max: getSizeLimitPage(), offset: getCurrentPage()), totalCount: Customer.count()]

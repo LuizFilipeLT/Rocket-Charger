@@ -67,16 +67,16 @@ class PaymentService {
         
     public Payment validate(Payment payment, Map params) {
         if (!ValidateUtils.validateMinValue(params.value)) {
-            DomainUtils.addError(payment, "")
+            DomainUtils.addError(payment, "O campo valor é obrigatório")
         }
-        if (!ValidateUtils.isNotNull(params.payerId)) {
-            DomainUtils.addError(payment, "")
+        if (!ValidateUtils.isNotNull(params.payer)) {
+            DomainUtils.addError(payment, "O campo pagador é obrigatório")
         }
         if (!ValidateUtils.validatePaymentMethod(params.billingType)) {
-            DomainUtils.addError(payment, "")
+            DomainUtils.addError(payment, "O campo método de pagamento é obrigatório")
         }
         if (!ValidateUtils.validatePaymentDueDate(params.dueDate)){
-             DomainUtils.addError(payment, "")
+             DomainUtils.addError(payment, "O campo data de vencimento é obrigatório")
         }
         return payment
     }

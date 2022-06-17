@@ -127,27 +127,15 @@ body {
   cursor: pointer;
 }
 
-.form-control.success input {
-  border-color: #0030b9;
-}
-
+.form-control.error #method,
+.form-control.error #payerId,
 .form-control.error input {
   border-color: #e7473c;
 }
 
-.form-control.error #method {
-  border-color: #e7473c;
-}
-
-.form-control.error #payerId {
-  border-color: #e7473c;
-}
-
-.form-control.success #method {
-  border-color: #0030b9;
-}
-
-.form-control.success #payerId {
+.form-control.success #method,
+.form-control.success #payerId,
+.form-control.success input {
   border-color: #0030b9;
 }
 
@@ -156,14 +144,10 @@ body {
   visibility: visible;
 }
 
-.form-control.error i.fa-exclamation-circle {
-  color: #e7473c;
-  visibility: visible;
-}
-
+.form-control.error i.fa-exclamation-circle,
 .form-control.error small {
-  visibility: visible;
   color: #e7473c;
+  visibility: visible;
 }
 
 .form-control input:read-only {
