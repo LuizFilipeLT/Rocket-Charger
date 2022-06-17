@@ -160,20 +160,20 @@ function FormValidationsController() {
 
   function validateInputsPostalCode() {
     if (!addressReference.value)
-      setErrorFor(addressReference, "O endereço é obrigatório.");
+      setErrorFor(addressReference, "O endereço é obrigatório");
     if (!districtReference.value)
-      setErrorFor(districtReference, "O bairro é obrigatŕoio.");
+      setErrorFor(districtReference, "O bairro é obrigatŕoio");
     if (!cityReference.value)
-      setErrorFor(cityReference, "O cidade é obrigatório.");
+      setErrorFor(cityReference, "O cidade é obrigatório");
     if (!stateReference.value)
-      setErrorFor(stateReference, "O estado é obrigatório.");
+      setErrorFor(stateReference, "O estado é obrigatório");
     return;
   }
 
   function validateName() {
     let nameValue = nameReference.value;
     if (!nameValue) {
-      setErrorFor(nameReference, "O seu nome é obrigatório!");
+      setErrorFor(nameReference, "O seu nome é obrigatório");
       return;
     }
     setSucessFor(nameReference);
@@ -182,7 +182,7 @@ function FormValidationsController() {
   function validatePhone() {
     let phoneValue = phoneReference.value;
     if (!phoneValue) {
-      setErrorFor(phoneReference, "O seu Telefone é obrigatório!");
+      setErrorFor(phoneReference, "O seu Telefone é obrigatório");
       return;
     }
     setSucessFor(phoneReference);
@@ -191,7 +191,7 @@ function FormValidationsController() {
   function validateAddressNumber() {
     let addressNumberValue = addressNumberReference.value;
     if (!addressNumberValue) {
-      setErrorFor(addressNumberReference, "O seu Nº é obrigatório!");
+      setErrorFor(addressNumberReference, "O seu Nº é obrigatório");
       return;
     }
     setSucessFor(addressNumberReference);
@@ -204,7 +204,7 @@ function FormValidationsController() {
       return;
     }
     if (!validateFormatEmail(emailValue)) {
-      setErrorFor(emailReference, "Formato de e-mail incorreto.");
+      setErrorFor(emailReference, "Formato de e-mail incorreto");
       return;
     }
     setSucessFor(emailReference);
@@ -300,7 +300,7 @@ function FormValidationsController() {
     let formIsValid = [...formControls].every((formControl) => {
       return formControl.className.includes("success");
     });
-    if (!formIsValid) return alert("Favor verificar os campos.");
+    if (!formIsValid) return alert("Favor verificar os campos");
     bindPostFormSubmit();
   }
 
@@ -311,7 +311,7 @@ function FormValidationsController() {
 
     $.post(url, params, function (response) {
       if (!response.success) {
-        alert("Favor verificar os campos.");
+        alert("Favor verificar os campos");
         return;
       }
       window.location.href = formReference.data("redirect");

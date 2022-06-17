@@ -63,11 +63,11 @@ function FormPaymentValidationsController() {
       return;
     }
     if (!inputValue) {
-      setErrorFor(valueReference, "Favor informar o valor.");
+      setErrorFor(valueReference, "Favor informar o valor");
       return;
     }
     if (inputValue < zeroValue) {
-      setErrorFor(valueReference, "Valor não aceito, favor verificar.");
+      setErrorFor(valueReference, "Valor não aceito, favor verificar");
       return;
     }
     setSucessFor(valueReference);
@@ -111,7 +111,7 @@ function FormPaymentValidationsController() {
   function validateBillingType() {
     let billingTypeValue = billingTypeReference.value;
     if (!billingTypeValue) {
-      setErrorFor(billingTypeReference, "Escolha o método de pagamento.");
+      setErrorFor(billingTypeReference, "Escolha o método de pagamento");
       return;
     }
     setSucessFor(billingTypeReference);
@@ -120,7 +120,7 @@ function FormPaymentValidationsController() {
   function validatePayer() {
     let payerValue = payerReference.value;
     if (!payerValue) {
-      setErrorFor(payerReference, "Escolha o pagador desta cobrança.");
+      setErrorFor(payerReference, "Escolha o pagador desta cobrança");
       return;
     }
     setSucessFor(payerReference);
@@ -139,7 +139,7 @@ function FormPaymentValidationsController() {
     var formIsValid = [...formControls].every((formControl) => {
       return formControl.className.includes("success");
     });
-    if (!formIsValid) return alert("Favor verificar os campos.");
+    if (!formIsValid) return alert("Favor verificar os campos");
     bindPostFormSubmit();
   }
 
