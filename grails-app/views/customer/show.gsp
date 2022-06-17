@@ -177,15 +177,18 @@
           <i class="fas fa-exclamation-circle"></i>
           <i class="fas fa-check-circle"></i>
           <small class="js-msg"></small>
-        </div>        
+        </div>
+
         <button class="js-edit">Editar</button>
         <button type="submit" class="js-send-button hide">Salvar</button>
-        <button type="reset">Cancelar</button>
+        <button type="reset" class="js-send-button hide">Cancelar</button>
       </form>
       <div>
-        <g:link controller="customer" action="index" params="${[customerId: customer.id]}"><button class="btn ">Voltar</button></g:link>
-        <g:link controller="payer" action="create" params="${[customerId: customer.id]}"><button class="btn ">Criar pagador</button></g:link>
+        <g:link controller="payer" action="create" params="${[customerId: customer.id]}"><button class="btn ">Cadastrar cliente</button></g:link>
+        <g:link controller="payer" action="index" params="${[customerId: customer.id]}"><button class="btn ">Meus clientes</button></g:link>
+        <g:link controller="payment" action="list" params="${[customerId: customer.id]}"><button class="btn ">Minhas cobranças</button></g:link>
         <g:link controller="payment" action="create" params="${[customerId: customer.id]}"><button class="btn ">Nova Cobrança</button></g:link>
+        <g:link controller="dashboard" action="index" params="${[customerId: customer.id]}"><button class="btn ">Resumo de Cobranças</button></g:link>
      </div>
     </div>
     <asset:javascript src="applications/applicationMasks.js" />

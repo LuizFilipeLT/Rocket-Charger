@@ -1,14 +1,15 @@
 package com.rocketcharger.domain
 
-import com.rocketcharger.domain.payment.Payment
-import com.rocketcharger.domain.payer.Payer
 import com.rocketcharger.domain.customer.Customer
+import com.rocketcharger.domain.payer.Payer
+import com.rocketcharger.domain.payment.Payment
+import com.rocketcharger.domain.PayerService
+import com.rocketcharger.domain.EmailService
 import com.rocketcharger.enums.PaymentMethod
 import com.rocketcharger.enums.PaymentStatus
 import com.rocketcharger.utils.FormatDateUtils
 import com.rocketcharger.utils.DomainUtils
 import com.rocketcharger.utils.ValidateUtils
-import com.rocketcharger.domain.EmailService
 
 import grails.gorm.transactions.Transactional
 import grails.gsp.PageRenderer
@@ -18,6 +19,7 @@ class PaymentService {
     
     PageRenderer groovyPageRenderer
     def emailService
+    def payerService
     
     public Payment save(Customer customer, Payer payer, Map params) {
         Payment payment = new Payment()
@@ -108,7 +110,7 @@ class PaymentService {
         emailService.sendEmail(payment.payer.email, subject, groovyPageRenderer.render(template: "/email/emailConfirmPayerPayment", model: [payment: payment]))
     }
     
-    public Payment verifyOverDueDates() {
+    public List<Payment> verifyOverDueDates(Long customerId, PaymentStatus paymentStatus) {
         Date yesterdayDate = FormatDateUtils.getYesterdayDate()
         List<Payment> paymentList = list(PaymentStatus.PENDING, yesterdayDate)
           for(Payment payment : paymentList) {
