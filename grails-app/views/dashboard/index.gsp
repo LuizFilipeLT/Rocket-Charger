@@ -16,12 +16,12 @@
     </div>
     <div class="display-value-small">
       <h4 class="box-content">Em dia: 
-          <g:formatNumber number="${dashboard.nonDebtDodgers}" type="number"/>
+          <g:formatNumber number="${dashboard.nonDefaulters}" type="number"/>
       </h4>
     </div>
     <div class="display-value-small">
       <h4 class="box-content">Inadimplentes: 
-          <g:formatNumber number="${dashboard.debtDodgers}" type="number"/>
+          <g:formatNumber number="${dashboard.defaulters}" type="number"/>
       </h4>
     </div>
   </section>

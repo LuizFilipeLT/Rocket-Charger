@@ -15,13 +15,13 @@ import grails.converters.JSON
 class RegisterService {
 
     public User register(Map params) {
-        Customer customer = connectCustomer(params.username)
-        User user = connectUser(params.username, params.password, customer)
-        connectRoleUser(user)
+        Customer customer = createtCustomer(params.username)
+        User user = createtUser(params.username, params.password, customer)
+        createtRoleUser(user)
         return user
     }
 
-    public User connectUser(String username, String password, Customer customer) {
+    public User createtUser(String username, String password, Customer customer) {
         User user = new User()
         user.username = username
         user.password = password
@@ -30,13 +30,13 @@ class RegisterService {
         return user
     }
 
-    public Customer connectCustomer(String email) {
+    public Customer createtCustomer(String email) {
         Customer customer = new Customer()
         customer.email = email
         customer.save(flush: true, failOnError: true)
     }
 
-    public UserRole connectRoleUser(User user) {
+    public UserRole createtRoleUser(User user) {
         def role = Role.get(2)
         UserRole.create(user, role)
         UserRole.withSession {

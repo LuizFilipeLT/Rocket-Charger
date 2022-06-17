@@ -1,5 +1,6 @@
 package com.rocketcharger.domain
 
+import com.rocketcharger.domain.customer.Customer
 import com.rocketcharger.base.BaseController
 import com.rocketcharger.domain.customer.Customer
 import grails.validation.ValidationException
@@ -7,7 +8,6 @@ import static org.springframework.http.HttpStatus.*
 import grails.validation.ValidationException
 import grails.converters.JSON
 import grails.plugin.springsecurity.annotation.Secured
-
 
 @Secured(['ROLE_ADMIN', 'ROLE_USER'])
 class CustomerController extends BaseController {

@@ -24,7 +24,6 @@ class PayerController extends BaseController {
         return [customerId: params.long("customerId"), customer: customer]
     }
 
-
     def save() {
         try {
             Customer customer = getCurrentCustomer()
