@@ -9,7 +9,9 @@ import com.rocketcharger.enums.PaymentStatus
 import static org.springframework.http.HttpStatus.*
 import grails.validation.ValidationException
 import grails.converters.JSON
+import grails.plugin.springsecurity.annotation.Secured
 
+@Secured(['ROLE_ADMIN', 'ROLE_USER'])
 class PaymentController extends BaseController {
     
     def paymentService
@@ -68,4 +70,4 @@ class PaymentController extends BaseController {
         Long customerId = params.long("customerId")
         return [payment: Payment.get(params.long("paymentId")), customerId: customerId, customer: customer] 
     }
- }
+}

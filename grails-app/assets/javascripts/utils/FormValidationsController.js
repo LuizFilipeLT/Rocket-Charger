@@ -7,6 +7,10 @@ function FormValidationsController() {
     bindInputPhone();
     bindInputPostalCode();
     bindInputAddressNumber();
+    bindInputAddress();
+    bindInputDistrict();
+    bindInputCity();
+    bindInputState();
     bindPreventDefaultForm();
   };
 
@@ -156,20 +160,20 @@ function FormValidationsController() {
 
   function validateInputsPostalCode() {
     if (!addressReference.value)
-      setErrorFor(addressReference, "O endereço é obrigatório.");
+      setErrorFor(addressReference, "O endereço é obrigatório");
     if (!districtReference.value)
-      setErrorFor(districtReference, "O bairro é obrigatŕoio.");
+      setErrorFor(districtReference, "O bairro é obrigatŕoio");
     if (!cityReference.value)
-      setErrorFor(cityReference, "O cidade é obrigatório.");
+      setErrorFor(cityReference, "O cidade é obrigatório");
     if (!stateReference.value)
-      setErrorFor(stateReference, "O estado é obrigatório.");
+      setErrorFor(stateReference, "O estado é obrigatório");
     return;
   }
 
   function validateName() {
     let nameValue = nameReference.value;
     if (!nameValue) {
-      setErrorFor(nameReference, "O seu nome é obrigatório!");
+      setErrorFor(nameReference, "O seu nome é obrigatório");
       return;
     }
     setSucessFor(nameReference);
@@ -178,7 +182,7 @@ function FormValidationsController() {
   function validatePhone() {
     let phoneValue = phoneReference.value;
     if (!phoneValue) {
-      setErrorFor(phoneReference, "O seu Telefone é obrigatório!");
+      setErrorFor(phoneReference, "O seu Telefone é obrigatório");
       return;
     }
     setSucessFor(phoneReference);
@@ -187,7 +191,7 @@ function FormValidationsController() {
   function validateAddressNumber() {
     let addressNumberValue = addressNumberReference.value;
     if (!addressNumberValue) {
-      setErrorFor(addressNumberReference, "O seu Nº é obrigatório!");
+      setErrorFor(addressNumberReference, "O seu Nº é obrigatório");
       return;
     }
     setSucessFor(addressNumberReference);
@@ -200,7 +204,7 @@ function FormValidationsController() {
       return;
     }
     if (!validateFormatEmail(emailValue)) {
-      setErrorFor(emailReference, "Formato de e-mail incorreto.");
+      setErrorFor(emailReference, "Formato de e-mail incorreto");
       return;
     }
     setSucessFor(emailReference);
@@ -258,6 +262,12 @@ function FormValidationsController() {
     postalCodeValue = cleanMasks(postalCodeValue);
     if (!postalCodeValue || postalCodeValue.length != correctPostalCodeLength) {
       setErrorFor(postalCodeReference, "Favor verificar o CEP");
+    } setSucessFor(postalCodeReference)
+  }
+      
+  function validateAddressNumber() {
+    if (!addressNumberReference.value) {
+      setErrorFor(addressNumberReference, "Número da residência obrigatório");
       return;
     }
     setSucessFor(postalCodeReference);
@@ -290,7 +300,7 @@ function FormValidationsController() {
     let formIsValid = [...formControls].every((formControl) => {
       return formControl.className.includes("success");
     });
-    if (!formIsValid) return alert("Favor verificar os campos.");
+    if (!formIsValid) return alert("Favor verificar os campos");
     bindPostFormSubmit();
   }
 
@@ -301,7 +311,7 @@ function FormValidationsController() {
 
     $.post(url, params, function (response) {
       if (!response.success) {
-        alert("Favor verificar os campos.");
+        alert("Favor verificar os campos");
         return;
       }
       window.location.href = formReference.data("redirect");
@@ -320,6 +330,81 @@ function FormValidationsController() {
 
     smallDisplayError.innerText = message;
     $(formControl).addClass("form-control error").removeClass("success");
+  }
+
+  function bindSubmitForm() {
+    formReference.addEventListener("submit", (event) => {
+      validateRequiredsInputs();
+    });
+  }
+
+  function bindInputName() {
+    nameReference.addEventListener("focusout", (event) => {
+      validateName();
+    });
+  }
+
+  function bindInputPhone() {
+    phoneReference.addEventListener("focusout", (event) => {
+      validatePhone();
+    });
+  }
+
+  function bindInputCpfCnpj() {
+    cpfCnpjReference.addEventListener("focusout", (event) => {
+      let cpfCnpjValue = cpfCnpj.value;
+      if (cpfCnpjValue.length == correctCpfLength) {
+        validateCpf();
+        return;
+      }
+      validateCnpj();
+    });
+  }
+
+  function bindInputPostalCode() {
+    postalCodeReference.addEventListener("focusout", function () {
+      validatePostal();
+      if (validatePostalCode(this.value)) {
+        getPostalCode(this.value, fillAddress());
+      }
+    });
+  }
+
+  function bindInputDistrict() {
+    districtReference.addEventListener("focusout", (event) => {
+      validateDistrict();
+    });
+  }
+
+  function bindInputCity() {
+    cityReference.addEventListener("focusout", (event) => {
+      validateCity();
+    });
+  }
+
+  function bindInputState() {
+    stateReference.addEventListener("focusout", (event) => {
+      validateState();
+    });
+  }
+
+  function bindInputAddress() {
+    addressReference.addEventListener("focusout", (event) => {
+      validateAddress();
+    });
+  }
+
+  function bindInputAddressNumber() {
+    addressNumberReference.addEventListener("focusout", (event) => {
+      validateAddressNumber();
+    });
+  }
+
+  function bindInputEmail() {
+    emailReference.addEventListener("focusout", (event) => {
+      validateFormatEmail();
+      validateEmail();
+    });
   }
 }
 

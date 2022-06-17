@@ -5,13 +5,18 @@ import com.rocketcharger.base.BaseController
 import com.rocketcharger.domain.payer.Payer
 import com.rocketcharger.domain.customer.Customer
 import grails.converters.JSON
+import grails.plugin.springsecurity.annotation.Secured
 
+@Secured(['ROLE_ADMIN', 'ROLE_USER'])
 class PayerController extends BaseController {
     
     def payerService
 
     def list() {
         Customer customer = Customer.get(params.customerId)
+    }
+    
+    def index() {
         Long customerId = params.long("customerId")
         List<Payer> payerList = payerService.returnPayersByCustomer(customerId, getSizeLimitPage(), getCurrentPage())
         return[customerId: customerId, payerList: payerList, customer: customer, totalCount: Payer.count()]

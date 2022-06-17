@@ -31,7 +31,6 @@
             name="name"
             placeholder="Informe seu nome completo"
             value="${customer?.name}"
-            readonly
           />
           <i class="fas fa-exclamation-circle"></i>
           <i class="fas fa-check-circle"></i>
@@ -39,7 +38,7 @@
         </div>
 
         <div class="form-control two left">
-          <label for="phone">Celular *</label>
+          <label for="number">Celular *</label>
           <input
             type="tel"
             id="phone"
@@ -61,7 +60,6 @@
             name="cpfCnpj"
             placeholder="Informe seu CPF/CNPJ"
             value="${customer?.cpfCnpj}"
-            readonly
           />
           <i class="fas fa-exclamation-circle"></i>
           <i class="fas fa-check-circle"></i>
@@ -91,7 +89,6 @@
             name="postalCode"
             placeholder="Informe o seu CEP"
             value="${customer?.postalCode}"
-            readonly
           />
           <i class="fas fa-exclamation-circle"></i>
           <i class="fas fa-check-circle"></i>
@@ -106,7 +103,6 @@
             name="address"
             placeholder="Informe o seu endereço residencial"
             value="${customer?.address}"
-            readonly
           />
           <i class="fas fa-exclamation-circle"></i>
           <i class="fas fa-check-circle"></i>
@@ -121,7 +117,6 @@
             name="addressNumber"
             placeholder="Informe o número de sua residência"
             value="${customer?.addressNumber}"
-            readonly
           />
           <i class="fas fa-exclamation-circle"></i>
           <i class="fas fa-check-circle"></i>
@@ -135,7 +130,6 @@
             id="complement"
             name="complement"
             placeholder="Informe um complemento (opcional)"
-            readonly
           />
           <i class="fas fa-exclamation-circle"></i>
           <i class="fas fa-check-circle"></i>
@@ -149,7 +143,6 @@
             name="district"
             placeholder="Informe o seu bairro"
             value="${customer?.district}"
-            readonly
           />
           <i class="fas fa-exclamation-circle"></i>
           <i class="fas fa-check-circle"></i>
@@ -164,7 +157,6 @@
             name="city"
             placeholder="Informe a sua cidade"
             value="${customer?.city}"
-            readonly
           />
           <i class="fas fa-exclamation-circle"></i>
           <i class="fas fa-check-circle"></i>
@@ -179,7 +171,6 @@
             name="state"
             placeholder="Informe o seu estado"
             value="${customer?.state}"
-            readonly
           />
           <i class="fas fa-exclamation-circle"></i>
           <i class="fas fa-check-circle"></i>
