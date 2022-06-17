@@ -11,7 +11,6 @@ function FormValidationsController() {
     bindInputDistrict();
     bindInputCity();
     bindInputState();
-    bindInputComplement();
     bindPreventDefaultForm();
   };
 
@@ -109,7 +108,7 @@ function FormValidationsController() {
       setErrorFor(emailReference, "O email é obrigatório");
       return;
     }
-    if (validateFormatEmail(emailValue) == false) {
+    if (!validateFormatEmail(emailValue)) {
       setErrorFor(emailReference, "Formato incorreto");
       return;
     }
@@ -159,12 +158,6 @@ function FormValidationsController() {
       return;
     }
     setSucessFor(cityReference);
-  }
-
-  function validateComplement() {
-    if (complementReference) {
-      setSucessFor(complementReference);
-    }
   }
 
   function validateAddressNumber() {
@@ -259,12 +252,6 @@ function FormValidationsController() {
   function bindInputName() {
     nameReference.addEventListener("focusout", (event) => {
       validateName();
-    });
-  }
-
-  function bindInputComplement() {
-    complementReference.addEventListener("focusout", (event) => {
-      validateComplement();
     });
   }
 
