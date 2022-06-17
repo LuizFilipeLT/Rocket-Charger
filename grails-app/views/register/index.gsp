@@ -17,7 +17,6 @@
                     <label for="username">Email</label>
               <input type="text" class="form-control" name="username" id="username" autocapitalize="none"/>
             </div> 
-
       <div>
         <label for="password">Senha</label>
         <input type="password" name="password" id="password" required/>
