@@ -3,7 +3,6 @@ package com.rocketcharger.domain
 import com.rocketcharger.domain.customer.Customer
 import com.rocketcharger.domain.payment.Payment
 import com.rocketcharger.domain.PaymentService
-import com.rocketcharger.domain.PayerService
 import com.rocketcharger.domain.payer.Payer
 import com.rocketcharger.utils.DomainUtils
 import com.rocketcharger.utils.ValidateUtils
@@ -13,40 +12,47 @@ import grails.gorm.transactions.Transactional
 @Transactional
 class DashboardService {
 
-    def payerService
     def paymentService
     
-    public Map returnDashboardValues(Customer customerId) {
-        List<Payer> payerList = payerService.returnPayersByCustomer(customerId)
+    public Map returnDashboardValues(Customer customer) {
+        List<Payer> payerList = getPayersByCustomer(customer)
         Integer totalPayers = payerList.size()
 
-        List<Payment> overduePaymentList = returnListPaymentsByCustomerAndStatus(customerId, PaymentStatus.OVERDUE)
-        List<Payer> debtDodgersList = overduePaymentList.unique {Payment payment -> payment.payer}
+        List<Payment> overduePaymentList = returnListPaymentsByCustomerAndStatus(customer, PaymentStatus.OVERDUE)
+        List<Payer> defaultersList = overduePaymentList.unique {Payment payment -> payment.payer}
 
-        Integer debtDodgers = debtDodgersList.size()
-        Integer nonDebtDodgers = totalPayers - debtDodgers
+        Integer defaulters = defaultersList.size()
+        Integer nonDefaulters = totalPayers - defaulters
 
-        BigDecimal receivedValue = returnListPaymentsByCustomerAndStatus(customerId, PaymentStatus.PAID).value.sum()
-        BigDecimal toReceive = returnListPaymentsByCustomerAndStatus(customerId, PaymentStatus.PENDING).value.sum()
+        BigDecimal receivedValue = returnListPaymentsByCustomerAndStatus(customer, PaymentStatus.PAID).value.sum()
+        BigDecimal toReceive = returnListPaymentsByCustomerAndStatus(customer, PaymentStatus.PENDING).value.sum()
         BigDecimal overdue = overduePaymentList.value.sum()
 
         return [
             totalPayers: totalPayers,
-            debtDodgers: debtDodgers,
-            nonDebtDodgers: nonDebtDodgers,
+            defaulters: defaulters,
+            nonDefaulters: nonDefaulters,
             receivedValue: receivedValue ?: 0,
             toReceive: toReceive ?: 0,
             overdue: overdue ?: 0
         ]
     }
 
-    private List<Payment> returnListPaymentsByCustomerAndStatus(Customer customerId, PaymentStatus paymentStatus) {
+    private List<Payment> returnListPaymentsByCustomerAndStatus(Customer customer, PaymentStatus paymentStatus) {
         List<Payment> paymentList = Payment.createCriteria().list() {
-            eq("customer", customerId) and { 
+            eq("customer", customer) and { 
                 eq("status", paymentStatus)
             }
         }
         return paymentList
+    }
+
+    private List<Payer> getPayersByCustomer(Customer customer) {
+        def payerCriteria = Payer.createCriteria()
+        List<Payer> payerList = payerCriteria.list() {
+            eq("customer", customer)
+        }
+        return payerList
     }
 
 }

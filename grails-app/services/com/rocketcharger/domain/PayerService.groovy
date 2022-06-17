@@ -47,7 +47,7 @@ class PayerService {
         return payer
     }
 
-    public List<Payer> returnPayersByCustomer(Long customerId, Integer max, Integer offset) {
+    public List<Payer> returnPayersByCustomer(Customer customerId, Integer max, Integer offset) {
         def payerCriteria = Payer.createCriteria()
         List<Payer> payerList = payerCriteria.list(max: max, offset: offset) {
             eq("customer", customerId)
