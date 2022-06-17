@@ -16,15 +16,6 @@ class DashboardService {
     def payerService
     def paymentService
 
-    public List<Payment> returnListPaymentsByCustomerAndStatus(Long customerId, PaymentStatus paymentStatus) {
-        List<Payment> paymentList = Payment.createCriteria().list() {
-            eq("customer", Customer.get(customerId)) and { 
-                eq("status", paymentStatus)
-            }
-        }
-        return paymentList
-    }
-
     public Map returnDashboardValues(Long customerId) {
         List<Payer> payerList = payerService.returnPayersByCustomer(customerId)
         Integer totalPayers = payerList.size()
@@ -40,5 +31,14 @@ class DashboardService {
         BigDecimal overdue = overduePaymentList.value.sum()
 
         return [totalPayers: totalPayers, debtDodgers: debtDodgers, nonDebtDodgers: nonDebtDodgers, receivedValue: receivedValue, toReceive: toReceive, overdue: overdue]
+    }
+
+    private List<Payment> returnListPaymentsByCustomerAndStatus(Long customerId, PaymentStatus paymentStatus) {
+        List<Payment> paymentList = Payment.createCriteria().list() {
+            eq("customer", Customer.get(customerId)) and { 
+                eq("status", paymentStatus)
+            }
+        }
+        return paymentList
     }
 }
