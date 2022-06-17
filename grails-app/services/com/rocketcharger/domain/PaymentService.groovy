@@ -110,7 +110,7 @@ class PaymentService {
         emailService.sendEmail(payment.payer.email, subject, groovyPageRenderer.render(template: "/email/emailConfirmPayerPayment", model: [payment: payment]))
     }
     
-    public List<Payment> verifyOverDueDates(Long customerId, Payment paymentStatus) {
+    public List<Payment> verifyOverDueDates(Long customerId, PaymentStatus paymentStatus) {
         Date yesterdayDate = FormatDateUtils.getYesterdayDate()
         List<Payment> paymentList = list(PaymentStatus.PENDING, yesterdayDate)
           for(Payment payment : paymentList) {
