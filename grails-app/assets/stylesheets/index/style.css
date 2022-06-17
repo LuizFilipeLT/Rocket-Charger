@@ -135,19 +135,13 @@ body {
   border-color: #e7473c;
 }
 
-.form-control.error #method {
-  border-color: #e7473c;
-}
-
+.form-control.error #method,
 .form-control.error #payerId {
   border-color: #e7473c;
 }
 
-.form-control.success #method {
-  border-color: #0030b9;
-}
-
-.form-control.success #payerId {
+.form-control.success #method,
+.form-control.success #payerId{
   border-color: #0030b9;
 }
 
